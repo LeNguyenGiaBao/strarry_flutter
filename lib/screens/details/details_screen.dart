@@ -4,14 +4,14 @@ import 'package:http/http.dart' as http;
 import 'dart:convert';
 
 
-import 'package:try_e_commerce_ui/constants.dart';
-import 'package:try_e_commerce_ui/models/Product.dart';
-import 'package:try_e_commerce_ui/screens/details/components/body.dart';
+import 'package:strarry_flutter/constants.dart';
+import 'package:strarry_flutter/models/Product.dart';
+import 'package:strarry_flutter/screens/details/components/body.dart';
 
 class DetailsScreen extends StatelessWidget {
   final Product product;
 
-  const DetailsScreen({Key key, this.product}) : super(key: key);
+  const DetailsScreen({Key? key, required this.product}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return Scaffold(

@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
-import 'package:try_e_commerce_ui/constants.dart';
-import 'package:try_e_commerce_ui/screens/home/home_screen.dart';
+import 'package:strarry_flutter/constants.dart';
+import 'package:strarry_flutter/screens/home/home_screen.dart';
 
 void main() {
   // loadList();
