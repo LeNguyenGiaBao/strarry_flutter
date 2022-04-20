@@ -3,29 +3,27 @@ import 'package:http/http.dart' as http;
 import 'dart:convert';
 import 'package:flutter_svg/svg.dart';
 
-import 'package:try_e_commerce_ui/constants.dart';
-import 'package:try_e_commerce_ui/models/Product.dart';
-import 'package:try_e_commerce_ui/screens/details/details_screen.dart';
+import 'package:strarry_flutter/constants.dart';
+import 'package:strarry_flutter/models/Product.dart';
+import 'package:strarry_flutter/screens/details/details_screen.dart';
 
 import 'categorries.dart';
 import 'item_card.dart';
 
 class Body extends StatefulWidget {
-  Body({Key key}) : super(key: key);
+  Body({Key? key}) : super(key: key);
   _BodyState createState() => _BodyState();
 }
 
 class _BodyState extends State<Body> {
   List<Product> products = [];
-  void loadList() async {
+  Future loadList() async {
+    products = [];
     var url = Uri.parse('http://10.0.2.2:8000/products/');
     var response = await http.get(url);
     var json = jsonDecode(response.body);
 
-    print(json);
     var productsListJson = json['products'];
-    print(productsListJson);
-    print(products);
     for (var p in productsListJson) {
       int id = p[0];
       String name = p[1];
@@ -43,8 +41,6 @@ class _BodyState extends State<Body> {
     setState(() {
       products;
     });
-
-    print(products);
   }
 
   @override

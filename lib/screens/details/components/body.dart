@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:try_e_commerce_ui/constants.dart';
-import 'package:try_e_commerce_ui/models/Product.dart';
+import 'package:strarry_flutter/constants.dart';
+import 'package:strarry_flutter/models/Product.dart';
 
 import 'add_to_cart.dart';
 import 'color_and_size.dart';
@@ -11,7 +11,7 @@ import 'product_title_with_image.dart';
 class Body extends StatelessWidget {
   final Product product;
 
-  const Body({Key key, this.product}) : super(key: key);
+  const Body({Key? key, required this.product}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     // It provide us total height and width

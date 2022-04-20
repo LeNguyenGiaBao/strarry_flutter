@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:try_e_commerce_ui/models/Product.dart';
+import 'package:strarry_flutter/models/Product.dart';
 
 import '../../../constants.dart';
 
@@ -7,15 +7,15 @@ class ItemCard extends StatelessWidget {
   final Product product;
   final Function press;
   const ItemCard({
-    Key key,
-    this.product,
-    this.press,
+    Key? key,
+    required this.product,
+    required this.press,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: press,
+      onTap: () {},
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[

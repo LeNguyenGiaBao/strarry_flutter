@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:try_e_commerce_ui/models/Product.dart';
+import 'package:strarry_flutter/models/Product.dart';
 
 import '../../../constants.dart';
 
 class Description extends StatelessWidget {
   const Description({
-    Key key,
-    @required this.product,
+    Key? key,
+    required this.product,
   }) : super(key: key);
 
   final Product product;
