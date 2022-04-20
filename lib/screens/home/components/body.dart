@@ -6,6 +6,7 @@ import 'package:flutter_svg/svg.dart';
 import 'package:strarry_flutter/constants.dart';
 import 'package:strarry_flutter/models/Product.dart';
 import 'package:strarry_flutter/screens/details/details_screen.dart';
+import 'package:strarry_flutter/widget/refresh_widget.dart';
 
 import 'categorries.dart';
 import 'item_card.dart';
@@ -16,8 +17,12 @@ class Body extends StatefulWidget {
 }
 
 class _BodyState extends State<Body> {
+  final GlobalKey<RefreshIndicatorState> keyRefresh2  = new GlobalKey<RefreshIndicatorState>();
+
   List<Product> products = [];
   Future loadList() async {
+    await Future.delayed(const Duration(milliseconds: 400));
+
     products = [];
     var url = Uri.parse('http://10.0.2.2:8000/products/');
     var response = await http.get(url);
@@ -27,20 +32,24 @@ class _BodyState extends State<Body> {
     for (var p in productsListJson) {
       int id = p[0];
       String name = p[1];
-      Product product = new Product(
-          id: id,
-          title: name,
-          price: 234,
-          size: 12,
-          description: dummyText,
-          image: "assets/images/bag_1.png",
-          color: Color(0xFF3D82AE));
+      Product product = newProduct(id, name);
 
       products.add(product);
     }
     setState(() {
       products;
     });
+  }
+
+  Product newProduct(int id, String name) {
+    return new Product(
+        id: id,
+        title: name,
+        price: 234,
+        size: 12,
+        description: dummyText,
+        image: "assets/images/bag_1.png",
+        color: Color(0xFF3D82AE));
   }
 
   @override
@@ -59,9 +68,9 @@ class _BodyState extends State<Body> {
       //   print(response.reasonPhrase);
       // }
 
-      loadList();
     });
     super.initState();
+    loadList();
   }
 
   @override
@@ -91,7 +100,10 @@ class _BodyState extends State<Body> {
         Expanded(
           child: Padding(
             padding: const EdgeInsets.symmetric(horizontal: kDefaultPaddin),
-            child: GridView.builder(
+            child: RefreshWidget(
+              keyRefresh: keyRefresh2,
+              onRefresh: loadList,
+              child: GridView.builder(
                 itemCount: products.length,
                 gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                   crossAxisCount: 2,
@@ -109,6 +121,7 @@ class _BodyState extends State<Body> {
                             ),
                           )),
                     )),
+            )
           ),
         ),
       ],
