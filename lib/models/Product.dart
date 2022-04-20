@@ -1,103 +1,101 @@
 import 'package:flutter/material.dart';
 
 class Product {
-  final int id;
-  final String title, description;
-  final List<String> images;
-  final List<Color> colors;
-  final double rating, price;
-  final bool isFavourite, isPopular;
-
+  final String image, title, description;
+  final int price, size, id;
+  final Color color;
   Product({
-    required this.id,
-    required this.images,
-    required this.colors,
-    this.rating = 0.0,
-    this.isFavourite = false,
-    this.isPopular = false,
-    required this.title,
-    required this.price,
-    required this.description,
+    this.id,
+    this.image,
+    this.title,
+    this.price,
+    this.description,
+    this.size,
+    this.color,
   });
 }
 
-// Our demo Products
 
-List<Product> demoProducts = [
-  Product(
-    id: 1,
-    images: [
-      "assets/images/ps4_console_white_1.png",
-      "assets/images/ps4_console_white_2.png",
-      "assets/images/ps4_console_white_3.png",
-      "assets/images/ps4_console_white_4.png",
-    ],
-    colors: [
-      Color(0xFFF6625E),
-      Color(0xFF836DB8),
-      Color(0xFFDECB9C),
-      Colors.white,
-    ],
-    title: "Wireless Controller for PS4™",
-    price: 64.99,
-    description: description,
-    rating: 4.8,
-    isFavourite: true,
-    isPopular: true,
-  ),
-  Product(
-    id: 2,
-    images: [
-      "assets/images/Image Popular Product 2.png",
-    ],
-    colors: [
-      Color(0xFFF6625E),
-      Color(0xFF836DB8),
-      Color(0xFFDECB9C),
-      Colors.white,
-    ],
-    title: "Nike Sport White - Man Pant",
-    price: 50.5,
-    description: description,
-    rating: 4.1,
-    isPopular: true,
-  ),
-  Product(
-    id: 3,
-    images: [
-      "assets/images/glap.png",
-    ],
-    colors: [
-      Color(0xFFF6625E),
-      Color(0xFF836DB8),
-      Color(0xFFDECB9C),
-      Colors.white,
-    ],
-    title: "Gloves XC Omega - Polygon",
-    price: 36.55,
-    description: description,
-    rating: 4.1,
-    isFavourite: true,
-    isPopular: true,
-  ),
-  Product(
-    id: 4,
-    images: [
-      "assets/images/wireless headset.png",
-    ],
-    colors: [
-      Color(0xFFF6625E),
-      Color(0xFF836DB8),
-      Color(0xFFDECB9C),
-      Colors.white,
-    ],
-    title: "Logitech Head",
-    price: 20.20,
-    description: description,
-    rating: 4.1,
-    isFavourite: true,
-  ),
-];
 
-const String description =
-    "Wireless Controller for PS4™ gives you what you want in your gaming from over precision control your games to sharing …";
+
+// List<Product> products = [
+//   Product(
+//       id: 1,
+//       title: "Office Code",
+//       price: 234,
+//       size: 12,
+//       description: dummyText,
+//       image: "assets/images/bag_1.png",
+//       color: Color(0xFF3D82AE)),
+//   Product(
+//       id: 2,
+//       title: "Belt Bag",
+//       price: 234,
+//       size: 8,
+//       description: dummyText,
+//       image: "assets/images/bag_2.png",
+//       color: Color(0xFFD3A984)),
+//   Product(
+//       id: 3,
+//       title: "Hang Top",
+//       price: 234,
+//       size: 10,
+//       description: dummyText,
+//       image: "assets/images/bag_3.png",
+//       color: Color(0xFF989493)),
+//   Product(
+//       id: 4,
+//       title: "Old Fashion",
+//       price: 234,
+//       size: 11,
+//       description: dummyText,
+//       image: "assets/images/bag_4.png",
+//       color: Color(0xFFE6B398)),
+//   Product(
+//       id: 5,
+//       title: "Office Code",
+//       price: 234,
+//       size: 12,
+//       description: dummyText,
+//       image: "assets/images/bag_5.png",
+//       color: Color(0xFFFB7883)),
+//   Product(
+//     id: 6,
+//     title: "Office Code",
+//     price: 234,
+//     size: 12,
+//     description: dummyText,
+//     image: "assets/images/bag_6.png",
+//     color: Color(0xFFAEAEAE),
+//   ),
+//   Product(
+//     id: 7,
+//     title: "Office Code",
+//     price: 234,
+//     size: 12,
+//     description: dummyText,
+//     image: "assets/images/bag_6.png",
+//     color: Color(0xFFAEAEAE),
+//   ),
+//   Product(
+//     id: 6,
+//     title: "Office Code",
+//     price: 234,
+//     size: 12,
+//     description: dummyText,
+//     image: "assets/images/bag_6.png",
+//     color: Color(0xFFAEAEAE),
+//   ),
+//   Product(
+//     id: 6,
+//     title: "Office Code",
+//     price: 234,
+//     size: 12,
+//     description: dummyText,
+//     image: "assets/images/bag_6.png",
+//     color: Color(0xFFAEAEAE),
+//   ),
+// ];
+
+String dummyText =
+    "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since. When an unknown printer took a galley.";

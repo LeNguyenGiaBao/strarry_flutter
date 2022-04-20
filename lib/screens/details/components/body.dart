@@ -1,58 +1,61 @@
 import 'package:flutter/material.dart';
-import 'package:strarry_flutter/components/default_button.dart';
-import 'package:strarry_flutter/models/Product.dart';
-import 'package:strarry_flutter/size_config.dart';
+import 'package:try_e_commerce_ui/constants.dart';
+import 'package:try_e_commerce_ui/models/Product.dart';
 
-import 'color_dots.dart';
-import 'product_description.dart';
-import 'top_rounded_container.dart';
-import 'product_images.dart';
+import 'add_to_cart.dart';
+import 'color_and_size.dart';
+import 'counter_with_fav_btn.dart';
+import 'description.dart';
+import 'product_title_with_image.dart';
 
 class Body extends StatelessWidget {
   final Product product;
 
-  const Body({Key? key, required this.product}) : super(key: key);
-
+  const Body({Key key, this.product}) : super(key: key);
   @override
   Widget build(BuildContext context) {
-    return ListView(
-      children: [
-        ProductImages(product: product),
-        TopRoundedContainer(
-          color: Colors.white,
-          child: Column(
-            children: [
-              ProductDescription(
-                product: product,
-                pressOnSeeMore: () {},
-              ),
-              TopRoundedContainer(
-                color: Color(0xFFF6F7F9),
-                child: Column(
-                  children: [
-                    ColorDots(product: product),
-                    TopRoundedContainer(
-                      color: Colors.white,
-                      child: Padding(
-                        padding: EdgeInsets.only(
-                          left: SizeConfig.screenWidth * 0.15,
-                          right: SizeConfig.screenWidth * 0.15,
-                          bottom: getProportionateScreenWidth(40),
-                          top: getProportionateScreenWidth(15),
-                        ),
-                        child: DefaultButton(
-                          text: "Add To Cart",
-                          press: () {},
-                        ),
-                      ),
+    // It provide us total height and width
+    Size size = MediaQuery.of(context).size;
+    return SingleChildScrollView(
+      child: Column(
+        children: <Widget>[
+          SizedBox(
+            height: size.height,
+            child: Stack(
+              children: <Widget>[
+                Container(
+                  margin: EdgeInsets.only(top: size.height * 0.3),
+                  padding: EdgeInsets.only(
+                    top: size.height * 0.12,
+                    left: kDefaultPaddin,
+                    right: kDefaultPaddin,
+                  ),
+                  // height: 500,
+                  decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.only(
+                      topLeft: Radius.circular(24),
+                      topRight: Radius.circular(24),
                     ),
-                  ],
+                  ),
+                  child: Column(
+                    children: <Widget>[
+                      ColorAndSize(product: product),
+                      SizedBox(height: kDefaultPaddin / 2),
+                      Description(product: product),
+                      SizedBox(height: kDefaultPaddin / 2),
+                      CounterWithFavBtn(),
+                      SizedBox(height: kDefaultPaddin / 2),
+                      AddToCart(product: product)
+                    ],
+                  ),
                 ),
-              ),
-            ],
-          ),
-        ),
-      ],
+                ProductTitleWithImage(product: product)
+              ],
+            ),
+          )
+        ],
+      ),
     );
   }
 }
