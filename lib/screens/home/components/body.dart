@@ -78,24 +78,24 @@ class _BodyState extends State<Body> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
-        // Padding(
-        //   padding: const EdgeInsets.symmetric(horizontal: kDefaultPaddin),
-        //   child: Text(
-        //     "Women",
-        //     style: Theme.of(context)
-        //         .textTheme
-        //         .headline5
-        //         .copyWith(fontWeight: FontWeight.bold)
-        //   ),
-        // ),
-        IconButton(
-          icon: SvgPicture.asset(
-            "assets/icons/search.svg",
-            // By default our  icon color is white
-            color: kTextColor,
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: kDefaultPaddin),
+          child: Text(
+            "Women",
+            style: Theme.of(context)
+                .textTheme
+                .headline5
+                ?.copyWith(fontWeight: FontWeight.bold)
           ),
-          onPressed: loadList,
         ),
+        // IconButton(
+        //   icon: SvgPicture.asset(
+        //     "assets/icons/search.svg",
+        //     // By default our  icon color is white
+        //     color: kTextColor,
+        //   ),
+        //   onPressed: loadList,
+        // ),
         Categories(),
         Expanded(
           child: Padding(
