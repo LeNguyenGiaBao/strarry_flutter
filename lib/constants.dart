@@ -6,13 +6,12 @@ const kTextLightColor = Color(0xFFACACAC);
 
 const kDefaultPaddin = 20.0;
 
-
-const kPrimaryColor = Color(0xFFFF7643);
+const kPrimaryColor = Color.fromARGB(255, 48, 26, 241);
 const kPrimaryLightColor = Color(0xFFFFECDF);
 const kPrimaryGradientColor = LinearGradient(
   begin: Alignment.topLeft,
   end: Alignment.bottomRight,
-  colors: [Color(0xFFFFA53E), Color(0xFFFF7643)],
+  colors: [Color.fromARGB(255, 38, 57, 236), Color.fromARGB(255, 25, 38, 231)],
 );
 const kSecondaryColor = Color(0xFF979797);
 
