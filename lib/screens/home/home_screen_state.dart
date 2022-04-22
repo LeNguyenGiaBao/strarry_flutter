@@ -6,6 +6,7 @@ import 'package:strarry_flutter/screens/home/home_screen.dart';
 import 'package:strarry_flutter/screens/profile/profile_screen.dart';
 
 class HomeStateScreen extends StatefulWidget {
+  static String routeName = "/home";
   HomeStateScreen({Key? key}) : super(key: key);
   @override
   State<StatefulWidget> createState() {
@@ -14,7 +15,7 @@ class HomeStateScreen extends StatefulWidget {
 }
 
 class MyHomePageState extends State<HomeStateScreen> {
-  static String routeName = "/home";
+  
   int selectedIndex = 0;
   Widget _home = HomeScreen();
   Widget _myEmails = MyEmails();
@@ -53,29 +54,29 @@ class MyHomePageState extends State<HomeStateScreen> {
     return AppBar(
       backgroundColor: Colors.white,
       elevation: 0,
-      leading: IconButton(
-        icon: SvgPicture.asset("assets/icons/back.svg"),
-        onPressed: () {},
-      ),
-      actions: <Widget>[
-        IconButton(
-          icon: SvgPicture.asset(
-            "assets/icons/search.svg",
-            // By default our  icon color is white
-            color: kTextColor,
-          ),
-          onPressed: () {},
-        ),
-        IconButton(
-          icon: SvgPicture.asset(
-            "assets/icons/cart.svg",
-            // By default our  icon color is white
-            color: kTextColor,
-          ),
-          onPressed: () {},
-        ),
-        SizedBox(width: kDefaultPaddin / 2)
-      ],
+      // leading: IconButton(
+      //   icon: SvgPicture.asset("assets/icons/back.svg"),
+      //   onPressed: () {},
+      // ),
+      // actions: <Widget>[
+      //   IconButton(
+      //     icon: SvgPicture.asset(
+      //       "assets/icons/search.svg",
+      //       // By default our  icon color is white
+      //       color: kTextColor,
+      //     ),
+      //     onPressed: () {},
+      //   ),
+      //   IconButton(
+      //     icon: SvgPicture.asset(
+      //       "assets/icons/cart.svg",
+      //       // By default our  icon color is white
+      //       color: kTextColor,
+      //     ),
+      //     onPressed: () {},
+      //   ),
+      //   SizedBox(width: kDefaultPaddin / 2)
+      // ],
     );
   }
 

@@ -7,6 +7,8 @@ import 'package:strarry_flutter/helper/keyboard.dart';
 
 import 'package:http/http.dart' as http;
 import 'package:strarry_flutter/screens/home/home_screen.dart';
+import 'package:strarry_flutter/screens/home/home_screen_state.dart';
+
 import 'dart:convert';
 import '../../../components/default_button.dart';
 import '../../../constants.dart';
@@ -82,7 +84,7 @@ class _SignFormState extends State<SignForm> {
                 KeyboardUtil.hideKeyboard(context);
                 bool isSuccessLogin = await isLogin(email, password);
                 if (await isSuccessLogin == true) {
-                  Navigator.pushNamed(context, HomeScreen.routeName);
+                  Navigator.pushNamed(context, HomeStateScreen.routeName);
                 }
               }
             },
@@ -98,7 +100,7 @@ class _SignFormState extends State<SignForm> {
       'Content-Type': 'application/json'
     };
     var request =
-        http.Request('POST', Uri.parse('http://10.0.2.2:8000/signin/'));
+        http.Request('POST', Uri.parse(backend + 'signin/'));
     request.body = json.encode({"email": email, "password": password});
     request.headers.addAll(headers);
 

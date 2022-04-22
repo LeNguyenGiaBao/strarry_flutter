@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'dart:typed_data';
 
 class Product {
-  final String image, title, description;
+  final String title, description;
+  final Uint8List image;
   final int price, size, id;
   final Color color;
   Product({

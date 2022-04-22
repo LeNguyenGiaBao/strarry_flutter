@@ -1,15 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:http/http.dart' as http;
-import 'dart:convert';
-
-
 import 'package:strarry_flutter/constants.dart';
 import 'package:strarry_flutter/models/Product.dart';
 import 'package:strarry_flutter/screens/details/components/body.dart';
 
 class DetailsScreen extends StatelessWidget {
-  static String routeName = "/details";
   final Product product;
 
   const DetailsScreen({Key? key, required this.product}) : super(key: key);
