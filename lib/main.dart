@@ -22,7 +22,7 @@ class MyApp extends StatelessWidget {
         textTheme: Theme.of(context).textTheme.apply(bodyColor: kTextColor),
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      home: HomeStateScreen(),
+      home: SignInScreen(),
       routes: routes,
     );
   }

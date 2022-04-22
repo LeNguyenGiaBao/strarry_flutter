@@ -1,3 +1,5 @@
+import 'dart:typed_data';
+
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
@@ -24,7 +26,7 @@ class _BodyState extends State<Body> {
     await Future.delayed(const Duration(milliseconds: 400));
 
     products = [];
-    var url = Uri.parse('http://10.0.2.2:8000/products/');
+    var url = Uri.parse('http://192.168.1.9:8000/products/');
     var response = await http.get(url);
     var json = jsonDecode(response.body);
 
@@ -32,7 +34,18 @@ class _BodyState extends State<Body> {
     for (var p in productsListJson) {
       int id = p[0];
       String name = p[1];
-      Product product = newProduct(id, name);
+      String descriptiton = p[2];
+      int price = p[3];
+      int quantity = p[3];
+      Uint8List image = Base64Codec().decode(p[5]);
+      Product product = new Product(
+        id: id,
+        title: name,
+        price: price,
+        size: quantity,
+        description: descriptiton,
+        image: image,
+        color: Colors.white);
 
       products.add(product);
     }
@@ -41,34 +54,10 @@ class _BodyState extends State<Body> {
     });
   }
 
-  Product newProduct(int id, String name) {
-    return new Product(
-        id: id,
-        title: name,
-        price: 234,
-        size: 12,
-        description: dummyText,
-        image: "assets/images/bag_1.png",
-        color: Color(0xFF3D82AE));
-  }
+  
 
   @override
   void initState() {
-    _getThingsOnStartup().then((value) async {
-      //   var request =
-      //     http.Request('GET', Uri.parse('http://10.0.2.2:8000/products/'));
-
-      // http.StreamedResponse response = await request.send();
-
-      // if (response.statusCode == 200) {
-      //   var products = response["products"];
-      //   print(products);
-      //   print(await response.stream.bytesToString()["product"]);
-      // } else {
-      //   print(response.reasonPhrase);
-      // }
-
-    });
     super.initState();
     loadList();
   }
@@ -81,7 +70,7 @@ class _BodyState extends State<Body> {
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: kDefaultPaddin),
           child: Text(
-            "Women",
+            "The Cat",
             style: Theme.of(context)
                 .textTheme
                 .headline5
