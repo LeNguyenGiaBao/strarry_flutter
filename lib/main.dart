@@ -5,6 +5,7 @@ import 'package:strarry_flutter/constants.dart';
 // import 'package:strarry_flutter/screens/home/home_screen.dart';
 import 'package:strarry_flutter/screens/sign_in/sign_in_screen.dart';
 import 'package:strarry_flutter/screens/home/home_screen_state.dart';
+import 'package:strarry_flutter/screens/sign_up/sign_up_screen.dart';
 
 void main() {
   // loadList();
@@ -22,7 +23,8 @@ class MyApp extends StatelessWidget {
         textTheme: Theme.of(context).textTheme.apply(bodyColor: kTextColor),
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      home: HomeStateScreen(),
+      // home: HomeStateScreen(),
+      home: SignUpScreen(),
       routes: routes,
     );
   }
