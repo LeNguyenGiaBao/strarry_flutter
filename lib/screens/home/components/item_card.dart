@@ -15,7 +15,7 @@ class ItemCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () {},
+      onTap: () {press();},
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
