@@ -1,9 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:strarry_flutter/models/Cart.dart';
-
+import 'dart:convert';
+import 'dart:typed_data';
+import 'package:http/http.dart' as http;
+import 'package:strarry_flutter/models/Product.dart';
 import '../../../size_config.dart';
 import 'cart_card.dart';
+import 'package:strarry_flutter/constants.dart';
 
 class Body extends StatefulWidget {
   @override
@@ -11,6 +15,9 @@ class Body extends StatefulWidget {
 }
 
 class _BodyState extends State<Body> {
+  final GlobalKey<RefreshIndicatorState> keyRefresh2 =
+      new GlobalKey<RefreshIndicatorState>();
+
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -18,6 +25,7 @@ class _BodyState extends State<Body> {
           EdgeInsets.symmetric(horizontal: getProportionateScreenWidth(20)),
       child: ListView.builder(
         itemCount: demoCarts.length,
+        // itemCount: 5,
         itemBuilder: (context, index) => Padding(
           padding: EdgeInsets.symmetric(vertical: 10),
           child: Dismissible(
