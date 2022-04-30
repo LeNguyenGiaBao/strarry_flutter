@@ -3,7 +3,7 @@ import 'package:http/http.dart' as http;
 import 'package:strarry_flutter/routes.dart';
 import 'package:strarry_flutter/constants.dart';
 import 'package:get/get.dart';
-// import 'package:strarry_flutter/screens/home/home_screen.dart';
+import 'package:strarry_flutter/screens/home/home_screen.dart';
 import 'package:strarry_flutter/screens/sign_in/sign_in_screen.dart';
 import 'package:strarry_flutter/screens/home/home_screen_state.dart';
 import 'package:strarry_flutter/screens/sign_up/sign_up_screen.dart';
@@ -26,7 +26,8 @@ class MyApp extends StatelessWidget {
         textTheme: Theme.of(context).textTheme.apply(bodyColor: kTextColor),
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      home: CartScreen(),
+      // home: CartScreen(),
+      home: SignInScreen(),
       routes: routes,
     );
   }
