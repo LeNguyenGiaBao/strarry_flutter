@@ -11,7 +11,6 @@ import 'package:strarry_flutter/screens/cart/cart_screen.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized;
-  // loadList();
   runApp(MyApp());
 }
 
@@ -26,7 +25,6 @@ class MyApp extends StatelessWidget {
         textTheme: Theme.of(context).textTheme.apply(bodyColor: kTextColor),
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      // home: CartScreen(),
       home: SignInScreen(),
       routes: routes,
     );

@@ -10,6 +10,7 @@ class Product {
   final Uint8List image;
   final int price, size, id;
   final Color color;
+  
   Product({
     required this.id,
     required this.image,
