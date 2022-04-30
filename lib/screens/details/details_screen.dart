@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:strarry_flutter/constants.dart';
 import 'package:strarry_flutter/models/Product.dart';
+import 'package:strarry_flutter/screens/cart/cart_screen.dart';
 import 'package:strarry_flutter/screens/details/components/body.dart';
 
 class DetailsScreen extends StatelessWidget {
@@ -12,8 +13,7 @@ class DetailsScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       // each product have a color
-      backgroundColor: 
-      .color,
+      backgroundColor: product.color,
       appBar: buildAppBar(context),
       body: Body(product: product),
     );
@@ -26,18 +26,18 @@ class DetailsScreen extends StatelessWidget {
       leading: IconButton(
         icon: SvgPicture.asset(
           'assets/icons/back.svg',
-          color: Colors.white,
+          color: Colors.black,
         ),
         onPressed: () => Navigator.pop(context),
       ),
       actions: <Widget>[
         IconButton(
-          icon: SvgPicture.asset("assets/icons/search.svg"),
+          icon: SvgPicture.asset("assets/icons/search.svg", color: Colors.black),
           onPressed: () {},
         ),
         IconButton(
-          icon: SvgPicture.asset("assets/icons/cart.svg"),
-          onPressed: () {},
+          icon: SvgPicture.asset("assets/icons/cart.svg", color: Colors.black),
+          onPressed: () {Navigator.pushNamed(context, CartScreen.routeName);},
         ),
         SizedBox(width: kDefaultPaddin / 2)
       ],

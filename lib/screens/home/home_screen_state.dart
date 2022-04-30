@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:strarry_flutter/constants.dart';
+import 'package:strarry_flutter/screens/cart/cart_screen.dart';
 import 'package:strarry_flutter/screens/home/components/body.dart';
 import 'package:strarry_flutter/screens/home/home_screen.dart';
 import 'package:strarry_flutter/screens/profile/profile_screen.dart';
@@ -18,7 +19,7 @@ class MyHomePageState extends State<HomeStateScreen> {
   
   int selectedIndex = 0;
   Widget _home = HomeScreen();
-  Widget _myEmails = MyEmails();
+  Widget _cart = CartScreen();
   Widget _myProfile = MyProfile();
 
   @override
@@ -35,8 +36,8 @@ class MyHomePageState extends State<HomeStateScreen> {
             label: "Home",
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.mail),
-            label: "Emails",
+            icon: Icon(Icons.shopping_cart),
+            label: "Cart",
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.person),
@@ -84,7 +85,7 @@ class MyHomePageState extends State<HomeStateScreen> {
     if (this.selectedIndex == 0) {
       return this._home;
     } else if (this.selectedIndex == 1) {
-      return this._myEmails;
+      return this._cart;
     } else {
       return this._myProfile;
     }

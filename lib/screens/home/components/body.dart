@@ -46,7 +46,7 @@ class _BodyState extends State<Body> {
           size: quantity,
           description: descriptiton,
           image: image,
-          color: Colors.white);
+          color: Colors.green);
 
       products.add(product);
     }
