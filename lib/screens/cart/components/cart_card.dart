@@ -23,7 +23,7 @@ class CartCard extends StatelessWidget {
             child: Container(
               padding: EdgeInsets.all(getProportionateScreenWidth(10)),
               decoration: BoxDecoration(
-                color: Color(0xFFF5F6F9),
+                color: Color.fromARGB(255, 198, 200, 204),
                 borderRadius: BorderRadius.circular(15),
               ),
               child: Image.memory(cart.product.image),

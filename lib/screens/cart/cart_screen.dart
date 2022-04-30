@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:strarry_flutter/models/Cart.dart';
-
 import 'components/body.dart';
 import 'components/check_out_card.dart';
 import '../../../size_config.dart';
@@ -26,7 +25,7 @@ class CartScreen extends StatelessWidget {
             style: TextStyle(color: Colors.black),
           ),
           Text(
-            "${demoCarts.length} items",
+            "${5} items",
             // "5 items",
             style: Theme.of(context).textTheme.caption,
           ),
