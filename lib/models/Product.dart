@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
 import 'dart:typed_data';
+import 'dart:convert';
+// import 'dart:typed_data';
+import 'package:http/http.dart' as http;
+import 'package:strarry_flutter/constants.dart';
 
 class Product {
   final String title, description;
@@ -17,18 +21,49 @@ class Product {
     required this.color,
   });
 }
+
+
+
+// List<Product> products = [];
+//   Future loadList() async {
+//     await Future.delayed(const Duration(milliseconds: 400));
+
+//     products = [];
+//     var url = Uri.parse(backend + 'products/');
+//     var response = await http.get(url);
+//     var json = jsonDecode(response.body);
+
+//     var productsListJson = json['products'];
+//     for (var p in productsListJson) {
+//       int id = p[0];
+//       String name = p[1];
+//       String descriptiton = p[2];
+//       int price = p[3];
+//       int quantity = p[3];
+//       Uint8List image = Base64Codec().decode(p[5]);
+//       Product product = new Product(
+//           id: id,
+//           title: name,
+//           price: 12,
+//           size: quantity,
+//           description: descriptiton,
+//           image: image,
+//           color: Colors.white);
+
+//       products.add(product);
 // class Product {
-//   final int id;
+//   final int id, size;
 //   final String title, description;
-//   final List<String> images;
-//   final List<Color> colors;
+//   final String image;
+//   final Color color;
 //   final double rating, price;
 //   final bool isFavourite, isPopular;
 
 //   Product({
 //     required this.id,
-//     required this.images,
-//     required this.colors,
+//     required this.image,
+//     required this.color,
+//     this.size = 12,
 //     this.rating = 0.0,
 //     this.isFavourite = false,
 //     this.isPopular = false,
@@ -117,5 +152,5 @@ class Product {
 //   ),
 // ];
 
-String dummyText =
-    "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since. When an unknown printer took a galley.";
+// String dummyText =
+//     "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since. When an unknown printer took a galley.";

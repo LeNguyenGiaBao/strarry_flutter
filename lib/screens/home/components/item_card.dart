@@ -15,7 +15,9 @@ class ItemCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () {press();},
+      onTap: () {
+        press();
+      },
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
@@ -31,9 +33,8 @@ class ItemCard extends StatelessWidget {
                 borderRadius: BorderRadius.circular(16),
               ),
               child: Hero(
-                tag: "${product.id}",
-                child: Image.memory(product.image),
-              ),
+                  tag: "${product.id}", child: Image.memory(product.image)),
+              // child: Image.asset(product.image[0])),
             ),
           ),
           Padding(

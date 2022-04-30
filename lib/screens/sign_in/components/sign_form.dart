@@ -8,6 +8,7 @@ import 'package:strarry_flutter/helper/keyboard.dart';
 import 'package:http/http.dart' as http;
 import 'package:strarry_flutter/screens/home/home_screen.dart';
 import 'package:strarry_flutter/screens/home/home_screen_state.dart';
+import 'package:strarry_flutter/screens/sign_up/sign_up_screen.dart';
 
 import 'dart:convert';
 import '../../../components/default_button.dart';
@@ -89,6 +90,23 @@ class _SignFormState extends State<SignForm> {
               }
             },
           ),
+          SizedBox(height: getProportionateScreenHeight(20)),
+          GestureDetector(
+            onTap: () async {
+              Navigator.pushNamed(context, SignUpScreen.routeName);
+            }, //Navigator.pushNamed(
+            //context, ForgotPasswordScreen.routeName),
+            child: Text(
+              "Don't have an account yet? Sign Up",
+              style: TextStyle(decoration: TextDecoration.underline),
+            ),
+          )
+          // DefaultButton(
+          //   text: "Sign Up",
+          //   press: () async {
+          //     Navigator.pushNamed(context, SignUpScreen.routeName);
+          //   },
+          // ),
         ],
       ),
     );
@@ -99,12 +117,17 @@ class _SignFormState extends State<SignForm> {
       'accept': 'application/json',
       'Content-Type': 'application/json'
     };
+<<<<<<< HEAD
     var request =
         http.MultipartRequest('POST', Uri.parse(backend + 'signin/'));
     request.fields.addAll({
       'email': email,
       'password': password
     });
+=======
+    var request = http.Request('POST', Uri.parse(backend + 'signin/'));
+    request.body = json.encode({"email": email, "password": password});
+>>>>>>> 4945f2d705c47e5cc58559207f517e4c58f1b558
     request.headers.addAll(headers);
 
     http.StreamedResponse response = await request.send();
@@ -118,7 +141,7 @@ class _SignFormState extends State<SignForm> {
         return true;
       }
     } else {
-      print(response.reasonPhrase);
+      // print(response.reasonPhrase);
       return false;
     }
 

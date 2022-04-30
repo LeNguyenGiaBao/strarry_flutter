@@ -42,7 +42,7 @@ class _BodyState extends State<Body> {
       Product product = new Product(
           id: id,
           title: name,
-          price: price,
+          price: 12,
           size: quantity,
           description: descriptiton,
           image: image,

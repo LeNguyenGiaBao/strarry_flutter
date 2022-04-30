@@ -12,6 +12,7 @@ class CheckoutCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    SizeConfig().init(context);
     return Container(
       padding: EdgeInsets.symmetric(
         vertical: getProportionateScreenWidth(15),
