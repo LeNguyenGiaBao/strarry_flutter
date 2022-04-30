@@ -3,12 +3,15 @@ import 'package:flutter/material.dart';
 import '../../../constants.dart';
 
 class CartCounter extends StatefulWidget {
+  // late final ValueChanged<int> onChanged;
+  // CartCounter(this.onChanged);
+  
   @override
   _CartCounterState createState() => _CartCounterState();
 }
 
 class _CartCounterState extends State<CartCounter> {
-  int numOfItems = 1;
+  static int numOfItems = 1;
   @override
   Widget build(BuildContext context) {
     return Row(
@@ -20,6 +23,7 @@ class _CartCounterState extends State<CartCounter> {
               setState(() {
                 numOfItems--;
               });
+              // widget.onChanged(numOfItems);
             }
           },
         ),
@@ -42,7 +46,7 @@ class _CartCounterState extends State<CartCounter> {
     );
   }
 
-  SizedBox buildOutlineButton({IconData? icon, Function? press}) {
+  SizedBox buildOutlineButton({IconData? icon, required Function press}) {
     return SizedBox(
       width: 40,
       height: 32,
@@ -51,7 +55,7 @@ class _CartCounterState extends State<CartCounter> {
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(13),
         ),
-        onPressed: () {},
+        onPressed: () {press();},
         child: Icon(icon),
       ),
     );

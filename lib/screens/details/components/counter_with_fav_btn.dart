@@ -10,6 +10,7 @@ class CounterWithFavBtn extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    int selectedValue = 0;
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: <Widget>[
