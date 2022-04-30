@@ -16,8 +16,6 @@ class Cart {
 }
 
 
-<<<<<<< HEAD
-=======
 // List<Product> products = [];
 // // List<Cart> demoCarts = [];
 // Future loadList() async {
@@ -56,4 +54,3 @@ class Cart {
 //   Cart(product: products[1], numOfItem: 1),
 //   // Cart(product: products[3], numOfItem: 1),
 // ];
->>>>>>> 4945f2d705c47e5cc58559207f517e4c58f1b558

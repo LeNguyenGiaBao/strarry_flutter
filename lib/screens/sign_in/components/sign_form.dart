@@ -117,17 +117,12 @@ class _SignFormState extends State<SignForm> {
       'accept': 'application/json',
       'Content-Type': 'application/json'
     };
-<<<<<<< HEAD
     var request =
         http.MultipartRequest('POST', Uri.parse(backend + 'signin/'));
     request.fields.addAll({
       'email': email,
       'password': password
     });
-=======
-    var request = http.Request('POST', Uri.parse(backend + 'signin/'));
-    request.body = json.encode({"email": email, "password": password});
->>>>>>> 4945f2d705c47e5cc58559207f517e4c58f1b558
     request.headers.addAll(headers);
 
     http.StreamedResponse response = await request.send();
