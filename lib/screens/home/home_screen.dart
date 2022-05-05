@@ -5,6 +5,8 @@ import 'package:strarry_flutter/screens/home/components/body.dart';
 
 class HomeScreen extends StatelessWidget {
   static String routeName = "/product";
+
+  const HomeScreen({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -41,7 +43,7 @@ class HomeScreen extends StatelessWidget {
           ),
           onPressed: () {},
         ),
-        SizedBox(width: kDefaultPaddin / 2)
+        const SizedBox(width: kDefaultPaddin / 2)
       ],
     );
   }

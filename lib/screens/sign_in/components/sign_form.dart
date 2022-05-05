@@ -14,6 +14,7 @@ import 'dart:convert';
 import '../../../components/default_button.dart';
 import '../../../constants.dart';
 import '../../../size_config.dart';
+import 'package:strarry_flutter/globals.dart' as globals;
 
 class SignForm extends StatefulWidget {
   @override
@@ -28,17 +29,19 @@ class _SignFormState extends State<SignForm> {
   final List<String?> errors = [];
 
   void addError({String? error}) {
-    if (!errors.contains(error))
+    if (!errors.contains(error)) {
       setState(() {
         errors.add(error);
       });
+    }
   }
 
   void removeError({String? error}) {
-    if (errors.contains(error))
+    if (errors.contains(error)) {
       setState(() {
         errors.remove(error);
       });
+    }
   }
 
   @override
@@ -62,12 +65,12 @@ class _SignFormState extends State<SignForm> {
                   });
                 },
               ),
-              Text("Remember me"),
-              Spacer(),
+              const Text("Remember me"),
+              const Spacer(),
               GestureDetector(
                 onTap: () {}, //Navigator.pushNamed(
                 //context, ForgotPasswordScreen.routeName),
-                child: Text(
+                child: const Text(
                   "Forgot Password",
                   style: TextStyle(decoration: TextDecoration.underline),
                 ),
@@ -84,8 +87,10 @@ class _SignFormState extends State<SignForm> {
                 // if all are valid then go to success screen
                 KeyboardUtil.hideKeyboard(context);
                 bool isSuccessLogin = await isLogin(email, password);
-                if (await isSuccessLogin == true) {
-                  Navigator.pushNamed(context, HomeStateScreen.routeName);
+                if (isSuccessLogin == true) {
+                  globals.isSignIn = true;
+                  // Navigator.pushNamed(context, HomeStateScreen.routeName);
+                  Navigator.pop(context);
                 }
               }
             },
@@ -96,7 +101,7 @@ class _SignFormState extends State<SignForm> {
               Navigator.pushNamed(context, SignUpScreen.routeName);
             }, //Navigator.pushNamed(
             //context, ForgotPasswordScreen.routeName),
-            child: Text(
+            child: const Text(
               "Don't have an account yet? Sign Up",
               style: TextStyle(decoration: TextDecoration.underline),
             ),
@@ -132,7 +137,8 @@ class _SignFormState extends State<SignForm> {
       var responseJson = jsonDecode(responseAwait);
       var loginSuccess = responseJson["success"];
       if (loginSuccess == 'true') {
-        // int idAccount = responseJson["id"];
+        int idAccount = responseJson["id"];
+        globals.idAccount = idAccount.toString();
         return true;
       }
     } else {
@@ -153,7 +159,7 @@ class _SignFormState extends State<SignForm> {
         } else if (value.length >= 8) {
           removeError(error: kShortPassError);
         }
-        return null;
+        return;
       },
       validator: (value) {
         if (value!.isEmpty) {

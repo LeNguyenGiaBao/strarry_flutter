@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:strarry_flutter/constants.dart';
 import 'package:strarry_flutter/models/Product.dart';
+import 'package:strarry_flutter/screens/details/components/cart_counter.dart';
 
 import 'add_to_cart.dart';
 import 'color_and_size.dart';
@@ -12,6 +13,7 @@ class Body extends StatelessWidget {
   final Product product;
 
   const Body({Key? key, required this.product}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     // It provide us total height and width
@@ -31,7 +33,7 @@ class Body extends StatelessWidget {
                     right: kDefaultPaddin,
                   ),
                   // height: 500,
-                  decoration: BoxDecoration(
+                  decoration: const BoxDecoration(
                     color: Colors.white,
                     borderRadius: BorderRadius.only(
                       topLeft: Radius.circular(24),
@@ -41,11 +43,11 @@ class Body extends StatelessWidget {
                   child: Column(
                     children: <Widget>[
                       // ColorAndSize(product: product),
-                      SizedBox(height: kDefaultPaddin / 2),
+                      const SizedBox(height: kDefaultPaddin / 2),
                       Description(product: product),
-                      SizedBox(height: kDefaultPaddin / 2),
-                      // CounterWithFavBtn(),
-                      SizedBox(height: kDefaultPaddin / 2),
+                      const SizedBox(height: kDefaultPaddin / 2),
+                      const CartCounter(),
+                      const SizedBox(height: kDefaultPaddin / 2),
                       AddToCart(product: product)
                     ],
                   ),

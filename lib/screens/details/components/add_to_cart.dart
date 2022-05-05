@@ -1,8 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:http/http.dart' as http;
+import 'package:strarry_flutter/main.dart';
 import 'package:strarry_flutter/models/Product.dart';
 import 'dart:convert';
+import 'package:strarry_flutter/globals.dart' as globals;
+import 'package:strarry_flutter/counter_provider.dart';
+import 'package:strarry_flutter/screens/sign_in/sign_in_screen.dart';
+import 'package:strarry_flutter/globals.dart' as globals;
 
 import '../../../constants.dart';
 
@@ -14,18 +20,15 @@ class AddToCart extends StatelessWidget {
 
   final Product product;
 
-  Future<bool> update_Cart(String id_product) async {
-    String id_account = '1'; // NEED MODIFY
-    // String id_product = product.id.toString();
-    print(id_product);
-    String amount_product = '1'; // NEED TO MODIFY
+  Future<bool> updateCart(String idProduct, String amountProduct) async {
+    String idAccount = globals.idAccount;
 
     var request =
         http.MultipartRequest('POST', Uri.parse(backend + 'cart/update/'));
     request.fields.addAll({
-      'id_account': id_account,
-      'id_product': id_product,
-      'amount_product': amount_product
+      'id_account': idAccount,
+      'id_product': idProduct,
+      'amount_product': amountProduct
     });
 
     http.StreamedResponse response = await request.send();
@@ -47,12 +50,14 @@ class AddToCart extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
+    return //ChangeNotifierProvider(
+        // create: (context) => CounterProvider(),
+        Padding(
       padding: const EdgeInsets.symmetric(vertical: kDefaultPaddin),
       child: Row(
         children: <Widget>[
           Container(
-            margin: EdgeInsets.only(right: kDefaultPaddin),
+            margin: const EdgeInsets.only(right: kDefaultPaddin),
             height: 50,
             width: 58,
             decoration: BoxDecoration(
@@ -66,12 +71,20 @@ class AddToCart extends StatelessWidget {
                 "assets/icons/add_to_cart.svg",
                 color: product.color,
               ),
-              onPressed: () async {
-                var isUpdateSuccess = await update_Cart(product.id.toString());
-                if (isUpdateSuccess == true) {
-                  _showToast(context, true);
-                }
-              },
+              onPressed: !globals.isSignIn
+                  ? () {
+                      Navigator.pushNamed(context, SignInScreen.routeName);
+                    }
+                  : () async {
+                      var isUpdateSuccess = await updateCart(
+                          product.id.toString(),
+                          Provider.of<CounterProvider>(context, listen: false)
+                              .counter
+                              .toString());
+                      if (isUpdateSuccess == true) {
+                        _showToast(context, true);
+                      }
+                    },
             ),
           ),
           Expanded(
@@ -95,6 +108,7 @@ class AddToCart extends StatelessWidget {
           ),
         ],
       ),
+      // ),//
     );
   }
 
@@ -108,10 +122,10 @@ class AddToCart extends StatelessWidget {
       );
     } else {
       scaffold.showSnackBar(
-      SnackBar(
-        content: const Text('Add failed'),
-      ),
-    );
+        SnackBar(
+          content: const Text('Add failed'),
+        ),
+      );
     }
   }
 }
