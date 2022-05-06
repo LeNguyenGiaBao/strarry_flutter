@@ -16,11 +16,11 @@ class CartCard extends StatelessWidget {
     return Row(
       children: [
         SizedBox(
-          width: 88,
+          width: 60,
           child: AspectRatio(
             aspectRatio: 0.88,
             child: Container(
-              padding: EdgeInsets.all(getProportionateScreenWidth(10)),
+              padding: EdgeInsets.all(getProportionateScreenWidth(5)),
               decoration: BoxDecoration(
                 color: const Color.fromARGB(255, 198, 200, 204),
                 borderRadius: BorderRadius.circular(15),
@@ -29,7 +29,7 @@ class CartCard extends StatelessWidget {
             ),
           ),
         ),
-        const SizedBox(width: 20),
+        const SizedBox(width: 30),
         Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [

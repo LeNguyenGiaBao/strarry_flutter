@@ -62,6 +62,17 @@ class BackToHome extends StatelessWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
+                const Text.rich(
+                  TextSpan(
+                    text: "Total:\n",
+                    children: [
+                      TextSpan(
+                        text: "\$30",
+                        style: TextStyle(fontSize: 16, color: Colors.black),
+                      ),
+                    ],
+                  ),
+                ),
                 SizedBox(
                   width: getProportionateScreenWidth(190),
                   child: DefaultButton(
