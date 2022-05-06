@@ -4,6 +4,8 @@ import 'package:strarry_flutter/constants.dart';
 import 'package:strarry_flutter/models/Product.dart';
 import 'package:strarry_flutter/screens/cart/cart_screen.dart';
 import 'package:strarry_flutter/screens/details/components/body.dart';
+import 'package:strarry_flutter/globals.dart' as globals;
+import 'package:strarry_flutter/screens/sign_in/sign_in_screen.dart';
 
 class DetailsScreen extends StatelessWidget {
   final Product product;
@@ -32,13 +34,19 @@ class DetailsScreen extends StatelessWidget {
       ),
       actions: <Widget>[
         IconButton(
-          icon: SvgPicture.asset("assets/icons/search.svg", color: Colors.black),
+          icon:
+              SvgPicture.asset("assets/icons/search.svg", color: Colors.black),
           onPressed: () {},
         ),
         IconButton(
-          icon: SvgPicture.asset("assets/icons/cart.svg", color: Colors.black),
-          onPressed: () {Navigator.pushNamed(context, CartScreen.routeName);},
-        ),
+            icon:
+                SvgPicture.asset("assets/icons/cart.svg", color: Colors.black),
+            onPressed: !globals.isSignIn
+                    ? () {
+                        Navigator.pushNamed(context, SignInScreen.routeName);
+                      }:
+                      () {Navigator.pushNamed(context, CartScreen.routeName);},
+            ),
         const SizedBox(width: kDefaultPaddin / 2)
       ],
     );

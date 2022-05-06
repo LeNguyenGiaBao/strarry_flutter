@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:strarry_flutter/screens/home/home_screen_state.dart';
 
 import 'profile_menu.dart';
 import 'profile_pic.dart';
-import 'package:strarry_flutter/screens/sign_in/sign_in_screen.dart';
+import 'package:strarry_flutter/globals.dart' as globals;
 
 class Body extends StatelessWidget {
   const Body({Key? key}) : super(key: key);
@@ -39,7 +40,9 @@ class Body extends StatelessWidget {
             text: "Log Out",
             icon: "assets/icons/Log out.svg",
             press: () {
-              Navigator.pushNamed(context, SignInScreen.routeName);
+              globals.isSignIn = false;
+              globals.idAccount = "0";
+              Navigator.pushNamedAndRemoveUntil(context, HomeStateScreen.routeName, (r) => false);
             },
           ),
         ],

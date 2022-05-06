@@ -6,6 +6,7 @@ import 'package:strarry_flutter/helper/keyboard.dart';
 // import 'package:strarry_flutter/screens/login_success/login_success_screen.dart';
 
 import 'package:http/http.dart' as http;
+import 'package:strarry_flutter/screens/home/home_screen_state.dart';
 import 'package:strarry_flutter/screens/sign_up/sign_up_screen.dart';
 
 import 'dart:convert';
@@ -89,8 +90,8 @@ class _SignFormState extends State<SignForm> {
                 bool isSuccessLogin = await isLogin(email, password);
                 if (isSuccessLogin == true) {
                   globals.isSignIn = true;
-                  // Navigator.pushNamed(context, HomeStateScreen.routeName);
-                  Navigator.pop(context);
+                  Navigator.pushNamedAndRemoveUntil(context, HomeStateScreen.routeName, (r) => false);
+                  // Navigator.pop(context);
                 }
               }
             },

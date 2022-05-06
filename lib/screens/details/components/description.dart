@@ -15,9 +15,28 @@ class Description extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: kDefaultPaddin),
-      child: Text(
-        product.description,
-        style: const TextStyle(height: 1.5),
+      child: Column(
+        children: <Widget>[
+          Align(
+            alignment: Alignment.centerLeft,
+            child: Text(
+              product.description,
+              style: const TextStyle(height: 1.5, fontSize: 20),
+            ),
+          ),
+          const SizedBox(height: kDefaultPaddin*2),
+          Align(
+            alignment: Alignment.centerRight,
+            child: Text(
+              product.price.toString() + " VND",
+              style: const TextStyle(
+                  height: 1.5,
+                  fontSize: 30,
+                  color: Colors.red,
+                  fontWeight: FontWeight.bold),
+            ),
+          ),
+        ],
       ),
     );
   }
