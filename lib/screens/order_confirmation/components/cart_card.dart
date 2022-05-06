@@ -16,7 +16,7 @@ class CartCard extends StatelessWidget {
     return Row(
       children: [
         SizedBox(
-          width: 60,
+          width: 50,
           child: AspectRatio(
             aspectRatio: 0.88,
             child: Container(

@@ -23,11 +23,12 @@ class _BodyState extends State<Body> {
       GlobalKey<RefreshIndicatorState>();
 
   List<Cart> carts = [];
-  final children = <Widget>[];
+  var children = <Widget>[];
   Future loadList() async {
     await Future.delayed(const Duration(milliseconds: 400));
 
     carts = [];
+    children = <Widget>[];
     var url = Uri.parse(backend + 'cart/');
     var request = http.MultipartRequest('POST', url);
     request.fields.addAll({'id_account': '1'}); // NEED MODIFY
@@ -67,6 +68,7 @@ class _BodyState extends State<Body> {
 
       setState(() {
         carts;
+        children;
       });
     } else {
       print(response.reasonPhrase);
