@@ -26,9 +26,9 @@ class CustomTextFormField extends StatelessWidget {
           Expanded(
             child: TextFormField(
               onChanged: onChanged,
-              decoration: InputDecoration(
+              decoration: const InputDecoration(
                 isDense: true,
-                contentPadding: const EdgeInsets.only(left: 10),
+                contentPadding: EdgeInsets.only(left: 10),
                 focusedBorder: UnderlineInputBorder(
                   borderSide: BorderSide(color: Colors.black),
                 ),

@@ -39,7 +39,7 @@ class DetailsScreen extends StatelessWidget {
           icon: SvgPicture.asset("assets/icons/cart.svg", color: Colors.black),
           onPressed: () {Navigator.pushNamed(context, CartScreen.routeName);},
         ),
-        SizedBox(width: kDefaultPaddin / 2)
+        const SizedBox(width: kDefaultPaddin / 2)
       ],
     );
   }

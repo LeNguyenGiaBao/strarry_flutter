@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:strarry_flutter/components/default_button.dart';
 import 'package:strarry_flutter/screens/order_confirmation/order_confirmation_screen.dart';
-import '../../../constants.dart';
 import '../../../size_config.dart';
 
 class OrderNow extends StatelessWidget {
@@ -21,15 +19,15 @@ class OrderNow extends StatelessWidget {
       // height: 174,
       decoration: BoxDecoration(
         color: Colors.white,
-        borderRadius: BorderRadius.only(
+        borderRadius: const BorderRadius.only(
           topLeft: Radius.circular(30),
           topRight: Radius.circular(30),
         ),
         boxShadow: [
           BoxShadow(
-            offset: Offset(0, -15),
+            offset: const Offset(0, -15),
             blurRadius: 20,
-            color: Color(0xFFDADADA).withOpacity(0.15),
+            color: const Color(0xFFDADADA).withOpacity(0.15),
           )
         ],
       ),
@@ -64,7 +62,7 @@ class OrderNow extends StatelessWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Text.rich(
+                const Text.rich(
                   TextSpan(
                     text: "Total:\n",
                     children: [

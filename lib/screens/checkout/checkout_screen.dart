@@ -9,10 +9,12 @@ import 'components/body.dart';
 class CheckoutScreen extends StatelessWidget {
   static const String routeName = '/checkout';
 
+  const CheckoutScreen({Key? key}) : super(key: key);
+
   static Route route() {
     return MaterialPageRoute(
-      settings: RouteSettings(name: routeName),
-      builder: (context) => CheckoutScreen(),
+      settings: const RouteSettings(name: routeName),
+      builder: (context) => const CheckoutScreen(),
     );
   }
 
@@ -20,8 +22,8 @@ class CheckoutScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: buildAppBar(context),
-      body: Body(),
-      bottomNavigationBar: OrderNow(),
+      body: const Body(),
+      bottomNavigationBar: const OrderNow(),
       // body: Padding(
       //   padding: const EdgeInsets.all(20.0),
       //   child: BlocBuilder<CheckoutBloc, CheckoutState>(
@@ -125,7 +127,7 @@ class CheckoutScreen extends StatelessWidget {
     return AppBar(
       title: Column(
         children: [
-          Text(
+          const Text(
             "Check out",
             style: TextStyle(color: Colors.black),
           ),

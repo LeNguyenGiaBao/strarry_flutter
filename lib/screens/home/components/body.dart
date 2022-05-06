@@ -3,24 +3,24 @@ import 'dart:typed_data';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
-import 'package:flutter_svg/svg.dart';
 
 import 'package:strarry_flutter/constants.dart';
 import 'package:strarry_flutter/models/Product.dart';
 import 'package:strarry_flutter/screens/details/details_screen.dart';
 import 'package:strarry_flutter/widget/refresh_widget.dart';
 
-import 'categorries.dart';
 import 'item_card.dart';
 
 class Body extends StatefulWidget {
-  Body({Key? key}) : super(key: key);
+  const Body({Key? key}) : super(key: key);
+
+  @override
   _BodyState createState() => _BodyState();
 }
 
 class _BodyState extends State<Body> {
   final GlobalKey<RefreshIndicatorState> keyRefresh2 =
-      new GlobalKey<RefreshIndicatorState>();
+      GlobalKey<RefreshIndicatorState>();
 
   List<Product> products = [];
   Future loadList() async {
@@ -38,11 +38,11 @@ class _BodyState extends State<Body> {
       String descriptiton = p[2];
       int price = p[3];
       int quantity = p[3];
-      Uint8List image = Base64Codec().decode(p[5]);
-      Product product = new Product(
+      Uint8List image = const Base64Codec().decode(p[5]);
+      Product product = Product(
           id: id,
           title: name,
-          price: 12,
+          price: price,
           size: quantity,
           description: descriptiton,
           image: image,
@@ -91,7 +91,8 @@ class _BodyState extends State<Body> {
                 onRefresh: loadList,
                 child: GridView.builder(
                     itemCount: products.length,
-                    gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                    gridDelegate:
+                        const SliverGridDelegateWithFixedCrossAxisCount(
                       crossAxisCount: 2,
                       mainAxisSpacing: kDefaultPaddin,
                       crossAxisSpacing: kDefaultPaddin,
@@ -113,9 +114,9 @@ class _BodyState extends State<Body> {
     );
   }
 
-  Future _getThingsOnStartup() async {
-    await Future.delayed(Duration(seconds: 2));
-  }
+  // Future _getThingsOnStartup() async {
+  //   await Future.delayed(const Duration(seconds: 2));
+  // }
 }
 
 // class Body extends StatelessWidget {

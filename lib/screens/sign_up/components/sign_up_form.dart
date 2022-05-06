@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:strarry_flutter/components/custom_surfix_icon.dart';
 import 'package:strarry_flutter/components/default_button.dart';
 import 'package:strarry_flutter/components/form_error.dart';
-import 'package:strarry_flutter/screens/complete_profile/complete_profile_screen.dart';
 import 'package:strarry_flutter/screens/sign_in/sign_in_screen.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
@@ -29,17 +28,19 @@ class _SignUpFormState extends State<SignUpForm> {
   final List<String?> errors = [];
 
   void addError({String? error}) {
-    if (!errors.contains(error))
+    if (!errors.contains(error)) {
       setState(() {
         errors.add(error);
       });
+    }
   }
 
   void removeError({String? error}) {
-    if (errors.contains(error))
+    if (errors.contains(error)) {
       setState(() {
         errors.remove(error);
       });
+    }
   }
 
   @override
@@ -62,7 +63,7 @@ class _SignUpFormState extends State<SignUpForm> {
               _formKey.currentState!.save();
               KeyboardUtil.hideKeyboard(context);
               bool isSuccessSignUp = await isSignup(email, password);
-              if (await isSuccessSignUp == true) {
+              if (isSuccessSignUp == true) {
                 Navigator.pushNamed(context, SignInScreen.routeName);
               }
               // Navigator.pushNamed(context, SignInScreen.routeName);
@@ -126,7 +127,7 @@ class _SignUpFormState extends State<SignUpForm> {
         }
         return null;
       },
-      decoration: InputDecoration(
+      decoration: const InputDecoration(
         labelText: "Confirm Password",
         hintText: "Re-enter your password",
         // If  you are using latest version of flutter then lable text and hint text shown like this
@@ -159,7 +160,7 @@ class _SignUpFormState extends State<SignUpForm> {
         }
         return null;
       },
-      decoration: InputDecoration(
+      decoration: const InputDecoration(
         labelText: "Password",
         hintText: "Enter your password",
         // If  you are using latest version of flutter then lable text and hint text shown like this
@@ -180,7 +181,7 @@ class _SignUpFormState extends State<SignUpForm> {
         } else if (emailValidatorRegExp.hasMatch(value)) {
           removeError(error: kInvalidEmailError);
         }
-        return null;
+        return;
       },
       validator: (value) {
         if (value!.isEmpty) {
@@ -192,7 +193,7 @@ class _SignUpFormState extends State<SignUpForm> {
         }
         return null;
       },
-      decoration: InputDecoration(
+      decoration: const InputDecoration(
         labelText: "Email",
         hintText: "Enter your email",
         // If  you are using latest version of flutter then lable text and hint text shown like this

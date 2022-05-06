@@ -1,14 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
-import 'package:strarry_flutter/constants.dart';
 import 'package:strarry_flutter/screens/cart/cart_screen.dart';
-import 'package:strarry_flutter/screens/home/components/body.dart';
 import 'package:strarry_flutter/screens/home/home_screen.dart';
 import 'package:strarry_flutter/screens/profile/profile_screen.dart';
 
 class HomeStateScreen extends StatefulWidget {
   static String routeName = "/home";
-  HomeStateScreen({Key? key}) : super(key: key);
+  const HomeStateScreen({Key? key}) : super(key: key);
   @override
   State<StatefulWidget> createState() {
     return MyHomePageState();
@@ -16,39 +13,42 @@ class HomeStateScreen extends StatefulWidget {
 }
 
 class MyHomePageState extends State<HomeStateScreen> {
-  
   int selectedIndex = 0;
-  Widget _home = HomeScreen();
-  Widget _cart = CartScreen();
-  Widget _myProfile = MyProfile();
+  final Widget _home = const HomeScreen();
+  final Widget _cart = const CartScreen();
+  final Widget _myProfile = const MyProfile();
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       // appBar: buildAppBar(),
-      body: this.getBody(),
+      body: getBody(),
       bottomNavigationBar: BottomNavigationBar(
         type: BottomNavigationBarType.fixed,
-        currentIndex: this.selectedIndex,
+        currentIndex: selectedIndex,
         items: [
-          BottomNavigationBarItem(
-            icon: Icon(Icons.home),
-            label: "Home",
-          ),
-          BottomNavigationBarItem(
+          BottomNavItem(),
+          const BottomNavigationBarItem(
             icon: Icon(Icons.shopping_cart),
             label: "Cart",
           ),
-          BottomNavigationBarItem(
+          const BottomNavigationBarItem(
             icon: Icon(Icons.person),
             label: "Profile",
           )
         ],
         onTap: (int index) {
-          this.onTapHandler(index);
+          onTapHandler(index);
         },
       ),
     );
+  }
+
+  BottomNavigationBarItem BottomNavItem() {
+    return const BottomNavigationBarItem(
+          icon: Icon(Icons.home),
+          label: "Home",
+        );
   }
 
   AppBar buildAppBar() {
@@ -82,25 +82,27 @@ class MyHomePageState extends State<HomeStateScreen> {
   }
 
   Widget getBody() {
-    if (this.selectedIndex == 0) {
-      return this._home;
-    } else if (this.selectedIndex == 1) {
-      return this._cart;
+    if (selectedIndex == 0) {
+      return _home;
+    } else if (selectedIndex == 1) {
+      return _cart;
     } else {
-      return this._myProfile;
+      return _myProfile;
     }
   }
 
   void onTapHandler(int index) {
-    this.setState(() {
-      this.selectedIndex = index;
+    setState(() {
+      selectedIndex = index;
     });
   }
 }
 
 class MyEmails extends StatelessWidget {
+  const MyEmails({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
-    return Center(child: Text("Emails"));
+    return const Center(child: Text("Emails"));
   }
 }
