@@ -64,23 +64,10 @@ class AddToCart extends StatelessWidget {
             ),
             child: IconButton(
               icon: SvgPicture.asset(
-                "assets/icons/add_to_cart.svg",
+                "assets/icons/Heart Icon.svg",
                 color: product.color,
               ),
-              onPressed: !globals.isSignIn
-                  ? () {
-                      Navigator.pushNamed(context, SignInScreen.routeName);
-                    }
-                  : () async {
-                      var isUpdateSuccess = await updateCart(
-                          product.id.toString(),
-                          Provider.of<CounterProvider>(context, listen: false)
-                              .counter
-                              .toString());
-                      if (isUpdateSuccess == true) {
-                        _showToast(context, true);
-                      }
-                    },
+              onPressed: (){},
             ),
           ),
           Expanded(
@@ -90,10 +77,23 @@ class AddToCart extends StatelessWidget {
                 shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(18)),
                 color: product.color,
-                onPressed: () {},
+                onPressed: !globals.isSignIn
+                    ? () {
+                        Navigator.pushNamed(context, SignInScreen.routeName);
+                      }
+                    : () async {
+                        var isUpdateSuccess = await updateCart(
+                            product.id.toString(),
+                            Provider.of<CounterProvider>(context, listen: false)
+                                .counter
+                                .toString());
+                        if (isUpdateSuccess == true) {
+                          _showToast(context, true);
+                        }
+                      },
                 child: Text(
-                  // "Buy Now".toUpperCase(),
-                  globals.isSignIn.toString(),
+                  "Add to cart".toUpperCase(),
+                  // globals.isSignIn.toString(),
                   style: const TextStyle(
                     fontSize: 17,
                     fontWeight: FontWeight.bold,

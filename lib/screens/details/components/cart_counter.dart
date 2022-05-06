@@ -16,16 +16,15 @@ class _CartCounterState extends State<CartCounter> {
   void initState() {
     super.initState();
 
-    WidgetsBinding.instance!.addPostFrameCallback((timeStamp) {
+    WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
       context.read<CounterProvider>().init();
     });
   }
 
   @override
   Widget build(BuildContext context) {
-    // return ChangeNotifierProvider(create: (context) => CounterProvider(),
-    // child: Row(
     return Row(
+      mainAxisAlignment: MainAxisAlignment.end,
       children: <Widget>[
         buildOutlineButton(
           icon: Icons.remove,

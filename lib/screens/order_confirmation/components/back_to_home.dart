@@ -67,7 +67,7 @@ class BackToHome extends StatelessWidget {
                     text: "Total:\n",
                     children: [
                       TextSpan(
-                        text: "\$30",
+                        text: "30000 VND",
                         style: TextStyle(fontSize: 16, color: Colors.black),
                       ),
                     ],

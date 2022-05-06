@@ -5,6 +5,7 @@ import 'package:strarry_flutter/routes.dart';
 import 'package:strarry_flutter/constants.dart';
 import 'package:strarry_flutter/screens/home/home_screen.dart';
 import 'package:strarry_flutter/screens/home/home_screen_state.dart';
+import 'package:strarry_flutter/size_config.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized;

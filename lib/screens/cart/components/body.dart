@@ -9,6 +9,7 @@ import '../../../size_config.dart';
 import 'cart_card.dart';
 import 'package:strarry_flutter/constants.dart';
 import 'package:strarry_flutter/widget/refresh_widget.dart';
+import 'package:strarry_flutter/globals.dart' as globals;
 
 class Body extends StatefulWidget {
   const Body({Key? key}) : super(key: key);
@@ -28,7 +29,7 @@ class _BodyState extends State<Body> {
     carts = [];
     var url = Uri.parse(backend + 'cart/');
     var request = http.MultipartRequest('POST', url);
-    request.fields.addAll({'id_account': '1'}); // NEED MODIFY
+    request.fields.addAll({'id_account': globals.idAccount.toString()}); // NEED MODIFY
 
     var response = await request.send();
     if (response.statusCode == 200) {
@@ -96,7 +97,7 @@ class _BodyState extends State<Body> {
               background: Container(
                 padding: const EdgeInsets.symmetric(horizontal: 20),
                 decoration: BoxDecoration(
-                  color: const Color(0xFFFFE6E6),
+                  color: Colors.white,
                   borderRadius: BorderRadius.circular(15),
                 ),
                 child: Row(

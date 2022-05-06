@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:strarry_flutter/screens/cart/cart_screen.dart';
 import 'package:strarry_flutter/screens/home/home_screen.dart';
 import 'package:strarry_flutter/screens/profile/profile_screen.dart';
+import 'package:strarry_flutter/size_config.dart';
 
 class HomeStateScreen extends StatefulWidget {
   static String routeName = "/home";
@@ -20,6 +21,7 @@ class MyHomePageState extends State<HomeStateScreen> {
 
   @override
   Widget build(BuildContext context) {
+    SizeConfig().init(context);
     return Scaffold(
       // appBar: buildAppBar(),
       body: getBody(),

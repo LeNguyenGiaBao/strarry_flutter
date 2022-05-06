@@ -66,14 +66,14 @@ class _BodyState extends State<Body> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
-        Padding(
-          padding: const EdgeInsets.symmetric(horizontal: kDefaultPaddin),
-          child: Text("The Cat",
-              style: Theme.of(context)
-                  .textTheme
-                  .headline5
-                  ?.copyWith(fontWeight: FontWeight.bold)),
-        ),
+        // Padding(
+        //   padding: const EdgeInsets.symmetric(horizontal: kDefaultPaddin),
+        //   child: Text("The Cat",
+        //       style: Theme.of(context)
+        //           .textTheme
+        //           .headline5
+        //           ?.copyWith(fontWeight: FontWeight.bold)),
+        // ),
         // IconButton(
         //   icon: SvgPicture.asset(
         //     "assets/icons/search.svg",

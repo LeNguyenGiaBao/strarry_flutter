@@ -23,7 +23,7 @@ class CartCard extends StatelessWidget {
             child: Container(
               padding: EdgeInsets.all(getProportionateScreenWidth(10)),
               decoration: BoxDecoration(
-                color: const Color.fromARGB(255, 198, 200, 204),
+                color: Colors.white,
                 borderRadius: BorderRadius.circular(15),
               ),
               child: Image.memory(cart.product.image),
@@ -42,7 +42,7 @@ class CartCard extends StatelessWidget {
             const SizedBox(height: 10),
             Text.rich(
               TextSpan(
-                text: "\$${cart.product.price}",
+                text: "${cart.product.price} VND",
                 style: const TextStyle(
                     fontWeight: FontWeight.w600, color: kPrimaryColor),
                 children: [

@@ -10,6 +10,7 @@ import 'package:strarry_flutter/constants.dart';
 import 'package:strarry_flutter/widget/refresh_widget.dart';
 import 'package:strarry_flutter/widget/custom_text_form_field.dart';
 import 'cart_card.dart';
+import 'package:strarry_flutter/globals.dart' as globals;
 
 class Body extends StatefulWidget {
   const Body({Key? key}) : super(key: key);
@@ -31,7 +32,7 @@ class _BodyState extends State<Body> {
     children = <Widget>[];
     var url = Uri.parse(backend + 'cart/');
     var request = http.MultipartRequest('POST', url);
-    request.fields.addAll({'id_account': '1'}); // NEED MODIFY
+    request.fields.addAll({'id_account': globals.idAccount}); // NEED MODIFY
 
     var response = await request.send();
     if (response.statusCode == 200) {
@@ -133,7 +134,7 @@ class _BodyState extends State<Body> {
                 ),
                 const SizedBox(height: 20),
                 Text(
-                  'ORDER CODE: ttkien',
+                  'ORDER CODE: STRA001',
                   style: Theme.of(context).textTheme.headline5,
                 ),
                 // OrderSummary(),
