@@ -9,7 +9,6 @@ import 'package:strarry_flutter/constants.dart';
 import 'package:strarry_flutter/widget/refresh_widget.dart';
 import 'package:strarry_flutter/widget/custom_text_form_field.dart';
 
-
 class Body extends StatefulWidget {
   const Body({Key? key}) : super(key: key);
 
@@ -121,6 +120,14 @@ class _BodyState extends State<Body> {
                 // },
               ),
               const SizedBox(height: 5),
+              const CustomTextFormField(
+                title: 'Phone',
+                // onChanged: (value) {
+                //   context
+                //       .read<CheckoutBloc>()
+                //       .add(UpdateCheckout(address: value));
+                // },
+              ),
               Container(
                 height: 60,
                 alignment: Alignment.bottomCenter,
