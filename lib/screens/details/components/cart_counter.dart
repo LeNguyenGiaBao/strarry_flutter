@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:strarry_flutter/counter_provider.dart';
-import 'package:strarry_flutter/main.dart';
-// import 'package:strarry_flutter/screens/details/components/counter_provider.dart';
 import '../../../constants.dart';
 
 class CartCounter extends StatefulWidget {
@@ -13,8 +11,6 @@ class CartCounter extends StatefulWidget {
 }
 
 class _CartCounterState extends State<CartCounter> {
-  static int numOfItems = 1;
-
   void initValue(BuildContext context) {}
   @override
   void initState() {

@@ -2,13 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:http/http.dart' as http;
-import 'package:strarry_flutter/main.dart';
 import 'package:strarry_flutter/models/Product.dart';
 import 'dart:convert';
 import 'package:strarry_flutter/globals.dart' as globals;
 import 'package:strarry_flutter/counter_provider.dart';
 import 'package:strarry_flutter/screens/sign_in/sign_in_screen.dart';
-import 'package:strarry_flutter/globals.dart' as globals;
 
 import '../../../constants.dart';
 
@@ -50,9 +48,7 @@ class AddToCart extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return //ChangeNotifierProvider(
-        // create: (context) => CounterProvider(),
-        Padding(
+    return Padding(
       padding: const EdgeInsets.symmetric(vertical: kDefaultPaddin),
       child: Row(
         children: <Widget>[
@@ -96,8 +92,9 @@ class AddToCart extends StatelessWidget {
                 color: product.color,
                 onPressed: () {},
                 child: Text(
-                  "Buy Now".toUpperCase(),
-                  style: TextStyle(
+                  // "Buy Now".toUpperCase(),
+                  globals.isSignIn.toString(),
+                  style: const TextStyle(
                     fontSize: 17,
                     fontWeight: FontWeight.bold,
                     color: Colors.white,
@@ -116,14 +113,14 @@ class AddToCart extends StatelessWidget {
     final scaffold = ScaffoldMessenger.of(context);
     if (isSuccess == true) {
       scaffold.showSnackBar(
-        SnackBar(
-          content: const Text('Added to cart'),
+        const SnackBar(
+          content: Text('Added to cart'),
         ),
       );
     } else {
       scaffold.showSnackBar(
-        SnackBar(
-          content: const Text('Add failed'),
+        const SnackBar(
+          content: Text('Add failed'),
         ),
       );
     }

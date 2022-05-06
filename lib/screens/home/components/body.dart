@@ -3,14 +3,12 @@ import 'dart:typed_data';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
-import 'package:flutter_svg/svg.dart';
 
 import 'package:strarry_flutter/constants.dart';
 import 'package:strarry_flutter/models/Product.dart';
 import 'package:strarry_flutter/screens/details/details_screen.dart';
 import 'package:strarry_flutter/widget/refresh_widget.dart';
 
-import 'categorries.dart';
 import 'item_card.dart';
 
 class Body extends StatefulWidget {
@@ -116,9 +114,9 @@ class _BodyState extends State<Body> {
     );
   }
 
-  Future _getThingsOnStartup() async {
-    await Future.delayed(const Duration(seconds: 2));
-  }
+  // Future _getThingsOnStartup() async {
+  //   await Future.delayed(const Duration(seconds: 2));
+  // }
 }
 
 // class Body extends StatelessWidget {

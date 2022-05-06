@@ -6,8 +6,6 @@ import 'package:strarry_flutter/helper/keyboard.dart';
 // import 'package:strarry_flutter/screens/login_success/login_success_screen.dart';
 
 import 'package:http/http.dart' as http;
-import 'package:strarry_flutter/screens/home/home_screen.dart';
-import 'package:strarry_flutter/screens/home/home_screen_state.dart';
 import 'package:strarry_flutter/screens/sign_up/sign_up_screen.dart';
 
 import 'dart:convert';
@@ -17,6 +15,8 @@ import '../../../size_config.dart';
 import 'package:strarry_flutter/globals.dart' as globals;
 
 class SignForm extends StatefulWidget {
+  const SignForm({Key? key}) : super(key: key);
+
   @override
   _SignFormState createState() => _SignFormState();
 }
@@ -97,7 +97,7 @@ class _SignFormState extends State<SignForm> {
           ),
           SizedBox(height: getProportionateScreenHeight(20)),
           GestureDetector(
-            onTap: () async {
+            onTap: () {
               Navigator.pushNamed(context, SignUpScreen.routeName);
             }, //Navigator.pushNamed(
             //context, ForgotPasswordScreen.routeName),
@@ -138,7 +138,10 @@ class _SignFormState extends State<SignForm> {
       var loginSuccess = responseJson["success"];
       if (loginSuccess == 'true') {
         int idAccount = responseJson["id"];
+        globals.isSignIn = true;
         globals.idAccount = idAccount.toString();
+        print(globals.idAccount);
+        print(globals.isSignIn);
         return true;
       }
     } else {
@@ -171,7 +174,7 @@ class _SignFormState extends State<SignForm> {
         }
         return null;
       },
-      decoration: InputDecoration(
+      decoration: const InputDecoration(
         labelText: "Password",
         hintText: "Enter your password",
         // If  you are using latest version of flutter then lable text and hint text shown like this
@@ -192,7 +195,7 @@ class _SignFormState extends State<SignForm> {
         } else if (emailValidatorRegExp.hasMatch(value)) {
           removeError(error: kInvalidEmailError);
         }
-        return null;
+        return;
       },
       validator: (value) {
         if (value!.isEmpty) {
@@ -204,7 +207,7 @@ class _SignFormState extends State<SignForm> {
         }
         return null;
       },
-      decoration: InputDecoration(
+      decoration: const InputDecoration(
         labelText: "Email",
         hintText: "Enter your email",
         // If  you are using latest version of flutter then lable text and hint text shown like this

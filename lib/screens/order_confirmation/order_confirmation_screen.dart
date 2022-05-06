@@ -7,10 +7,12 @@ import 'components/back_to_home.dart';
 class OrderConfirmation extends StatelessWidget {
   static const String routeName = '/order-confirmation';
 
+  const OrderConfirmation({Key? key}) : super(key: key);
+
   static Route route() {
     return MaterialPageRoute(
-      settings: RouteSettings(name: routeName),
-      builder: (context) => OrderConfirmation(),
+      settings: const RouteSettings(name: routeName),
+      builder: (context) => const OrderConfirmation(),
     );
   }
 
@@ -18,7 +20,7 @@ class OrderConfirmation extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: buildAppBar(context),
-      bottomNavigationBar: BackToHome(),
+      bottomNavigationBar: const BackToHome(),
       extendBodyBehindAppBar: true,
       body: SingleChildScrollView(
         child: Column(
@@ -63,24 +65,24 @@ class OrderConfirmation extends StatelessWidget {
                     'Hi Tran Trung Kien,',
                     style: Theme.of(context).textTheme.headline5,
                   ),
-                  SizedBox(height: 10),
+                  const SizedBox(height: 10),
                   Text(
                     'Thank you for purchasing on The Strarry.',
                     style: Theme.of(context).textTheme.headline6,
                   ),
-                  SizedBox(height: 20),
+                  const SizedBox(height: 20),
                   Text(
                     'ORDER CODE: ttkien',
                     style: Theme.of(context).textTheme.headline5,
                   ),
                   // OrderSummary(),
-                  SizedBox(height: 20),
+                  const SizedBox(height: 20),
                   Text(
                     'ORDER DETAILS',
                     style: Theme.of(context).textTheme.headline5,
                   ),
-                  Divider(thickness: 2),
-                  SizedBox(height: 5),
+                  const Divider(thickness: 2),
+                  const SizedBox(height: 5),
                   // ListView(
                   //   shrinkWrap: true,
                   //   padding: EdgeInsets.zero,
@@ -109,7 +111,7 @@ class OrderConfirmation extends StatelessWidget {
     return AppBar(
       title: Column(
         children: [
-          Text(
+          const Text(
             "Order Confirmation",
             style: TextStyle(color: Colors.black),
           ),

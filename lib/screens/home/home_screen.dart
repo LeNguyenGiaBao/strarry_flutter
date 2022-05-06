@@ -13,7 +13,7 @@ class HomeScreen extends StatelessWidget {
       appBar: buildAppBar(),
       body: Builder(
       builder: (BuildContext context) {
-        return Body();
+        return const Body();
       }),
     );
   }

@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 // import 'package:strarry_flutter/components/no_account_text.dart';
-import 'package:strarry_flutter/components/socal_card.dart';
 import '../../../size_config.dart';
 import 'sign_form.dart';
 
 class Body extends StatelessWidget {
+  const Body({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -30,7 +31,7 @@ class Body extends StatelessWidget {
                   textAlign: TextAlign.center,
                 ),
                 SizedBox(height: SizeConfig.screenHeight * 0.08),
-                SignForm(),
+                const SignForm(),
                 SizedBox(height: SizeConfig.screenHeight * 0.08),
                 // Row(
                 //   mainAxisAlignment: MainAxisAlignment.center,

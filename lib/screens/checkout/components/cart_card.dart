@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:strarry_flutter/models/Cart.dart';
 
 import '../../../constants.dart';
-import '../../../size_config.dart';
 
 class CartCard extends StatelessWidget {
   const CartCard({
@@ -40,14 +39,14 @@ class CartCard extends StatelessWidget {
             // ),
             Text(
               cart.product.title,
-              style: TextStyle(color: Colors.black, fontSize: 16),
+              style: const TextStyle(color: Colors.black, fontSize: 16),
               maxLines: 2,
             ),
-            SizedBox(height: 10),
+            const SizedBox(height: 10),
             Text.rich(
               TextSpan(
                 text: "\$${cart.product.price}",
-                style: TextStyle(
+                style: const TextStyle(
                     fontWeight: FontWeight.w600, color: kPrimaryColor),
                 children: [
                   TextSpan(

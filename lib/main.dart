@@ -4,14 +4,11 @@ import 'package:strarry_flutter/counter_provider.dart';
 import 'package:strarry_flutter/routes.dart';
 import 'package:strarry_flutter/constants.dart';
 import 'package:strarry_flutter/screens/home/home_screen.dart';
-import 'package:strarry_flutter/screens/sign_in/sign_in_screen.dart';
 import 'package:strarry_flutter/screens/home/home_screen_state.dart';
-import 'package:strarry_flutter/screens/sign_up/sign_up_screen.dart';
-import 'package:strarry_flutter/screens/cart/cart_screen.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized;
-  runApp(MyApp());
+  runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
@@ -29,7 +26,7 @@ class MyApp extends StatelessWidget {
           textTheme: Theme.of(context).textTheme.apply(bodyColor: kTextColor),
           visualDensity: VisualDensity.adaptivePlatformDensity,
         ),
-        home: HomeScreen(),
+        home: const HomeStateScreen(),
         routes: routes,
       ),
     );
