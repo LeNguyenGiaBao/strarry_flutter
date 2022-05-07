@@ -21,7 +21,7 @@ class OrderConfirmation extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: buildAppBar(context),
-      bottomNavigationBar: const BackToHome(),
+      bottomNavigationBar: BackToHome(),
       extendBodyBehindAppBar: true,
       body: Body(),
     );

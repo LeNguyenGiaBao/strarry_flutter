@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:strarry_flutter/controller.dart';
 import 'package:strarry_flutter/size_config.dart';
 
 import 'components/body.dart';
@@ -7,15 +9,16 @@ import '../../../size_config.dart';
 
 class CartScreen extends StatelessWidget {
   static String routeName = "/cart";
-
-  const CartScreen({Key? key}) : super(key: key);
+  final Controller c = Get.put(Controller());
+  
+  CartScreen({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     SizeConfig().init(context);
     return Scaffold(
       appBar: buildAppBar(context),
       body: const Body(),
-      bottomNavigationBar: const CheckoutCard(),
+      bottomNavigationBar: CheckoutCard(),
     );
   }
 
@@ -28,7 +31,8 @@ class CartScreen extends StatelessWidget {
             style: TextStyle(color: Colors.black),
           ),
           Text(
-            "${5} items",
+            "",
+            // "${5} items",
             // "5 items",
             style: Theme.of(context).textTheme.caption,
           ),

@@ -16,7 +16,7 @@ class HomeStateScreen extends StatefulWidget {
 class MyHomePageState extends State<HomeStateScreen> {
   int selectedIndex = 0;
   final Widget _home = const HomeScreen();
-  final Widget _cart = const CartScreen();
+  final Widget _cart = CartScreen();
   final Widget _myProfile = const MyProfile();
 
   @override

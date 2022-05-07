@@ -1,14 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:get/get.dart';
 import 'package:strarry_flutter/components/default_button.dart';
 import 'package:strarry_flutter/screens/checkout/checkout_screen.dart';
 import '../../../constants.dart';
+import '../../../controller.dart';
 import '../../../size_config.dart';
 
 class CheckoutCard extends StatelessWidget {
-  const CheckoutCard({
+  CheckoutCard({
     Key? key,
   }) : super(key: key);
+  final Controller c = Get.find();
 
   @override
   Widget build(BuildContext context) {
@@ -64,16 +67,18 @@ class CheckoutCard extends StatelessWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                const Text.rich(
-                  TextSpan(
-                    text: "Total:\n",
-                    children: [
-                      TextSpan(
-                        text: "150.000 VND",
-                        style: TextStyle(fontSize: 16, color: Colors.black),
-                      ),
-                    ],
-                  ),
+                Obx(
+                  () => (Text.rich(
+                    TextSpan(
+                      text: "Total:\n",
+                      children: [
+                        TextSpan(
+                          text: "${c.money.toString()} VND",
+                          style: TextStyle(fontSize: 16, color: Colors.black),
+                        ),
+                      ],
+                    ),
+                  )),
                 ),
                 SizedBox(
                   width: getProportionateScreenWidth(190),

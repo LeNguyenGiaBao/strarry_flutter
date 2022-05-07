@@ -1,12 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:strarry_flutter/components/default_button.dart';
 import 'package:strarry_flutter/screens/order_confirmation/order_confirmation_screen.dart';
+import '../../../controller.dart';
 import '../../../size_config.dart';
 
 class OrderNow extends StatelessWidget {
-  const OrderNow({
+  OrderNow({
     Key? key,
   }) : super(key: key);
+  final Controller c = Get.find();
+
 
   @override
   Widget build(BuildContext context) {
@@ -62,17 +66,20 @@ class OrderNow extends StatelessWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                const Text.rich(
-                  TextSpan(
-                    text: "Total:\n",
-                    children: [
-                      TextSpan(
-                        text: "150.000 VND",
-                        style: TextStyle(fontSize: 16, color: Colors.black),
-                      ),
-                    ],
-                  ),
+                Obx(
+                  () => (Text.rich(
+                    TextSpan(
+                      text: "Total:\n",
+                      children: [
+                        TextSpan(
+                          text: "${c.money.toString()} VND",
+                          style: TextStyle(fontSize: 16, color: Colors.black),
+                        ),
+                      ],
+                    ),
+                  )),
                 ),
+                
                 SizedBox(
                   width: getProportionateScreenWidth(190),
                   child: DefaultButton(
