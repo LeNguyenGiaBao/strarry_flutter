@@ -42,11 +42,20 @@ class Body extends StatelessWidget {
             press: () {
               globals.isSignIn = false;
               globals.idAccount = "0";
+              _showToast(context);
               Navigator.pushNamedAndRemoveUntil(context, HomeStateScreen.routeName, (r) => false);
             },
           ),
         ],
       ),
     );
+  }
+  void _showToast(BuildContext context) {
+    final scaffold = ScaffoldMessenger.of(context);
+      scaffold.showSnackBar(
+        const SnackBar(
+          content: Text('Loged Out'),
+        ),
+      );
   }
 }

@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:get/get.dart';
 import 'package:strarry_flutter/models/Cart.dart';
 import 'dart:convert';
 import 'dart:typed_data';
 import 'package:http/http.dart' as http;
 import 'package:strarry_flutter/models/Product.dart';
+import '../../../controller.dart';
 import '../../../size_config.dart';
 import 'cart_card.dart';
 import 'package:strarry_flutter/constants.dart';
@@ -21,7 +23,8 @@ class Body extends StatefulWidget {
 class _BodyState extends State<Body> {
   final GlobalKey<RefreshIndicatorState> keyRefresh2 =
       GlobalKey<RefreshIndicatorState>();
-
+  final Controller c = Get.find();
+  int money = 0;
   List<Cart> carts = [];
   Future loadList() async {
     await Future.delayed(const Duration(milliseconds: 400));
@@ -56,9 +59,12 @@ class _BodyState extends State<Body> {
             description: descriptiton,
             image: image,
             color: Colors.green);
+        money += price * amountProduct;
         Cart cart = Cart(product: product, numOfItem: amountProduct);
         carts.add(cart);
       }
+      print(money);
+      c.setMoney(money);
 
       setState(() {
         carts;
@@ -103,7 +109,7 @@ class _BodyState extends State<Body> {
                 child: Row(
                   children: [
                     const Spacer(),
-                    SvgPicture.asset("assets/icons/Trash.svg"),
+                    SvgPicture.asset("assets/icons/Trash.svg", color: Colors.black,),
                   ],
                 ),
               ),

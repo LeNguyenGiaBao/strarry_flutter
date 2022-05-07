@@ -23,7 +23,7 @@ class CheckoutScreen extends StatelessWidget {
     return Scaffold(
       appBar: buildAppBar(context),
       body: const Body(),
-      bottomNavigationBar: const OrderNow(),
+      bottomNavigationBar: OrderNow(),
       // body: Padding(
       //   padding: const EdgeInsets.all(20.0),
       //   child: BlocBuilder<CheckoutBloc, CheckoutState>(

@@ -1,12 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:strarry_flutter/components/default_button.dart';
 import 'package:strarry_flutter/screens/home/home_screen_state.dart';
+import '../../../controller.dart';
 import '../../../size_config.dart';
 
 class BackToHome extends StatelessWidget {
-  const BackToHome({
+  BackToHome({
     Key? key,
   }) : super(key: key);
+  final Controller c = Get.find();
+
 
   @override
   Widget build(BuildContext context) {
@@ -62,16 +66,18 @@ class BackToHome extends StatelessWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                const Text.rich(
-                  TextSpan(
-                    text: "Total:\n",
-                    children: [
-                      TextSpan(
-                        text: "30000 VND",
-                        style: TextStyle(fontSize: 16, color: Colors.black),
-                      ),
-                    ],
-                  ),
+                Obx(
+                  () => (Text.rich(
+                    TextSpan(
+                      text: "Total:\n",
+                      children: [
+                        TextSpan(
+                          text: "${c.money.toString()} VND",
+                          style: TextStyle(fontSize: 16, color: Colors.black),
+                        ),
+                      ],
+                    ),
+                  )),
                 ),
                 SizedBox(
                   width: getProportionateScreenWidth(190),
