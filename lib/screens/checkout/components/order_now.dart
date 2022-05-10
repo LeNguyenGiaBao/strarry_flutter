@@ -4,13 +4,16 @@ import 'package:strarry_flutter/components/default_button.dart';
 import 'package:strarry_flutter/screens/order_confirmation/order_confirmation_screen.dart';
 import '../../../controller.dart';
 import '../../../size_config.dart';
+import 'package:http/http.dart' as http;
+import '../../../constants.dart';
+import 'dart:convert';
+import 'package:strarry_flutter/globals.dart' as globals;
 
 class OrderNow extends StatelessWidget {
   OrderNow({
     Key? key,
   }) : super(key: key);
   final Controller c = Get.find();
-
 
   @override
   Widget build(BuildContext context) {
@@ -79,13 +82,21 @@ class OrderNow extends StatelessWidget {
                     ),
                   )),
                 ),
-                
                 SizedBox(
                   width: getProportionateScreenWidth(190),
                   child: DefaultButton(
                     text: "Order Now",
-                    press: () {
-                      Navigator.pushNamed(context, OrderConfirmation.routeName);
+                    press: () async {
+                      bool isSuccessInserBill = await isInsertBill(
+                          globals.idAccount.toString(),
+                          c.money.toString(),
+                          '0',
+                          c.phone.toString(),
+                          c.address.toString());
+                      if (isSuccessInserBill == true) {
+                        Navigator.pushNamed(
+                            context, OrderConfirmation.routeName);
+                      }
                     },
                   ),
                 ),
@@ -95,5 +106,41 @@ class OrderNow extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  Future<bool> isInsertBill(idAccount, price, discount, phone, address) async {
+    var headers = {
+      'accept': 'application/json',
+      'Content-Type': 'application/json',
+    };
+
+    // var request = http.Request('POST', Uri.parse(backend + 'signup/'));
+    var request =
+        http.MultipartRequest('POST', Uri.parse(backend + 'bill/insert/'));
+    request.fields.addAll({
+      'id_account': idAccount,
+      'price': price,
+      'discount': discount,
+      'phone': phone,
+      'address': address
+    });
+    // // request.body = json.encode({"email": email, "password": password});
+    request.headers.addAll(headers);
+
+    http.StreamedResponse response = await request.send();
+
+    if (response.statusCode == 200) {
+      var responseAwait = await response.stream.bytesToString();
+      var responseJson = jsonDecode(responseAwait);
+      var signupSuccess = responseJson["success"];
+      if (signupSuccess == 'true') {
+        // int idAccount = responseJson["id"];
+        return true;
+      }
+    } else {
+      print(response.reasonPhrase);
+      return false;
+    }
+    return false;
   }
 }

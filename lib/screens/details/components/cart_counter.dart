@@ -16,7 +16,7 @@ class _CartCounterState extends State<CartCounter> {
   void initState() {
     super.initState();
 
-    WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
+    WidgetsBinding.instance!.addPostFrameCallback((timeStamp) {
       context.read<CounterProvider>().init();
     });
   }
