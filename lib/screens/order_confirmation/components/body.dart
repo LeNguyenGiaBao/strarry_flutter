@@ -22,7 +22,7 @@ class Body extends StatefulWidget {
 class _BodyState extends State<Body> {
   final GlobalKey<RefreshIndicatorState> keyRefresh2 =
       GlobalKey<RefreshIndicatorState>();
-
+  String? email = "";
   List<Cart> carts = [];
   var children = <Widget>[];
   Future loadList() async {
@@ -63,13 +63,26 @@ class _BodyState extends State<Body> {
         carts.add(cart);
       }
 
-      for (var i = 0; i < carts.length; i++) {
-        children.add(CartCard(cart: carts[i]));
-      }
-
       setState(() {
         carts;
         children;
+      });
+    } else {
+      print(response.reasonPhrase);
+    }
+    var url1 = Uri.parse(backend + 'account/email/');
+    var request1 = http.MultipartRequest('POST', url1);
+    request1.fields
+        .addAll({'id_account': globals.idAccount.toString()}); // NEED MODIFY
+
+    var response1 = await request1.send();
+    if (response1.statusCode == 200) {
+      var responseAwait1 = await response1.stream.bytesToString();
+      var responseJson1 = jsonDecode(responseAwait1);
+      var email1 = responseJson1["email"];
+      email = email1.toString();
+      setState(() {
+        email;
       });
     } else {
       print(response.reasonPhrase);
@@ -124,7 +137,7 @@ class _BodyState extends State<Body> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  'Hi Tran Trung Kien,',
+                  'Hi ${email.toString()},',
                   style: Theme.of(context).textTheme.headline5,
                 ),
                 const SizedBox(height: 10),

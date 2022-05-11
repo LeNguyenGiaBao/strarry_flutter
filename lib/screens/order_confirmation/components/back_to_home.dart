@@ -2,15 +2,19 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:strarry_flutter/components/default_button.dart';
 import 'package:strarry_flutter/screens/home/home_screen_state.dart';
+import '../../../constants.dart';
 import '../../../controller.dart';
 import '../../../size_config.dart';
+import 'package:http/http.dart' as http;
+
+import 'dart:convert';
+import 'package:strarry_flutter/globals.dart' as globals;
 
 class BackToHome extends StatelessWidget {
   BackToHome({
     Key? key,
   }) : super(key: key);
   final Controller c = Get.find();
-
 
   @override
   Widget build(BuildContext context) {
@@ -83,8 +87,12 @@ class BackToHome extends StatelessWidget {
                   width: getProportionateScreenWidth(190),
                   child: DefaultButton(
                     text: "Back to Home",
-                    press: () {
-                      Navigator.pushNamed(context, HomeStateScreen.routeName);
+                    press: () async {
+                      bool isDeleteCart1 =
+                          await isDeleteCart(globals.idAccount.toString());
+                      if (isDeleteCart1 == true) {
+                        Navigator.pushNamed(context, HomeStateScreen.routeName);
+                      }
                     },
                   ),
                 ),
@@ -94,5 +102,36 @@ class BackToHome extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  Future<bool> isDeleteCart(idAccount) async {
+    var headers = {
+      'accept': 'application/json',
+      'Content-Type': 'application/json',
+    };
+
+    var request =
+        http.MultipartRequest('POST', Uri.parse(backend + 'cart/delete/'));
+    request.fields.addAll({
+      'id_account': idAccount,
+    });
+    // // request.body = json.encode({"email": email, "password": password});
+    request.headers.addAll(headers);
+
+    http.StreamedResponse response = await request.send();
+
+    if (response.statusCode == 200) {
+      var responseAwait = await response.stream.bytesToString();
+      var responseJson = jsonDecode(responseAwait);
+      var signupSuccess = responseJson["success"];
+      if (signupSuccess == 'true') {
+        // int idAccount = responseJson["id"];
+        return true;
+      }
+    } else {
+      print(response.reasonPhrase);
+      return false;
+    }
+    return false;
   }
 }

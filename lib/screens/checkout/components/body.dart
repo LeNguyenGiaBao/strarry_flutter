@@ -4,10 +4,13 @@ import 'dart:convert';
 import 'dart:typed_data';
 import 'package:http/http.dart' as http;
 import 'package:strarry_flutter/models/Product.dart';
+import '../../../controller.dart';
 import '../../../size_config.dart';
 import 'package:strarry_flutter/constants.dart';
 import 'package:strarry_flutter/widget/refresh_widget.dart';
 import 'package:strarry_flutter/widget/custom_text_form_field.dart';
+import 'package:get/get.dart';
+import 'package:strarry_flutter/globals.dart' as globals;
 
 class Body extends StatefulWidget {
   const Body({Key? key}) : super(key: key);
@@ -17,17 +20,25 @@ class Body extends StatefulWidget {
 }
 
 class _BodyState extends State<Body> {
+  final _formKey = GlobalKey<FormState>();
   final GlobalKey<RefreshIndicatorState> keyRefresh2 =
       GlobalKey<RefreshIndicatorState>();
+  final Controller c = Get.find();
 
+  String? email;
+  String? fullname;
+  String? address;
+  String? phone;
   List<Cart> carts = [];
+
   Future loadList() async {
     await Future.delayed(const Duration(milliseconds: 400));
 
     carts = [];
     var url = Uri.parse(backend + 'cart/');
     var request = http.MultipartRequest('POST', url);
-    request.fields.addAll({'id_account': '1'}); // NEED MODIFY
+    request.fields
+        .addAll({'id_account': globals.idAccount.toString()}); // NEED MODIFY
 
     var response = await request.send();
     if (response.statusCode == 200) {
@@ -78,6 +89,7 @@ class _BodyState extends State<Body> {
       padding:
           EdgeInsets.symmetric(horizontal: getProportionateScreenWidth(20)),
       child: RefreshWidget(
+          key: _formKey,
           keyRefresh: keyRefresh2,
           onRefresh: loadList,
           child: Column(
@@ -89,45 +101,49 @@ class _BodyState extends State<Body> {
                 'CUSTOMER INFORMATION',
                 style: Theme.of(context).textTheme.headline5,
               ),
-              const CustomTextFormField(
-                title: 'Email',
-                // onChanged: (String "value") {
-                //   return;
-                //   // context
+              buildEmailFormField(),
+              // const CustomTextFormField(
+              //   title: 'Email',
+              //   // onChanged: (String "value") {
+              //   //   return;
+              //   //   // context
 
-                //   //     (email: value));
-                // },
-              ),
-              const CustomTextFormField(
-                title: 'Full Name',
-                // onChanged: (value) {
-                //   context
-                //       .read<CheckoutBloc>()
-                //       .add(UpdateCheckout(fullName: value));
-                // },
-              ),
+              //   //   //     (email: value));
+              //   // },
+              // ),
+              buildFullNameFormField(),
+              // const CustomTextFormField(
+              //   title: 'Full Name',
+              //   // onChanged: (value) {
+              //   //   context
+              //   //       .read<CheckoutBloc>()
+              //   //       .add(UpdateCheckout(fullName: value));
+              //   // },
+              // ),
               const SizedBox(height: 5),
               Text(
                 'DELIVERY INFORMATION',
                 style: Theme.of(context).textTheme.headline5,
               ),
-              const CustomTextFormField(
-                title: 'Address',
-                // onChanged: (value) {
-                //   context
-                //       .read<CheckoutBloc>()
-                //       .add(UpdateCheckout(address: value));
-                // },
-              ),
+              buildAddressFormField(),
+              // const CustomTextFormField(
+              //   title: 'Address',
+              //   // onChanged: (value) {
+              //   //   context
+              //   //       .read<CheckoutBloc>()
+              //   //       .add(UpdateCheckout(address: value));
+              //   // },
+              // ),
               const SizedBox(height: 5),
-              const CustomTextFormField(
-                title: 'Phone',
-                // onChanged: (value) {
-                //   context
-                //       .read<CheckoutBloc>()
-                //       .add(UpdateCheckout(address: value));
-                // },
-              ),
+              buildPhoneFormField(),
+              // const CustomTextFormField(
+              //   title: 'Phone',
+              //   // onChanged: (value) {
+              //   //   context
+              //   //       .read<CheckoutBloc>()
+              //   //       .add(UpdateCheckout(address: value));
+              //   // },
+              // ),
               Container(
                 height: 60,
                 alignment: Alignment.bottomCenter,
@@ -234,6 +250,82 @@ class _BodyState extends State<Body> {
           //   ),
           // ),
           ),
+    );
+  }
+
+  TextFormField buildEmailFormField() {
+    return TextFormField(
+      keyboardType: TextInputType.emailAddress,
+      onSaved: (newValue) => c.setEmail(newValue),
+      onChanged: (newValue) => c.setEmail(newValue),
+      validator: (value) {
+        return null;
+      },
+      // title:"",
+      decoration: const InputDecoration(
+        labelText: "Email",
+        // hintText: "Enter your email",
+        // If  you are using latest version of flutter then lable text and hint text shown like this
+        // if you r using flutter less then 1.20.* then maybe this is not working properly
+        floatingLabelBehavior: FloatingLabelBehavior.always,
+      ),
+    );
+  }
+
+  TextFormField buildFullNameFormField() {
+    return TextFormField(
+      keyboardType: TextInputType.emailAddress,
+      onSaved: (newValue) => c.setFullName(newValue),
+      onChanged: (newValue) => c.setFullName(newValue),
+      validator: (value) {
+        return null;
+      },
+      // title:"",
+      decoration: const InputDecoration(
+        labelText: "Full Name",
+        // hintText: "Enter your email",
+        // If  you are using latest version of flutter then lable text and hint text shown like this
+        // if you r using flutter less then 1.20.* then maybe this is not working properly
+        floatingLabelBehavior: FloatingLabelBehavior.always,
+      ),
+    );
+  }
+
+  TextFormField buildAddressFormField() {
+    return TextFormField(
+      keyboardType: TextInputType.emailAddress,
+      onSaved: (newValue) => c.setAddress(newValue),
+      onChanged: (newValue) => c.setAddress(newValue),
+      validator: (value) {
+        return null;
+      },
+      // title:"",
+      decoration: const InputDecoration(
+        labelText: "Address",
+        // hintText: "Enter your email",
+        // If  you are using latest version of flutter then lable text and hint text shown like this
+        // if you r using flutter less then 1.20.* then maybe this is not working properly
+        floatingLabelBehavior: FloatingLabelBehavior.always,
+      ),
+    );
+  }
+
+  TextFormField buildPhoneFormField() {
+    return TextFormField(
+      keyboardType: TextInputType.emailAddress,
+      onSaved: (newValue) => c.setPhone(newValue),
+      onChanged: (newValue) => c.setPhone(newValue),
+      validator: (value) {
+        return null;
+      },
+      // title:"",
+      decoration: const InputDecoration(
+        labelText: "Phone",
+        // hintText: "Enter your email",
+        // If  you are using latest version of flutter then lable text and hint text shown like this
+        // if you r using flutter less then 1.20.* then maybe this is not working properly
+        floatingLabelBehavior: FloatingLabelBehavior.always,
+      ),
     );
   }
 }
