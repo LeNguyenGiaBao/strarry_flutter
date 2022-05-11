@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:strarry_flutter/size_config.dart';
 
-const backend = 'http://192.168.222.152:8000/';
-// const backend = 'http://10.0.2.2:8000/';
+// const backend = 'http://192.168.222.152:8000/';
+const backend = 'http://10.0.2.2:8000/';
 const kTextColor = Color(0xFF535353);
 const kTextLightColor = Color(0xFFACACAC);
 

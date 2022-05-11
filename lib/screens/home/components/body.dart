@@ -89,15 +89,8 @@ class _BodyState extends State<Body> {
               child: RefreshWidget(
                 keyRefresh: keyRefresh2,
                 onRefresh: loadList,
-                child: GridView.builder(
+                child: ListView.builder(
                     itemCount: products.length,
-                    gridDelegate:
-                        const SliverGridDelegateWithFixedCrossAxisCount(
-                      crossAxisCount: 2,
-                      mainAxisSpacing: kDefaultPaddin,
-                      crossAxisSpacing: kDefaultPaddin,
-                      childAspectRatio: 0.75,
-                    ),
                     itemBuilder: (context, index) => ItemCard(
                           product: products[index],
                           press: () => Navigator.push(
