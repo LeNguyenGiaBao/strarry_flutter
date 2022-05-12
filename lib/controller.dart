@@ -6,6 +6,8 @@ class Controller extends GetxController {
   String? fullname;
   String? address;
   String? phone;
+  int idcategory = 0;
+  var products = [];
   increment() => money++;
   setMoney(money) {
     this.money.value = money;
@@ -25,5 +27,13 @@ class Controller extends GetxController {
 
   setPhone(phone) {
     this.phone = phone;
+  }
+
+  setIdCategory(idcategory) {
+    this.idcategory = idcategory;
+  }
+
+  setProducts(products) {
+    this.products = products;
   }
 }
