@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:strarry_flutter/models/Cart.dart';
 import 'package:strarry_flutter/screens/cart/cart_screen.dart';
 import 'package:strarry_flutter/screens/home/home_screen.dart';
 import 'package:strarry_flutter/screens/profile/profile_screen.dart';
 import 'package:strarry_flutter/size_config.dart';
+// import 'components/categorries.dart';
 
 class HomeStateScreen extends StatefulWidget {
   static String routeName = "/home";
@@ -48,9 +50,9 @@ class MyHomePageState extends State<HomeStateScreen> {
 
   BottomNavigationBarItem BottomNavItem() {
     return const BottomNavigationBarItem(
-          icon: Icon(Icons.home),
-          label: "Home",
-        );
+      icon: Icon(Icons.home),
+      label: "Home",
+    );
   }
 
   AppBar buildAppBar() {

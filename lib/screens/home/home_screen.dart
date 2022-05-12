@@ -59,10 +59,12 @@ class HomeScreen extends StatelessWidget {
             color: kTextColor,
           ),
           onPressed: !globals.isSignIn
-                    ? () {
-                        Navigator.pushNamed(context, SignInScreen.routeName);
-                      }:
-                      () {Navigator.pushNamed(context, CartScreen.routeName);},
+              ? () {
+                  Navigator.pushNamed(context, SignInScreen.routeName);
+                }
+              : () {
+                  Navigator.pushNamed(context, CartScreen.routeName);
+                },
         ),
         const SizedBox(width: kDefaultPaddin / 2)
       ],
