@@ -14,6 +14,8 @@ import 'package:http/http.dart' as http;
 import 'dart:convert';
 import 'dart:typed_data';
 
+import '../../../widget/refresh_widget.dart';
+
 class CompleteProfileForm extends StatefulWidget {
   const CompleteProfileForm({Key? key}) : super(key: key);
 
@@ -22,6 +24,8 @@ class CompleteProfileForm extends StatefulWidget {
 }
 
 class _CompleteProfileFormState extends State<CompleteProfileForm> {
+  final GlobalKey<RefreshIndicatorState> keyRefresh2 =
+      GlobalKey<RefreshIndicatorState>();
   final _formKey = GlobalKey<FormState>();
   final List<String?> errors = [];
   String? email;
@@ -43,7 +47,7 @@ class _CompleteProfileFormState extends State<CompleteProfileForm> {
       var responseJson = jsonDecode(responseAwait);
       // ignore: non_constant_identifier_names
       var AccountListJson = responseJson['account'];
-
+      // email = "kien";
       email = AccountListJson[1];
       fullname = AccountListJson[3];
       phoneNumber = AccountListJson[4];
@@ -56,6 +60,7 @@ class _CompleteProfileFormState extends State<CompleteProfileForm> {
       });
     } else {
       print(response.reasonPhrase);
+      print(email);
     }
   }
 
@@ -119,36 +124,59 @@ class _CompleteProfileFormState extends State<CompleteProfileForm> {
   @override
   Widget build(BuildContext context) {
     return Form(
-      key: _formKey,
-      child: Column(
-        children: [
-          buildFirstNameFormField(),
-          SizedBox(height: getProportionateScreenHeight(30)),
-          buildLastNameFormField(),
-          SizedBox(height: getProportionateScreenHeight(30)),
-          buildPhoneNumberFormField(),
-          SizedBox(height: getProportionateScreenHeight(30)),
-          buildAddressFormField(),
-          FormError(errors: errors),
-          SizedBox(height: getProportionateScreenHeight(40)),
-          DefaultButton(
-            text: "Update",
-            press: () async {
-              if (_formKey.currentState!.validate()) {
-                _formKey.currentState!.save();
+        key: _formKey,
+        child: RefreshWidget(
+          keyRefresh: keyRefresh2,
+          onRefresh: loadList,
+          child: Column(
+            children: [
+              buildFirstNameFormField(),
+              SizedBox(height: getProportionateScreenHeight(30)),
+              buildLastNameFormField(),
+              SizedBox(height: getProportionateScreenHeight(30)),
+              buildPhoneNumberFormField(),
+              SizedBox(height: getProportionateScreenHeight(30)),
+              buildAddressFormField(),
+              FormError(errors: errors),
+              SizedBox(height: getProportionateScreenHeight(40)),
+              DefaultButton(
+                text: "Update",
+                press: () async {
+                  if (_formKey.currentState!.validate()) {
+                    _formKey.currentState!.save();
 
-                KeyboardUtil.hideKeyboard(context);
-                bool isSuccessUpdate = await isUpdated(
-                    fullname, phoneNumber, address, globals.idAccount);
-                if (isSuccessUpdate == true) {
-                  Navigator.pushNamed(context, MyProfile.routeName);
-                }
-              }
-            },
+                    KeyboardUtil.hideKeyboard(context);
+                    bool isSuccessUpdate = await isUpdated(
+                        fullname, phoneNumber, address, globals.idAccount);
+                    if (isSuccessUpdate == true) {
+                      _showToast(context, isSuccessUpdate);
+                      Navigator.pushNamed(context, MyProfile.routeName);
+                    } else {
+                      _showToast(context, isSuccessUpdate);
+                    }
+                  }
+                },
+              ),
+            ],
           ),
-        ],
-      ),
-    );
+        ));
+  }
+
+  void _showToast(BuildContext context, bool isSuccess) {
+    final scaffold = ScaffoldMessenger.of(context);
+    if (isSuccess == true) {
+      scaffold.showSnackBar(
+        const SnackBar(
+          content: Text('Update success'),
+        ),
+      );
+    } else {
+      scaffold.showSnackBar(
+        const SnackBar(
+          content: Text('Update failed'),
+        ),
+      );
+    }
   }
 
   TextFormField buildAddressFormField() {
@@ -226,7 +254,7 @@ class _CompleteProfileFormState extends State<CompleteProfileForm> {
 
   TextFormField buildFirstNameFormField() {
     return TextFormField(
-      initialValue: "1111",
+      initialValue: email,
       onSaved: (newValue) => email = newValue,
       onChanged: (value) {
         if (value.isNotEmpty) {
