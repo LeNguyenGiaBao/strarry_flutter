@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:strarry_flutter/screens/home/home_screen_state.dart';
-
+import 'package:strarry_flutter/screens/complete_profile/complete_profile_screen.dart';
 import 'profile_menu.dart';
 import 'profile_pic.dart';
 import 'package:strarry_flutter/globals.dart' as globals;
@@ -19,7 +19,8 @@ class Body extends StatelessWidget {
           ProfileMenu(
             text: "My Account",
             icon: "assets/icons/User Icon.svg",
-            press: () => {},
+            press: () =>
+                {Navigator.pushNamed(context, CompleteProfileScreen.routeName)},
           ),
           ProfileMenu(
             text: "Notifications",
@@ -43,19 +44,21 @@ class Body extends StatelessWidget {
               globals.isSignIn = false;
               globals.idAccount = "0";
               _showToast(context);
-              Navigator.pushNamedAndRemoveUntil(context, HomeStateScreen.routeName, (r) => false);
+              Navigator.pushNamedAndRemoveUntil(
+                  context, HomeStateScreen.routeName, (r) => false);
             },
           ),
         ],
       ),
     );
   }
+
   void _showToast(BuildContext context) {
     final scaffold = ScaffoldMessenger.of(context);
-      scaffold.showSnackBar(
-        const SnackBar(
-          content: Text('Loged Out'),
-        ),
-      );
+    scaffold.showSnackBar(
+      const SnackBar(
+        content: Text('Loged Out'),
+      ),
+    );
   }
 }

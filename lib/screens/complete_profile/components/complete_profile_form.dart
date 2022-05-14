@@ -3,9 +3,16 @@ import 'package:strarry_flutter/components/custom_surfix_icon.dart';
 import 'package:strarry_flutter/components/default_button.dart';
 import 'package:strarry_flutter/components/form_error.dart';
 import 'package:strarry_flutter/screens/otp/otp_screen.dart';
-
+import 'package:strarry_flutter/models/User.dart';
+import 'package:strarry_flutter/screens/profile/profile_screen.dart';
 import '../../../constants.dart';
 import 'package:strarry_flutter/size_config.dart';
+import 'package:strarry_flutter/globals.dart' as globals;
+import '../../../helper/keyboard.dart';
+import '../../../size_config.dart';
+import 'package:http/http.dart' as http;
+import 'dart:convert';
+import 'dart:typed_data';
 
 class CompleteProfileForm extends StatefulWidget {
   const CompleteProfileForm({Key? key}) : super(key: key);
@@ -17,10 +24,46 @@ class CompleteProfileForm extends StatefulWidget {
 class _CompleteProfileFormState extends State<CompleteProfileForm> {
   final _formKey = GlobalKey<FormState>();
   final List<String?> errors = [];
-  String? firstName;
-  String? lastName;
+  String? email;
+  String? fullname;
   String? phoneNumber;
   String? address;
+
+  // _CompleteProfileFormState();
+  Future loadList() async {
+    await Future.delayed(const Duration(milliseconds: 400));
+
+    var url = Uri.parse(backend + 'account/id/');
+    var request = http.MultipartRequest('POST', url);
+    request.fields.addAll({'id_account': globals.idAccount}); // NEED MODIFY
+
+    var response = await request.send();
+    if (response.statusCode == 200) {
+      var responseAwait = await response.stream.bytesToString();
+      var responseJson = jsonDecode(responseAwait);
+      // ignore: non_constant_identifier_names
+      var AccountListJson = responseJson['account'];
+
+      email = AccountListJson[1];
+      fullname = AccountListJson[3];
+      phoneNumber = AccountListJson[4];
+      address = AccountListJson[5];
+      setState(() {
+        email;
+        fullname;
+        phoneNumber;
+        address;
+      });
+    } else {
+      print(response.reasonPhrase);
+    }
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    loadList();
+  }
 
   void addError({String? error}) {
     if (!errors.contains(error)) {
@@ -36,6 +79,41 @@ class _CompleteProfileFormState extends State<CompleteProfileForm> {
         errors.remove(error);
       });
     }
+  }
+
+//   class AlwaysDisabledFocusNode extends FocusNode {
+//   @override
+//   bool get hasFocus => false;
+
+// }
+
+  Future<bool> isUpdated(name, phone, address, idaccount) async {
+    // var request = http.Request('POST', Uri.parse(backend + 'signup/'));
+    var url = Uri.parse(backend + 'account/update/');
+    var request = http.MultipartRequest('POST', url);
+    request.fields.addAll({
+      'name': name,
+      'phone': phone,
+      'address': address,
+      'id_account': idaccount
+    }); // NEED MODIFY
+
+    var response = await request.send();
+    if (response.statusCode == 200) {
+      var responseAwait = await response.stream.bytesToString();
+      var responseJson = jsonDecode(responseAwait);
+      // ignore: non_constant_identifier_names
+      var AccountListJson = responseJson['status'];
+      if (AccountListJson == 'true') {
+        // int idAccount = responseJson["id"];
+        return true;
+      }
+    } else {
+      print(response.reasonPhrase);
+      return false;
+    }
+
+    return false;
   }
 
   @override
@@ -54,10 +132,17 @@ class _CompleteProfileFormState extends State<CompleteProfileForm> {
           FormError(errors: errors),
           SizedBox(height: getProportionateScreenHeight(40)),
           DefaultButton(
-            text: "continue",
-            press: () {
+            text: "Update",
+            press: () async {
               if (_formKey.currentState!.validate()) {
-                Navigator.pushNamed(context, OtpScreen.routeName);
+                _formKey.currentState!.save();
+
+                KeyboardUtil.hideKeyboard(context);
+                bool isSuccessUpdate = await isUpdated(
+                    fullname, phoneNumber, address, globals.idAccount);
+                if (isSuccessUpdate == true) {
+                  Navigator.pushNamed(context, MyProfile.routeName);
+                }
               }
             },
           ),
@@ -68,6 +153,7 @@ class _CompleteProfileFormState extends State<CompleteProfileForm> {
 
   TextFormField buildAddressFormField() {
     return TextFormField(
+      initialValue: address,
       onSaved: (newValue) => address = newValue,
       onChanged: (value) {
         if (value.isNotEmpty) {
@@ -84,17 +170,19 @@ class _CompleteProfileFormState extends State<CompleteProfileForm> {
       },
       decoration: const InputDecoration(
         labelText: "Address",
-        hintText: "Enter your phone address",
+        hintText: "enter your address",
         // If  you are using latest version of flutter then lable text and hint text shown like this
         // if you r using flutter less then 1.20.* then maybe this is not working properly
         floatingLabelBehavior: FloatingLabelBehavior.always,
-        suffixIcon: CustomSurffixIcon(svgIcon: "assets/icons/Location point.svg"),
+        suffixIcon:
+            CustomSurffixIcon(svgIcon: "assets/icons/Location point.svg"),
       ),
     );
   }
 
   TextFormField buildPhoneNumberFormField() {
     return TextFormField(
+      initialValue: phoneNumber,
       keyboardType: TextInputType.phone,
       onSaved: (newValue) => phoneNumber = newValue,
       onChanged: (value) {
@@ -123,10 +211,11 @@ class _CompleteProfileFormState extends State<CompleteProfileForm> {
 
   TextFormField buildLastNameFormField() {
     return TextFormField(
-      onSaved: (newValue) => lastName = newValue,
+      initialValue: fullname,
+      onSaved: (newValue) => fullname = newValue,
       decoration: const InputDecoration(
-        labelText: "Last Name",
-        hintText: "Enter your last name",
+        labelText: "Full Name",
+        hintText: "enter you fullname",
         // If  you are using latest version of flutter then lable text and hint text shown like this
         // if you r using flutter less then 1.20.* then maybe this is not working properly
         floatingLabelBehavior: FloatingLabelBehavior.always,
@@ -137,7 +226,8 @@ class _CompleteProfileFormState extends State<CompleteProfileForm> {
 
   TextFormField buildFirstNameFormField() {
     return TextFormField(
-      onSaved: (newValue) => firstName = newValue,
+      initialValue: "1111",
+      onSaved: (newValue) => email = newValue,
       onChanged: (value) {
         if (value.isNotEmpty) {
           removeError(error: kNamelNullError);
@@ -152,12 +242,13 @@ class _CompleteProfileFormState extends State<CompleteProfileForm> {
         return null;
       },
       decoration: const InputDecoration(
-        labelText: "First Name",
-        hintText: "Enter your first name",
+        enabled: false,
+        labelText: "Email",
+
         // If  you are using latest version of flutter then lable text and hint text shown like this
         // if you r using flutter less then 1.20.* then maybe this is not working properly
         floatingLabelBehavior: FloatingLabelBehavior.always,
-        suffixIcon: CustomSurffixIcon(svgIcon: "assets/icons/User.svg"),
+        suffixIcon: CustomSurffixIcon(svgIcon: "assets/icons/Mail.svg"),
       ),
     );
   }
