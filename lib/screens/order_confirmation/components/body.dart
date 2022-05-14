@@ -62,6 +62,9 @@ class _BodyState extends State<Body> {
         Cart cart = Cart(product: product, numOfItem: amountProduct);
         carts.add(cart);
       }
+      for (var i = 0; i < carts.length; i++) {
+        children.add(CartCard(cart: carts[i]));
+      }
 
       setState(() {
         carts;
@@ -73,7 +76,7 @@ class _BodyState extends State<Body> {
     var url1 = Uri.parse(backend + 'account/email/');
     var request1 = http.MultipartRequest('POST', url1);
     request1.fields
-        .addAll({'id_account': globals.idAccount.toString()}); // NEED MODIFY
+        .addAll({'id_account': globals.idAccount.toString()}); 
 
     var response1 = await request1.send();
     if (response1.statusCode == 200) {
