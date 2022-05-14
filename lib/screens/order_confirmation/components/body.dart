@@ -103,19 +103,18 @@ class _BodyState extends State<Body> {
           Stack(
             children: [
               Container(
-                color: Colors.black,
+                color: Colors.white,
                 width: double.infinity,
                 height: 300,
               ),
               Positioned(
-                left: (MediaQuery.of(context).size.width - 100) / 2,
-                top: 125,
-                child: SvgPicture.asset(
-                  'assets/svgs/garlands.svg',
-                  height: 100,
-                  width: 100,
-                ),
-              ),
+                  left: (MediaQuery.of(context).size.width - 100) / 3,
+                  top: 125,
+                  child: Image.asset(
+                    'assets/images/logo-removebg-preview.png',
+                    width: SizeConfig.screenWidth * 0.4,
+                    // height: 100,
+                  )),
               Positioned(
                 top: 250,
                 height: 100,
