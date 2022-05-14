@@ -24,18 +24,22 @@ class CompleteProfileForm extends StatefulWidget {
 }
 
 class _CompleteProfileFormState extends State<CompleteProfileForm> {
-  final GlobalKey<RefreshIndicatorState> keyRefresh2 =
+  final GlobalKey<RefreshIndicatorState> keyRefresh3 =
       GlobalKey<RefreshIndicatorState>();
   final _formKey = GlobalKey<FormState>();
   final List<String?> errors = [];
-  String? email;
-  String? fullname;
-  String? phoneNumber;
-  String? address;
+  String email="";
+  String fullname="";
+  String phoneNumber="";
+  String address="";
+  var emailController = TextEditingController(text: "");
+  var fullnameController = TextEditingController(text: "");
+  var phoneNumberController = TextEditingController(text: "");
+  var addressController = TextEditingController(text: "");
 
   // _CompleteProfileFormState();
   Future loadList() async {
-    await Future.delayed(const Duration(milliseconds: 400));
+    await Future.delayed(const Duration(milliseconds: 0));
 
     var url = Uri.parse(backend + 'account/id/');
     var request = http.MultipartRequest('POST', url);
@@ -52,6 +56,11 @@ class _CompleteProfileFormState extends State<CompleteProfileForm> {
       fullname = AccountListJson[3];
       phoneNumber = AccountListJson[4];
       address = AccountListJson[5];
+
+      emailController.text = email.toString();
+      fullnameController.text = fullname.toString();
+      phoneNumberController.text = phoneNumber.toString();
+      addressController.text = address.toString();
       setState(() {
         email;
         fullname;
@@ -60,14 +69,14 @@ class _CompleteProfileFormState extends State<CompleteProfileForm> {
       });
     } else {
       print(response.reasonPhrase);
-      print(email);
+      // print(email);
     }
   }
 
   @override
   void initState() {
-    super.initState();
     loadList();
+    super.initState();
   }
 
   void addError({String? error}) {
@@ -101,7 +110,7 @@ class _CompleteProfileFormState extends State<CompleteProfileForm> {
       'phone': phone,
       'address': address,
       'id_account': idaccount
-    }); // NEED MODIFY
+    }); 
 
     var response = await request.send();
     if (response.statusCode == 200) {
@@ -109,7 +118,7 @@ class _CompleteProfileFormState extends State<CompleteProfileForm> {
       var responseJson = jsonDecode(responseAwait);
       // ignore: non_constant_identifier_names
       var AccountListJson = responseJson['status'];
-      if (AccountListJson == 'true') {
+      if (AccountListJson == true) {
         // int idAccount = responseJson["id"];
         return true;
       }
@@ -117,7 +126,6 @@ class _CompleteProfileFormState extends State<CompleteProfileForm> {
       print(response.reasonPhrase);
       return false;
     }
-
     return false;
   }
 
@@ -126,7 +134,7 @@ class _CompleteProfileFormState extends State<CompleteProfileForm> {
     return Form(
         key: _formKey,
         child: RefreshWidget(
-          keyRefresh: keyRefresh2,
+          keyRefresh: keyRefresh3,
           onRefresh: loadList,
           child: Column(
             children: [
@@ -150,7 +158,7 @@ class _CompleteProfileFormState extends State<CompleteProfileForm> {
                         fullname, phoneNumber, address, globals.idAccount);
                     if (isSuccessUpdate == true) {
                       _showToast(context, isSuccessUpdate);
-                      Navigator.pushNamed(context, MyProfile.routeName);
+                      // Navigator.pushNamed(context, MyProfile.routeName);
                     } else {
                       _showToast(context, isSuccessUpdate);
                     }
@@ -181,8 +189,8 @@ class _CompleteProfileFormState extends State<CompleteProfileForm> {
 
   TextFormField buildAddressFormField() {
     return TextFormField(
-      initialValue: address,
-      onSaved: (newValue) => address = newValue,
+      controller: addressController,
+      onSaved: (newValue) => address = newValue.toString(),
       onChanged: (value) {
         if (value.isNotEmpty) {
           removeError(error: kAddressNullError);
@@ -210,9 +218,9 @@ class _CompleteProfileFormState extends State<CompleteProfileForm> {
 
   TextFormField buildPhoneNumberFormField() {
     return TextFormField(
-      initialValue: phoneNumber,
+      controller: phoneNumberController,
       keyboardType: TextInputType.phone,
-      onSaved: (newValue) => phoneNumber = newValue,
+      onSaved: (newValue) => phoneNumber = newValue.toString(),
       onChanged: (value) {
         if (value.isNotEmpty) {
           removeError(error: kPhoneNumberNullError);
@@ -239,11 +247,11 @@ class _CompleteProfileFormState extends State<CompleteProfileForm> {
 
   TextFormField buildLastNameFormField() {
     return TextFormField(
-      initialValue: fullname,
-      onSaved: (newValue) => fullname = newValue,
+      controller: fullnameController,
+      onSaved: (newValue) => fullname = newValue.toString(),
       decoration: const InputDecoration(
         labelText: "Full Name",
-        hintText: "enter you fullname",
+        hintText: "Enter Your Fullname",
         // If  you are using latest version of flutter then lable text and hint text shown like this
         // if you r using flutter less then 1.20.* then maybe this is not working properly
         floatingLabelBehavior: FloatingLabelBehavior.always,
@@ -254,8 +262,9 @@ class _CompleteProfileFormState extends State<CompleteProfileForm> {
 
   TextFormField buildFirstNameFormField() {
     return TextFormField(
-      initialValue: email,
-      onSaved: (newValue) => email = newValue,
+      // initialValue: "this.email.toString()",
+      controller: emailController,
+      onSaved: (newValue) => email = newValue.toString(),
       onChanged: (value) {
         if (value.isNotEmpty) {
           removeError(error: kNamelNullError);
