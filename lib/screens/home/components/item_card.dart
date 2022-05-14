@@ -21,7 +21,7 @@ class ItemCard extends StatelessWidget {
         },
         child: IntrinsicHeight(
           child: Container(
-            margin: const EdgeInsets.only(bottom: 20),
+            margin: const EdgeInsets.only(bottom: 10),
             decoration: BoxDecoration(
               color: Colors.white,
               borderRadius: const BorderRadius.only(
@@ -32,65 +32,69 @@ class ItemCard extends StatelessWidget {
               boxShadow: [
                 BoxShadow(
                   color: Colors.grey.withOpacity(0.3),
-                  spreadRadius: 2,
-                  blurRadius: 5,
+                  spreadRadius: 0,
+                  blurRadius: 0,
                   // offset: Offset(1,1), // changes position of shadow
                 ),
               ],
             ),
             child: IntrinsicHeight(
-              child: Row(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              child: Row(crossAxisAlignment: CrossAxisAlignment.start,
+                  // mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: <Widget>[
                     Expanded(
                       child: Align(
-                        alignment: Alignment.centerLeft,
+                        alignment: Alignment.center,
                         child: SizedBox(
                           // padding: const EdgeInsets.all(kDefaultPaddin),
                           // For  demo we use fixed height  and width
                           // Now we dont need them
-                          height: 100,
-                          width: 100,
+                          height: 120,
+                          width: 120,
                           // decoration: BoxDecoration(
                           //   color: Colors.pink,
                           //   borderRadius: BorderRadius.circular(16),
                           // ),
                           child: Hero(
-                              tag: "${product.id}",
-                              child: Image.memory(product.image)),
-                          // child: Image.asset(product.image[0])),
+                            tag: "${product.id}",
+                            child:
+                                Image.memory(product.image, fit: BoxFit.fill),
+                          ),
                         ),
                       ),
                     ),
                     Expanded(
-                      child: Align(
-                        alignment: Alignment.topLeft,
-                        child: Column(children: [
-                          Padding(
-                            padding: const EdgeInsets.symmetric(
-                                vertical: kDefaultPaddin / 4),
+                      child: Column(children: [
+                        Padding(
+                          padding: const EdgeInsets.only(
+                              top: 10),
+                          child: Align(
+                            alignment: Alignment.topLeft,
                             child: Text(
                               // products is out demo list
                               product.title,
-                              style: const TextStyle(color: Colors.black),
+                              style: const TextStyle(
+                                  color: Colors.black,
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 16),
                             ),
                           ),
-                          SizedBox(height: SizeConfig.screenHeight * 0.03),
-                          Padding(
-                            padding: const EdgeInsets.symmetric(
-                                vertical: kDefaultPaddin / 4),
-                            child: Align(
-                              alignment: Alignment.bottomRight,
-                              child: Text(
-                                // products is out demo list
-                                product.price.toString(),
-                                style: const TextStyle(color: Colors.red),
-                              ),
+                        ),
+                        SizedBox(height: SizeConfig.screenHeight * 0.03),
+                        Padding(
+                          padding:
+                              const EdgeInsets.only(right: 10.0, bottom: 10.0),
+                          child: Align(
+                            alignment: Alignment.bottomRight,
+                            child: Text(
+                              "\$${product.price.toString()}",
+                              style: const TextStyle(
+                                  color: Colors.red,
+                                  fontWeight: FontWeight.bold),
                             ),
                           ),
-                        ]),
-                      ),
+                        ),
+                      ]),
                     ),
                   ]),
             ),

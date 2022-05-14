@@ -76,8 +76,8 @@ class BackToHome extends StatelessWidget {
                       text: "Total:\n",
                       children: [
                         TextSpan(
-                          text: "${c.money.toString()} VND",
-                          style: TextStyle(fontSize: 16, color: Colors.black),
+                          text: "\$${c.money.toString()}",
+                          style: const TextStyle(fontSize: 16, color: Colors.red, fontWeight: FontWeight.bold),
                         ),
                       ],
                     ),
