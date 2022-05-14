@@ -2,7 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:strarry_flutter/constants.dart';
 import 'package:strarry_flutter/models/Product.dart';
 import 'package:strarry_flutter/screens/details/components/cart_counter.dart';
+import 'package:strarry_flutter/screens/details/components/color_and_size.dart';
+import 'package:strarry_flutter/screens/details/components/product_description.dart';
+import 'package:strarry_flutter/screens/details/components/product_images.dart';
+import 'package:strarry_flutter/screens/details/components/top_rounded_container.dart';
 
+import '../../../components/default_button.dart';
+import '../../../size_config.dart';
 import 'add_to_cart.dart';
 import 'description.dart';
 import 'product_title_with_image.dart';
@@ -15,52 +21,45 @@ class Body extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     // It provide us total height and width
-    Size size = MediaQuery.of(context).size;
-    return SingleChildScrollView(
-      child: Column(
-        children: <Widget>[
-          SizedBox(
-            height: size.height,
-            child: Stack(
-              children: <Widget>[
-                Positioned.fill(
-                  child: Align(
-                    alignment: Alignment.bottomCenter,
-                    child: Container(
-                      margin: EdgeInsets.only(top: size.height * 0.3),
+    return ListView(
+      children: [
+        ProductImages(product: product),
+        TopRoundedContainer(
+          color: Colors.white,
+          child: Column(
+            children: [
+              ProductDescription(
+                product: product,
+              ),
+              TopRoundedContainer(
+                color: Colors.white,
+                child: Column(
+                  children: [
+                    Padding(
                       padding: EdgeInsets.only(
-                        top: size.height * 0.12,
-                        left: kDefaultPaddin,
-                        right: kDefaultPaddin,
+                        right: getProportionateScreenWidth(40),
                       ),
-                      // height: 500,
-                      decoration: const BoxDecoration(
-                        color: Colors.white,
-                        borderRadius: BorderRadius.only(
-                          topLeft: Radius.circular(24),
-                          topRight: Radius.circular(24),
-                        ),
-                      ),
-                      child: Column(
-                        children: <Widget>[
-                          // ColorAndSize(product: product),
-                          const SizedBox(height: kDefaultPaddin * 3),
-                          Description(product: product),
-                          const SizedBox(height: kDefaultPaddin),
-                          const CartCounter(),
-                          const SizedBox(height: kDefaultPaddin),
-                          AddToCart(product: product)
-                        ],
-                      ),
+                      child: const CartCounter(),
                     ),
-                  ),
+                    // TopRoundedContainer(
+                    //   color: Colors.white,
+                    //   child: Padding(
+                    //     padding: EdgeInsets.only(
+                    //       left: SizeConfig.screenWidth * 0.15,
+                    //       right: SizeConfig.screenWidth * 0.15,
+                    //       // bottom: getProportionateScreenWidth(15),
+                    //       // top: getProportionateScreenWidth(15),
+                    //     ),
+                    //     child: AddToCart(product: product),
+                    //   ),
+                    // ),
+                  ],
                 ),
-                ProductTitleWithImage(product: product)
-              ],
-            ),
-          )
-        ],
-      ),
+              ),
+            ],
+          ),
+        ),
+      ],
     );
   }
 }

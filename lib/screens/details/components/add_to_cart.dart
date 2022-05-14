@@ -9,6 +9,7 @@ import 'package:strarry_flutter/counter_provider.dart';
 import 'package:strarry_flutter/screens/sign_in/sign_in_screen.dart';
 
 import '../../../constants.dart';
+import '../../../size_config.dart';
 
 class AddToCart extends StatelessWidget {
   const AddToCart({
@@ -48,64 +49,96 @@ class AddToCart extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(vertical: kDefaultPaddin),
-      child: Row(
-        children: <Widget>[
-          Container(
-            margin: const EdgeInsets.only(right: kDefaultPaddin),
-            height: 50,
-            width: 58,
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(18),
-              border: Border.all(
-                color: product.color,
-              ),
-            ),
-            child: IconButton(
-              icon: SvgPicture.asset(
-                "assets/icons/Heart Icon.svg",
-                color: product.color,
-              ),
-              onPressed: (){},
-            ),
-          ),
-          Expanded(
-            child: SizedBox(
-              height: 50,
-              child: FlatButton(
-                shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(18)),
-                color: product.color,
-                onPressed: !globals.isSignIn
-                    ? () {
-                        Navigator.pushNamed(context, SignInScreen.routeName);
-                      }
-                    : () async {
-                        var isUpdateSuccess = await updateCart(
-                            product.id.toString(),
-                            Provider.of<CounterProvider>(context, listen: false)
-                                .counter
-                                .toString());
-                        if (isUpdateSuccess == true) {
-                          _showToast(context, true);
-                        }
-                      },
-                child: Text(
-                  "Add to cart".toUpperCase(),
-                  // globals.isSignIn.toString(),
-                  style: const TextStyle(
-                    fontSize: 17,
-                    fontWeight: FontWeight.bold,
-                    color: Colors.white,
-                  ),
-                ),
-              ),
-            ),
-          ),
+    SizeConfig().init(context);
+    return Container(
+      padding: EdgeInsets.symmetric(
+        vertical: getProportionateScreenWidth(15),
+        horizontal: getProportionateScreenWidth(30),
+      ),
+      // height: 174,
+      decoration: BoxDecoration(
+        color: Colors.white,
+        borderRadius: const BorderRadius.only(
+          topLeft: Radius.circular(30),
+          topRight: Radius.circular(30),
+        ),
+        boxShadow: [
+          BoxShadow(
+            offset: const Offset(0, -15),
+            blurRadius: 20,
+            color: const Color(0xFFDADADA).withOpacity(0.15),
+          )
         ],
       ),
-      // ),//
+      child: SafeArea(
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            // return Padding(
+            //   padding: const EdgeInsets.symmetric(vertical: kDefaultPaddin),
+            Row(
+              children: <Widget>[
+                // Container(
+                //   margin: const EdgeInsets.only(right: kDefaultPaddin),
+                //   height: 50,
+                //   width: 58,
+                //   decoration: BoxDecoration(
+                //     borderRadius: BorderRadius.circular(18),
+                //     border: Border.all(
+                //       color: product.color,
+                //     ),
+                //   ),
+                //   child: IconButton(
+                //     icon: SvgPicture.asset(
+                //       "assets/icons/Heart Icon.svg",
+                //       color: product.color,
+                //     ),
+                //     onPressed: (){},
+                //   ),
+                // ),
+                Expanded(
+                  child: SizedBox(
+                    height: 50,
+                    child: FlatButton(
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(18)),
+                      color: product.color,
+                      onPressed: !globals.isSignIn
+                          ? () {
+                              Navigator.pushNamed(
+                                  context, SignInScreen.routeName);
+                            }
+                          : () async {
+                              var isUpdateSuccess = await updateCart(
+                                  product.id.toString(),
+                                  Provider.of<CounterProvider>(context,
+                                          listen: false)
+                                      .counter
+                                      .toString());
+                              if (isUpdateSuccess == true) {
+                                _showToast(context, true);
+                              }
+                            },
+                      child: Text(
+                        "Add to cart".toUpperCase(),
+                        // globals.isSignIn.toString(),
+                        style: const TextStyle(
+                          fontSize: 17,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.white,
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
+              ],
+              // ),
+              // ),//
+            ),
+          ],
+        ),
+      ),
     );
   }
 

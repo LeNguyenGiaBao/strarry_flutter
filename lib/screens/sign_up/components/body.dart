@@ -21,37 +21,54 @@ class Body extends StatelessWidget {
             child: Column(
               children: [
                 SizedBox(height: SizeConfig.screenHeight * 0.04), // 4%
-                Text("Register Account", style: headingStyle),
-                const Text(
-                  "Complete your details or continue \nwith social media",
-                  textAlign: TextAlign.center,
+                Row(
+                  children: [
+                    Container(
+                      alignment: Alignment.center,
+                      width: SizeConfig.screenWidth * 0.4,
+                      child: Text(
+                        "Strarry",
+                        style: TextStyle(
+                          color: Colors.black,
+                          fontSize: getProportionateScreenWidth(28),
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ),
+                    Image.asset(
+                      'assets/images/logo-removebg-preview.png',
+                      width: SizeConfig.screenWidth * 0.4,
+                      // height: 100,
+                    )
+                  ],
                 ),
+                // Text("Register Account", style: headingStyle),
                 SizedBox(height: SizeConfig.screenHeight * 0.08),
                 const SignUpForm(),
                 SizedBox(height: SizeConfig.screenHeight * 0.08),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    SocalCard(
-                      icon: "assets/icons/google-icon.svg",
-                      press: () {},
-                    ),
-                    SocalCard(
-                      icon: "assets/icons/facebook-2.svg",
-                      press: () {},
-                    ),
-                    SocalCard(
-                      icon: "assets/icons/twitter.svg",
-                      press: () {},
-                    ),
-                  ],
-                ),
-                SizedBox(height: getProportionateScreenHeight(20)),
-                Text(
-                  'By continuing your confirm that you agree \nwith our Term and Condition',
-                  textAlign: TextAlign.center,
-                  style: Theme.of(context).textTheme.caption,
-                )
+                // Row(
+                //   mainAxisAlignment: MainAxisAlignment.center,
+                //   children: [
+                //     SocalCard(
+                //       icon: "assets/icons/google-icon.svg",
+                //       press: () {},
+                //     ),
+                //     SocalCard(
+                //       icon: "assets/icons/facebook-2.svg",
+                //       press: () {},
+                //     ),
+                //     SocalCard(
+                //       icon: "assets/icons/twitter.svg",
+                //       press: () {},
+                //     ),
+                //   ],
+                // ),
+                // SizedBox(height: getProportionateScreenHeight(20)),
+                // Text(
+                //   'By continuing your confirm that you agree \nwith our Term and Condition',
+                //   textAlign: TextAlign.center,
+                //   style: Theme.of(context).textTheme.caption,
+                // )
               ],
             ),
           ),

@@ -41,28 +41,28 @@ class CheckoutCard extends StatelessWidget {
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Row(
-              children: [
-                Container(
-                  padding: const EdgeInsets.all(10),
-                  height: getProportionateScreenWidth(40),
-                  width: getProportionateScreenWidth(40),
-                  decoration: BoxDecoration(
-                    color: const Color(0xFFF5F6F9),
-                    borderRadius: BorderRadius.circular(10),
-                  ),
-                  child: SvgPicture.asset("assets/icons/receipt.svg"),
-                ),
-                const Spacer(),
-                const Text("Add voucher code"),
-                const SizedBox(width: 10),
-                const Icon(
-                  Icons.arrow_forward_ios,
-                  size: 12,
-                  color: kTextColor,
-                )
-              ],
-            ),
+            // Row(
+            //   children: [
+            //     Container(
+            //       padding: const EdgeInsets.all(10),
+            //       height: getProportionateScreenWidth(40),
+            //       width: getProportionateScreenWidth(40),
+            //       decoration: BoxDecoration(
+            //         color: const Color(0xFFF5F6F9),
+            //         borderRadius: BorderRadius.circular(10),
+            //       ),
+            //       child: SvgPicture.asset("assets/icons/receipt.svg"),
+            //     ),
+            //     const Spacer(),
+            //     const Text("Add voucher code"),
+            //     const SizedBox(width: 10),
+            //     const Icon(
+            //       Icons.arrow_forward_ios,
+            //       size: 12,
+            //       color: kTextColor,
+            //     )
+            //   ],
+            // ),
             SizedBox(height: getProportionateScreenHeight(20)),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -73,8 +73,8 @@ class CheckoutCard extends StatelessWidget {
                       text: "Total:\n",
                       children: [
                         TextSpan(
-                          text: "${c.money.toString()} VND",
-                          style: TextStyle(fontSize: 16, color: Colors.black),
+                          text: "\$${c.money.toString()}",
+                          style: const TextStyle(fontSize: 16, color: Colors.red, fontWeight: FontWeight.bold),
                         ),
                       ],
                     ),
@@ -85,7 +85,9 @@ class CheckoutCard extends StatelessWidget {
                   child: DefaultButton(
                     text: "Check Out",
                     press: () {
+                      if (c.money.toString() != "0"){
                       Navigator.pushNamed(context, CheckoutScreen.routeName);
+                      }
                     },
                   ),
                 ),

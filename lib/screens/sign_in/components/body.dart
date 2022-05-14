@@ -18,17 +18,26 @@ class Body extends StatelessWidget {
             child: Column(
               children: [
                 SizedBox(height: SizeConfig.screenHeight * 0.04),
-                Text(
-                  "Welcome Back",
-                  style: TextStyle(
-                    color: Colors.black,
-                    fontSize: getProportionateScreenWidth(28),
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-                const Text(
-                  "Sign in with your email and password  \nor continue with social media",
-                  textAlign: TextAlign.center,
+                Row(
+                  children: [
+                    Container(
+                      alignment: Alignment.center,
+                      width: SizeConfig.screenWidth * 0.4,
+                      child: Text(
+                        "Strarry",
+                        style: TextStyle(
+                          color: Colors.black,
+                          fontSize: getProportionateScreenWidth(28),
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ),
+                    Image.asset(
+                      'assets/images/logo-removebg-preview.png',
+                      width: SizeConfig.screenWidth * 0.4,
+                      // height: 100,
+                    )
+                  ],
                 ),
                 SizedBox(height: SizeConfig.screenHeight * 0.08),
                 const SignForm(),

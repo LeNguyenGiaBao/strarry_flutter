@@ -57,7 +57,7 @@ class _SignUpFormState extends State<SignUpForm> {
         FormError(errors: errors),
         SizedBox(height: getProportionateScreenHeight(40)),
         DefaultButton(
-          text: "Sign In",
+          text: "Sign Up",
           press: () async {
             if (_formKey.currentState!.validate()) {
               _formKey.currentState!.save();

@@ -35,8 +35,8 @@ class OrderConfirmation extends StatelessWidget {
             "Order Confirmation",
             style: TextStyle(color: Colors.black),
           ),
-          Text(
-            "${5} items",
+          Text("",
+            // "${5} items",
             // "5 items",
             style: Theme.of(context).textTheme.caption,
           ),
