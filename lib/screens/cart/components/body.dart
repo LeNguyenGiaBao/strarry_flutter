@@ -6,6 +6,7 @@ import 'dart:convert';
 import 'dart:typed_data';
 import 'package:http/http.dart' as http;
 import 'package:strarry_flutter/models/Product.dart';
+import 'package:strarry_flutter/screens/details/details_screen.dart';
 import '../../../controller.dart';
 import '../../../size_config.dart';
 import 'cart_card.dart';
@@ -32,7 +33,8 @@ class _BodyState extends State<Body> {
     carts = [];
     var url = Uri.parse(backend + 'cart/');
     var request = http.MultipartRequest('POST', url);
-    request.fields.addAll({'id_account': globals.idAccount.toString()}); // NEED MODIFY
+    request.fields
+        .addAll({'id_account': globals.idAccount.toString()}); // NEED MODIFY
 
     var response = await request.send();
     if (response.statusCode == 200) {
@@ -109,11 +111,23 @@ class _BodyState extends State<Body> {
                 child: Row(
                   children: [
                     const Spacer(),
-                    SvgPicture.asset("assets/icons/Trash.svg", color: Colors.black,),
+                    SvgPicture.asset(
+                      "assets/icons/Trash.svg",
+                      color: Colors.black,
+                    ),
                   ],
                 ),
               ),
-              child: CartCard(cart: carts[index]),
+              child: CartCard(
+                cart: carts[index],
+                press: () => Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => DetailsScreen(
+                        product: carts[index].product,
+                      ),
+                    )),
+              ),
             ),
           ),
         ),

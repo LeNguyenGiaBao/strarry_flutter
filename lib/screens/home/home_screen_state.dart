@@ -3,8 +3,10 @@ import 'package:strarry_flutter/models/Cart.dart';
 import 'package:strarry_flutter/screens/cart/cart_screen.dart';
 import 'package:strarry_flutter/screens/home/home_screen.dart';
 import 'package:strarry_flutter/screens/profile/profile_screen.dart';
+import 'package:strarry_flutter/screens/sign_in/sign_in_screen.dart';
 import 'package:strarry_flutter/size_config.dart';
 // import 'components/categorries.dart';
+import 'package:strarry_flutter/globals.dart' as globals;
 
 class HomeStateScreen extends StatefulWidget {
   static String routeName = "/home";
@@ -19,6 +21,7 @@ class MyHomePageState extends State<HomeStateScreen> {
   int selectedIndex = 0;
   final Widget _home = const HomeScreen();
   final Widget _cart = CartScreen();
+  final Widget _signin = const SignInScreen();
   final Widget _myProfile = const MyProfile();
 
   @override
@@ -89,6 +92,9 @@ class MyHomePageState extends State<HomeStateScreen> {
     if (selectedIndex == 0) {
       return _home;
     } else if (selectedIndex == 1) {
+      if (!globals.isSignIn) {
+        return _signin;
+      }
       return _cart;
     } else {
       return _myProfile;
