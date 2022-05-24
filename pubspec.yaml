@@ -38,6 +38,8 @@ dependencies:
   http: ^0.13.4
   get: ^4.6.1
   provider: ^6.0.2
+  stripe_payment: ^1.1.4
+  flutter_stripe: ^3.0.0
   
 dev_dependencies:
   flutter_test:
