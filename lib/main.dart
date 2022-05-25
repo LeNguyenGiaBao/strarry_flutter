@@ -7,7 +7,7 @@ import 'package:strarry_flutter/screens/home/home_screen.dart';
 import 'package:strarry_flutter/screens/home/home_screen_state.dart';
 import 'package:strarry_flutter/screens/sign_in/sign_in_screen.dart';
 import 'package:strarry_flutter/size_config.dart';
-import 'package:strarry_flutter/screens/payment/payment_screen.dart';
+// import 'package:strarry_flutter/screens/payment/payment_screen.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized;
