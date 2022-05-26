@@ -11,7 +11,7 @@ class PaypalPayment extends StatelessWidget {
   // final Controller c = Get.find();
   final double amount;
   final String currency;
-  const PaypalPayment({Key? key, required this.amount, required this.currency})
+  PaypalPayment({Key? key, required this.amount, required this.currency})
       : super(key: key);
 
   @override

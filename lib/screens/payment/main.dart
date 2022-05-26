@@ -35,7 +35,7 @@ class Dashboard extends StatelessWidget {
               Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (context) => const PaypalPayment(
+                    builder: (context) => PaypalPayment(
                       amount: 5.99,
                       currency: 'USD',
                     ),

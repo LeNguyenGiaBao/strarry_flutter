@@ -1,3 +1,5 @@
+import 'dart:ffi';
+
 import 'package:flutter/material.dart';
 import 'package:strarry_flutter/models/Cart.dart';
 import 'dart:convert';
@@ -26,7 +28,10 @@ class _BodyState extends State<Body> {
   final GlobalKey<RefreshIndicatorState> keyRefresh2 =
       GlobalKey<RefreshIndicatorState>();
   final Controller c = Get.find();
+  // double total_price = c.money.value.toDouble();
   // double money = c.money.toDouble();
+  // double total_price = 0.0;
+  // var total_price = 0.0;
   String? email;
   String? fullname;
   String? address;
@@ -59,6 +64,7 @@ class _BodyState extends State<Body> {
         int price = i[7];
         int quantity = i[8];
         Uint8List image = const Base64Codec().decode(i[9]);
+        // total_price += price * quantity;
         Product product = Product(
             id: idProduct,
             title: name,
@@ -126,8 +132,8 @@ class _BodyState extends State<Body> {
                           Navigator.push(
                               context,
                               MaterialPageRoute(
-                                builder: (context) => const PaypalPayment(
-                                  amount: 10,
+                                builder: (context) => PaypalPayment(
+                                  amount: c.money.toDouble(),
                                   currency: 'USD',
                                 ),
                               ));
