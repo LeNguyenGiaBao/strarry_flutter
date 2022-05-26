@@ -11,10 +11,12 @@ import 'package:strarry_flutter/widget/refresh_widget.dart';
 import 'package:strarry_flutter/widget/custom_text_form_field.dart';
 import 'package:get/get.dart';
 import 'package:strarry_flutter/globals.dart' as globals;
+import 'package:strarry_flutter/screens/payment/paypal_payment.dart';
+// import '../../../controller.dart';
 
 class Body extends StatefulWidget {
   const Body({Key? key}) : super(key: key);
-
+  // final Controller c = Get.find();
   @override
   _BodyState createState() => _BodyState();
 }
@@ -24,7 +26,7 @@ class _BodyState extends State<Body> {
   final GlobalKey<RefreshIndicatorState> keyRefresh2 =
       GlobalKey<RefreshIndicatorState>();
   final Controller c = Get.find();
-
+  // double money = c.money.toDouble();
   String? email;
   String? fullname;
   String? address;
@@ -102,94 +104,36 @@ class _BodyState extends State<Body> {
                 style: Theme.of(context).textTheme.headline5,
               ),
               buildEmailFormField(),
-              // const CustomTextFormField(
-              //   title: 'Email',
-              //   // onChanged: (String "value") {
-              //   //   return;
-              //   //   // context
-
-              //   //   //     (email: value));
-              //   // },
-              // ),
               buildFullNameFormField(),
-              // const CustomTextFormField(
-              //   title: 'Full Name',
-              //   // onChanged: (value) {
-              //   //   context
-              //   //       .read<CheckoutBloc>()
-              //   //       .add(UpdateCheckout(fullName: value));
-              //   // },
-              // ),
               const SizedBox(height: 5),
               Text(
                 'DELIVERY INFORMATION',
                 style: Theme.of(context).textTheme.headline5,
               ),
               buildAddressFormField(),
-              // const CustomTextFormField(
-              //   title: 'Address',
-              //   // onChanged: (value) {
-              //   //   context
-              //   //       .read<CheckoutBloc>()
-              //   //       .add(UpdateCheckout(address: value));
-              //   // },
-              // ),
               const SizedBox(height: 5),
               buildPhoneFormField(),
-              // const CustomTextFormField(
-              //   title: 'Phone',
-              //   // onChanged: (value) {
-              //   //   context
-              //   //       .read<CheckoutBloc>()
-              //   //       .add(UpdateCheckout(address: value));
-              //   // },
-              // ),
               Container(
                 height: 60,
                 alignment: Alignment.bottomCenter,
-                decoration: const BoxDecoration(color: Colors.black),
-                // child: ListView.builder(
-                //   itemCount: carts.length,
-                //   itemBuilder: (context, index) => Padding(
-                //     padding: EdgeInsets.symmetric(vertical: 10),
-                //     child: Dismissible(
-                //       key: Key(carts[index].product.id.toString()),
-                //       direction: DismissDirection.endToStart,
-                //       onDismissed: (direction) {
-                //         setState(() {
-                //           carts.removeAt(index);
-                //         });
-                //       },
-                //       background: Container(
-                //         padding: EdgeInsets.symmetric(horizontal: 20),
-                //         decoration: BoxDecoration(
-                //           color: Color(0xFFFFE6E6),
-                //           borderRadius: BorderRadius.circular(15),
-                //         ),
-                //         child: Row(
-                //           children: [
-                //             Spacer(),
-                //             SvgPicture.asset("assets/icons/Trash.svg"),
-                //           ],
-                //         ),
-                //       ),
-                //       child: CartCard(cart: carts[index]),
-                //     ),
-                //   ),
-                // ),
+                decoration: const BoxDecoration(color: Colors.blue),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [
                     Center(
                       child: TextButton(
                         onPressed: () {
-                          Navigator.pushNamed(
-                            context,
-                            '/payment-selection',
-                          );
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => const PaypalPayment(
+                                  amount: 10,
+                                  currency: 'USD',
+                                ),
+                              ));
                         },
                         child: Text(
-                          'SELECT A PAYMENT METHOD',
+                          'PAYMENT WITH PAYPAL',
                           style: Theme.of(context)
                               .textTheme
                               .headline5!
@@ -207,49 +151,8 @@ class _BodyState extends State<Body> {
                   ],
                 ),
               ),
-              // SizedBox(height: 20),
-              // Text(
-              //   'ORDER SUMMARY',
-              //   style: Theme.of(context).textTheme.headline3,
-              // ),
-              // OrderSummary()
             ],
-          )
-          //     } else {
-          //       return Text('Something went wrong');
-          //     }
-          //   },
-          // ),
-          // child: ListView.builder(
-          //   itemCount: carts.length,
-          //   itemBuilder: (context, index) => Padding(
-          //     padding: EdgeInsets.symmetric(vertical: 10),
-          //     child: Dismissible(
-          //       key: Key(carts[index].product.id.toString()),
-          //       direction: DismissDirection.endToStart,
-          //       onDismissed: (direction) {
-          //         setState(() {
-          //           carts.removeAt(index);
-          //         });
-          //       },
-          //       background: Container(
-          //         padding: EdgeInsets.symmetric(horizontal: 20),
-          //         decoration: BoxDecoration(
-          //           color: Color(0xFFFFE6E6),
-          //           borderRadius: BorderRadius.circular(15),
-          //         ),
-          //         child: Row(
-          //           children: [
-          //             Spacer(),
-          //             SvgPicture.asset("assets/icons/Trash.svg"),
-          //           ],
-          //         ),
-          //       ),
-          //       child: CartCard(cart: carts[index]),
-          //     ),
-          //   ),
-          // ),
-          ),
+          )),
     );
   }
 
