@@ -24,6 +24,7 @@ class PaypalPayment extends StatelessWidget {
           },
           child: const Icon(Icons.arrow_back_ios),
         ),
+        backgroundColor: Color.fromARGB(255, 243, 92, 92),
       ),
       body: WebView(
         initialUrl:

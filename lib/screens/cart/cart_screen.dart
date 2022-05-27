@@ -10,7 +10,7 @@ import '../../../size_config.dart';
 class CartScreen extends StatelessWidget {
   static String routeName = "/cart";
   final Controller c = Get.put(Controller());
-  
+
   CartScreen({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
@@ -38,6 +38,7 @@ class CartScreen extends StatelessWidget {
           ),
         ],
       ),
+      backgroundColor: Color.fromARGB(255, 243, 92, 92),
     );
   }
 }

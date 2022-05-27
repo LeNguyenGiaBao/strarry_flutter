@@ -3,12 +3,12 @@ import 'package:strarry_flutter/size_config.dart';
 
 // const backend = 'http://192.168.1.10:8000/';
 const backend = 'http://10.0.2.2:8000/';
-const kTextColor = Color(0xFF535353);
-const kTextLightColor = Color(0xFFACACAC);
+const kTextColor = Color.fromARGB(255, 17, 17, 17);
+const kTextLightColor = Color.fromARGB(255, 82, 80, 80);
 
 const kDefaultPaddin = 20.0;
 
-const kPrimaryColor = Color.fromARGB(255, 48, 26, 241);
+const kPrimaryColor = Color.fromARGB(255, 243, 92, 92);
 const kPrimaryLightColor = Color(0xFFFFECDF);
 const kPrimaryGradientColor = LinearGradient(
   begin: Alignment.topLeft,

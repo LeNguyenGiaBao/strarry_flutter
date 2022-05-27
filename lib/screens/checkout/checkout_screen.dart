@@ -138,6 +138,7 @@ class CheckoutScreen extends StatelessWidget {
           ),
         ],
       ),
+      backgroundColor: Color.fromARGB(255, 243, 92, 92),
     );
   }
 }
