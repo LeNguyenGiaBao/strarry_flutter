@@ -75,35 +75,15 @@ class AddToCart extends StatelessWidget {
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            // return Padding(
-            //   padding: const EdgeInsets.symmetric(vertical: kDefaultPaddin),
             Row(
               children: <Widget>[
-                // Container(
-                //   margin: const EdgeInsets.only(right: kDefaultPaddin),
-                //   height: 50,
-                //   width: 58,
-                //   decoration: BoxDecoration(
-                //     borderRadius: BorderRadius.circular(18),
-                //     border: Border.all(
-                //       color: product.color,
-                //     ),
-                //   ),
-                //   child: IconButton(
-                //     icon: SvgPicture.asset(
-                //       "assets/icons/Heart Icon.svg",
-                //       color: product.color,
-                //     ),
-                //     onPressed: (){},
-                //   ),
-                // ),
                 Expanded(
                   child: SizedBox(
                     height: 50,
                     child: FlatButton(
                       shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(18)),
-                      color: product.color,
+                      color: Color.fromARGB(255, 243, 92, 92),
                       onPressed: !globals.isSignIn
                           ? () {
                               Navigator.pushNamed(
