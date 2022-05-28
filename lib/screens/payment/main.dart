@@ -31,13 +31,12 @@ class Dashboard extends StatelessWidget {
           padding: const EdgeInsets.symmetric(horizontal: 30),
           child: TextButton(
             onPressed: () {
-              // lets assume that product price is 5.99 usd
               Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (context) => PaypalPayment(
+                    builder: (context) => const PaypalPayment(
                       amount: 5.99,
-                      currency: 'USD',
+                      currency: "USD",
                     ),
                   ));
             },

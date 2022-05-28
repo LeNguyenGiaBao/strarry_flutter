@@ -24,7 +24,6 @@ class BackToHome extends StatelessWidget {
         vertical: getProportionateScreenWidth(15),
         horizontal: getProportionateScreenWidth(30),
       ),
-      // height: 174,
       decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: const BorderRadius.only(
@@ -55,7 +54,10 @@ class BackToHome extends StatelessWidget {
                       children: [
                         TextSpan(
                           text: "\$${c.money.toString()}",
-                          style: const TextStyle(fontSize: 16, color: Colors.red, fontWeight: FontWeight.bold),
+                          style: const TextStyle(
+                              fontSize: 16,
+                              color: Colors.red,
+                              fontWeight: FontWeight.bold),
                         ),
                       ],
                     ),
@@ -93,7 +95,6 @@ class BackToHome extends StatelessWidget {
     request.fields.addAll({
       'id_account': idAccount,
     });
-    // // request.body = json.encode({"email": email, "password": password});
     request.headers.addAll(headers);
 
     http.StreamedResponse response = await request.send();
@@ -103,11 +104,9 @@ class BackToHome extends StatelessWidget {
       var responseJson = jsonDecode(responseAwait);
       var signupSuccess = responseJson["success"];
       if (signupSuccess == 'true') {
-        // int idAccount = responseJson["id"];
         return true;
       }
     } else {
-      print(response.reasonPhrase);
       return false;
     }
     return false;

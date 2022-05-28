@@ -1,23 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:strarry_flutter/models/Bill.dart';
 import 'package:strarry_flutter/models/BillProduct.dart';
-import 'package:strarry_flutter/models/Cart.dart';
 import 'dart:convert';
 import 'dart:typed_data';
 import 'package:http/http.dart' as http;
 import 'package:strarry_flutter/models/Product.dart';
 import 'package:strarry_flutter/screens/bill_detail/components/bill_detail_card.dart';
-import 'package:strarry_flutter/screens/details/details_screen.dart';
-import 'package:strarry_flutter/screens/order_confirmation/components/cart_card.dart';
 import '../../../size_config.dart';
 import 'package:strarry_flutter/constants.dart';
-import 'package:strarry_flutter/widget/refresh_widget.dart';
-import 'package:strarry_flutter/widget/custom_text_form_field.dart';
 import '../../../controller.dart';
 import 'package:get/get.dart';
-
-import 'package:strarry_flutter/globals.dart' as globals;
 
 class Body extends StatefulWidget {
   const Body({
@@ -68,8 +60,6 @@ class _BodyState extends State<Body> {
             description: description,
             image: image,
             color: Colors.green);
-        print(product.title);
-        print(numItem);
         BillProduct billProduct =
             BillProduct(product: product, numOfItem: numItem);
         billProductList.add(billProduct);
@@ -84,9 +74,7 @@ class _BodyState extends State<Body> {
       setState(() {
         billProductList;
       });
-    } else {
-      print(response.reasonPhrase);
-    }
+    } else {}
   }
 
   @override
@@ -113,7 +101,6 @@ class _BodyState extends State<Body> {
                   child: Image.asset(
                     'assets/images/logo-removebg-preview.png',
                     width: SizeConfig.screenWidth * 0.4,
-                    // height: 100,
                   )),
               Positioned(
                 top: 250,
@@ -170,55 +157,9 @@ class _BodyState extends State<Body> {
           ListView(
             shrinkWrap: true,
             padding: EdgeInsets.zero,
-            physics: NeverScrollableScrollPhysics(),
+            physics: const NeverScrollableScrollPhysics(),
             children: children,
           )
-          // Expanded(
-          //   child: Padding(
-          //     padding: const EdgeInsets.symmetric(horizontal: kDefaultPaddin),
-          //     child: ListView.builder(
-          //       itemCount: billProductList.length,
-          //       itemBuilder: (context, index) => Padding(
-          //         padding: const EdgeInsets.symmetric(vertical: 10),
-          //         child: Dismissible(
-          //           key: Key(billProductList[index].product.id.toString()),
-          //           direction: DismissDirection.endToStart,
-          //           onDismissed: (direction) {
-          //             setState(() {
-          //               billProductList.removeAt(index);
-          //             });
-          //           },
-          //           background: Container(
-          //             padding: const EdgeInsets.symmetric(horizontal: 20),
-          //             decoration: BoxDecoration(
-          //               color: Colors.white,
-          //               borderRadius: BorderRadius.circular(15),
-          //             ),
-          //             child: Row(
-          //               children: [
-          //                 const Spacer(),
-          //                 SvgPicture.asset(
-          //                   "assets/icons/Trash.svg",
-          //                   color: Colors.black,
-          //                 ),
-          //               ],
-          //             ),
-          //           ),
-          //           child: BillDetailCard(
-          //               billProduct: billProductList[index], press: () => {}
-          //               // Navigator.push(
-          //               //     context,
-          //               //     MaterialPageRoute(
-          //               //       builder: (context) => DetailsScreen(
-          //               //         product: billProductList[index].product,
-          //               //       ),
-          //               //     )),
-          //               ),
-          //         ),
-          //       ),
-          //     ),
-          //   ),
-          // ),
         ],
       ),
     );

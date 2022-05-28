@@ -8,10 +8,9 @@ import 'package:get/get.dart';
 final Controller c = Get.find();
 
 class PaypalPayment extends StatelessWidget {
-  // final Controller c = Get.find();
   final double amount;
   final String currency;
-  PaypalPayment({Key? key, required this.amount, required this.currency})
+  const PaypalPayment({Key? key, required this.amount, required this.currency})
       : super(key: key);
 
   @override
@@ -24,7 +23,7 @@ class PaypalPayment extends StatelessWidget {
           },
           child: const Icon(Icons.arrow_back_ios),
         ),
-        backgroundColor: Color.fromARGB(255, 243, 92, 92),
+        backgroundColor: const Color.fromARGB(255, 243, 92, 92),
       ),
       body: WebView(
         initialUrl:
@@ -33,12 +32,9 @@ class PaypalPayment extends StatelessWidget {
         gestureRecognizers: Set()
           ..add(Factory<DragGestureRecognizer>(
               () => VerticalDragGestureRecognizer())),
-        onPageFinished: (value) {
-          print(value);
-        },
+        onPageFinished: (value) {},
         navigationDelegate: (NavigationRequest request) async {
           if (request.url.contains('http://return_url/?status=success')) {
-            print('return url on success');
             _showToast(context, true);
             Navigator.pop(context);
           }

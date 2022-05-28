@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:strarry_flutter/models/Cart.dart';
 import 'dart:convert';
 import 'dart:typed_data';
@@ -7,8 +6,6 @@ import 'package:http/http.dart' as http;
 import 'package:strarry_flutter/models/Product.dart';
 import '../../../size_config.dart';
 import 'package:strarry_flutter/constants.dart';
-import 'package:strarry_flutter/widget/refresh_widget.dart';
-import 'package:strarry_flutter/widget/custom_text_form_field.dart';
 import '../../../controller.dart';
 import 'package:get/get.dart';
 
@@ -31,13 +28,13 @@ class _BodyState extends State<Body> {
   var children = <Widget>[];
   Future loadList() async {
     await Future.delayed(const Duration(milliseconds: 400));
-    var url_insert_bill_product = Uri.parse(backend + 'bill_product/insert/');
+    var urlInsertBillProduct = Uri.parse(backend + 'bill_product/insert/');
 
     carts = [];
     children = <Widget>[];
     var url = Uri.parse(backend + 'cart/');
     var request = http.MultipartRequest('POST', url);
-    request.fields.addAll({'id_account': globals.idAccount}); 
+    request.fields.addAll({'id_account': globals.idAccount});
 
     var response = await request.send();
     if (response.statusCode == 200) {
@@ -46,9 +43,6 @@ class _BodyState extends State<Body> {
       var cartListJson = responseJson['cart'];
 
       for (var i in cartListJson) {
-        // int idCart = i[0];
-        // int idAccount = i[1];
-        // int idProductCart = i[2];
         int amountProduct = i[3];
         int idProduct = i[4];
         String name = i[5];
@@ -67,14 +61,14 @@ class _BodyState extends State<Body> {
         Cart cart = Cart(product: product, numOfItem: amountProduct);
         carts.add(cart);
 
-        // insert bill product
-        var request_insert_bill_product = http.MultipartRequest('POST', url_insert_bill_product);
-        request_insert_bill_product.fields.addAll({
-        'id': c.idBill.toString(),
-        'id_product': cart.product.id.toString(),
-        'amount_product': cart.numOfItem.toString()
-      });
-      var response_insert_bill_product = await request_insert_bill_product.send();
+        var requestInsertBillProduct =
+            http.MultipartRequest('POST', urlInsertBillProduct);
+        requestInsertBillProduct.fields.addAll({
+          'id': c.idBill.toString(),
+          'id_product': cart.product.id.toString(),
+          'amount_product': cart.numOfItem.toString()
+        });
+        var responseInsertBillProduct = await requestInsertBillProduct.send();
       }
       for (var i = 0; i < carts.length; i++) {
         children.add(CartCard(cart: carts[i]));
@@ -84,9 +78,7 @@ class _BodyState extends State<Body> {
         carts;
         children;
       });
-    } else {
-      print(response.reasonPhrase);
-    }
+    } else {}
     var url1 = Uri.parse(backend + 'account/email/');
     var request1 = http.MultipartRequest('POST', url1);
     request1.fields.addAll({'id_account': globals.idAccount.toString()});
@@ -100,9 +92,7 @@ class _BodyState extends State<Body> {
       setState(() {
         email;
       });
-    } else {
-      print(response.reasonPhrase);
-    }
+    } else {}
   }
 
   @override
@@ -129,7 +119,6 @@ class _BodyState extends State<Body> {
                   child: Image.asset(
                     'assets/images/logo-removebg-preview.png',
                     width: SizeConfig.screenWidth * 0.4,
-                    // height: 100,
                   )),
               Positioned(
                 top: 250,
@@ -165,7 +154,6 @@ class _BodyState extends State<Body> {
                   'Order Code: STRA${c.idBill.toString()}',
                   style: Theme.of(context).textTheme.headline6,
                 ),
-                // OrderSummary(),
                 const SizedBox(height: 20),
                 Text(
                   'Order Detail',
@@ -176,18 +164,8 @@ class _BodyState extends State<Body> {
                 ListView(
                   shrinkWrap: true,
                   padding: EdgeInsets.zero,
-                  physics: NeverScrollableScrollPhysics(),
+                  physics: const NeverScrollableScrollPhysics(),
                   children: children,
-                  // children: [
-                  //   ProductCard.summary(
-                  //     product: Product.products[0],
-                  //     quantity: 2,
-                  //   ),
-                  //   ProductCard.summary(
-                  //     product: Product.products[0],
-                  //     quantity: 2,
-                  //   ),
-                  // ],
                 ),
               ],
             ),

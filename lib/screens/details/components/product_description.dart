@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:strarry_flutter/models/Product.dart';
 
-import '../../../constants.dart';
 import '../../../size_config.dart';
 
 class ProductDescription extends StatelessWidget {
@@ -33,7 +31,6 @@ class ProductDescription extends StatelessWidget {
             ),
           ),
         ),
-
         Padding(
           padding: EdgeInsets.only(
               top: getProportionateScreenWidth(20),
@@ -44,9 +41,7 @@ class ProductDescription extends StatelessWidget {
             child: Text(
               "\$${product.price.toString()}",
               style: const TextStyle(
-                  fontSize: 22,
-                  color: Colors.red,
-                  fontWeight: FontWeight.bold),
+                  fontSize: 22, color: Colors.red, fontWeight: FontWeight.bold),
             ),
           ),
         ),

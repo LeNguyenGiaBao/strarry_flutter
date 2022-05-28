@@ -1,8 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:strarry_flutter/models/BillProduct.dart';
-import 'package:strarry_flutter/models/Cart.dart';
-
-import '../../../constants.dart';
 import '../../../size_config.dart';
 
 class BillDetailCard extends StatelessWidget {

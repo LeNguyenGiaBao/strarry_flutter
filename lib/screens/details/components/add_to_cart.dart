@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:http/http.dart' as http;
 import 'package:strarry_flutter/models/Product.dart';
 import 'dart:convert';
@@ -42,7 +41,6 @@ class AddToCart extends StatelessWidget {
         return false;
       }
     } else {
-      print(response.reasonPhrase);
       return false;
     }
   }
@@ -83,7 +81,7 @@ class AddToCart extends StatelessWidget {
                     child: FlatButton(
                       shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(18)),
-                      color: Color.fromARGB(255, 243, 92, 92),
+                      color: const Color.fromARGB(255, 243, 92, 92),
                       onPressed: !globals.isSignIn
                           ? () {
                               Navigator.pushNamed(
@@ -102,7 +100,6 @@ class AddToCart extends StatelessWidget {
                             },
                       child: Text(
                         "Add to cart".toUpperCase(),
-                        // globals.isSignIn.toString(),
                         style: const TextStyle(
                           fontSize: 17,
                           fontWeight: FontWeight.bold,
@@ -113,8 +110,6 @@ class AddToCart extends StatelessWidget {
                   ),
                 ),
               ],
-              // ),
-              // ),//
             ),
           ],
         ),
