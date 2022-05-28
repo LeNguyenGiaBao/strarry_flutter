@@ -1,4 +1,5 @@
 import 'package:flutter/widgets.dart';
+import 'package:strarry_flutter/screens/bill_history/bill_history_screen.dart';
 import 'package:strarry_flutter/screens/home/home_screen.dart';
 import 'package:strarry_flutter/screens/complete_profile/complete_profile_screen.dart';
 import 'package:strarry_flutter/screens/otp/otp_screen.dart';
@@ -24,6 +25,7 @@ final Map<String, WidgetBuilder> routes = {
   CartScreen.routeName: (context) => CartScreen(),
   CheckoutScreen.routeName: (context) => const CheckoutScreen(),
   OrderConfirmation.routeName: (context) => const OrderConfirmation(),
+  BillHistoryScreen.routeName: ((context) => BillHistoryScreen())
   // PaymentScreen.routeName: (context) => PaymentScreen(),
   // Body.routeName: (context) => const Body(),
   // DetailsScreen.routeName: (context) => DetailsScreen(context),

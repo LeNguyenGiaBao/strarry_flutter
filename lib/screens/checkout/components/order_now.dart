@@ -43,28 +43,6 @@ class OrderNow extends StatelessWidget {
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            // Row(
-            //   children: [
-            //     Container(
-            //       padding: EdgeInsets.all(10),
-            //       height: getProportionateScreenWidth(40),
-            //       width: getProportionateScreenWidth(40),
-            //       decoration: BoxDecoration(
-            //         color: Color(0xFFF5F6F9),
-            //         borderRadius: BorderRadius.circular(10),
-            //       ),
-            //       child: SvgPicture.asset("assets/icons/receipt.svg"),
-            //     ),
-            //     Spacer(),
-            //     Text("Add voucher code"),
-            //     const SizedBox(width: 10),
-            //     Icon(
-            //       Icons.arrow_forward_ios,
-            //       size: 12,
-            //       color: kTextColor,
-            //     )
-            //   ],
-            // ),
             SizedBox(height: getProportionateScreenHeight(20)),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -87,13 +65,13 @@ class OrderNow extends StatelessWidget {
                   child: DefaultButton(
                     text: "Order Now",
                     press: () async {
-                      bool isSuccessInserBill = await isInsertBill(
+                      bool isSuccessInsertBill = await isInsertBill(
                           globals.idAccount.toString(),
                           c.money.toString(),
                           '0',
                           c.phone.toString(),
                           c.address.toString());
-                      if (isSuccessInserBill == true) {
+                      if (isSuccessInsertBill == true) {
                         Navigator.pushNamed(
                             context, OrderConfirmation.routeName);
                       }
@@ -132,9 +110,10 @@ class OrderNow extends StatelessWidget {
     if (response.statusCode == 200) {
       var responseAwait = await response.stream.bytesToString();
       var responseJson = jsonDecode(responseAwait);
-      var signupSuccess = responseJson["success"];
-      if (signupSuccess == 'true') {
-        // int idAccount = responseJson["id"];
+      var billSuccess = responseJson["success"];
+      if (billSuccess == 'true') {
+        int idBill = responseJson["id"];
+        c.setIdBill(idBill);
         return true;
       }
     } else {
