@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:strarry_flutter/models/Cart.dart';
+import 'package:strarry_flutter/screens/bill_history/bill_history_screen.dart';
 import 'package:strarry_flutter/screens/cart/cart_screen.dart';
 import 'package:strarry_flutter/screens/home/home_screen.dart';
 import 'package:strarry_flutter/screens/profile/profile_screen.dart';
@@ -23,6 +24,7 @@ class MyHomePageState extends State<HomeStateScreen> {
   final Widget _cart = CartScreen();
   final Widget _signin = const SignInScreen();
   final Widget _myProfile = const MyProfile();
+  final Widget _bill_history = BillHistoryScreen();
 
   @override
   Widget build(BuildContext context) {
@@ -38,6 +40,10 @@ class MyHomePageState extends State<HomeStateScreen> {
           const BottomNavigationBarItem(
             icon: Icon(Icons.shopping_cart),
             label: "Cart",
+          ),
+          const BottomNavigationBarItem(
+            icon: Icon(Icons.history),
+            label: "Bill History",
           ),
           const BottomNavigationBarItem(
             icon: Icon(Icons.person),
@@ -96,6 +102,11 @@ class MyHomePageState extends State<HomeStateScreen> {
         return _signin;
       }
       return _cart;
+    } else if (selectedIndex == 2) {
+      if (!globals.isSignIn) {
+        return _signin;
+      }
+      return _bill_history;
     } else {
       return _myProfile;
     }

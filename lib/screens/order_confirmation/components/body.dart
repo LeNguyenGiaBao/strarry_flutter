@@ -9,6 +9,9 @@ import '../../../size_config.dart';
 import 'package:strarry_flutter/constants.dart';
 import 'package:strarry_flutter/widget/refresh_widget.dart';
 import 'package:strarry_flutter/widget/custom_text_form_field.dart';
+import '../../../controller.dart';
+import 'package:get/get.dart';
+
 import 'cart_card.dart';
 import 'package:strarry_flutter/globals.dart' as globals;
 
@@ -22,17 +25,19 @@ class Body extends StatefulWidget {
 class _BodyState extends State<Body> {
   final GlobalKey<RefreshIndicatorState> keyRefresh2 =
       GlobalKey<RefreshIndicatorState>();
+  final Controller c = Get.find();
   String? email = "";
   List<Cart> carts = [];
   var children = <Widget>[];
   Future loadList() async {
     await Future.delayed(const Duration(milliseconds: 400));
+    var url_insert_bill_product = Uri.parse(backend + 'bill_product/insert/');
 
     carts = [];
     children = <Widget>[];
     var url = Uri.parse(backend + 'cart/');
     var request = http.MultipartRequest('POST', url);
-    request.fields.addAll({'id_account': globals.idAccount}); // NEED MODIFY
+    request.fields.addAll({'id_account': globals.idAccount}); 
 
     var response = await request.send();
     if (response.statusCode == 200) {
@@ -61,6 +66,15 @@ class _BodyState extends State<Body> {
             color: Colors.green);
         Cart cart = Cart(product: product, numOfItem: amountProduct);
         carts.add(cart);
+
+        // insert bill product
+        var request_insert_bill_product = http.MultipartRequest('POST', url_insert_bill_product);
+        request_insert_bill_product.fields.addAll({
+        'id': c.idBill.toString(),
+        'id_product': cart.product.id.toString(),
+        'amount_product': cart.numOfItem.toString()
+      });
+      var response_insert_bill_product = await request_insert_bill_product.send();
       }
       for (var i = 0; i < carts.length; i++) {
         children.add(CartCard(cart: carts[i]));
@@ -75,8 +89,7 @@ class _BodyState extends State<Body> {
     }
     var url1 = Uri.parse(backend + 'account/email/');
     var request1 = http.MultipartRequest('POST', url1);
-    request1.fields
-        .addAll({'id_account': globals.idAccount.toString()}); 
+    request1.fields.addAll({'id_account': globals.idAccount.toString()});
 
     var response1 = await request1.send();
     if (response1.statusCode == 200) {
@@ -140,7 +153,7 @@ class _BodyState extends State<Body> {
               children: [
                 Text(
                   'Hi ${email.toString()},',
-                  style: Theme.of(context).textTheme.headline5,
+                  style: Theme.of(context).textTheme.headline6,
                 ),
                 const SizedBox(height: 10),
                 Text(
@@ -149,14 +162,14 @@ class _BodyState extends State<Body> {
                 ),
                 const SizedBox(height: 20),
                 Text(
-                  'ORDER CODE: STRA001',
-                  style: Theme.of(context).textTheme.headline5,
+                  'Order Code: STRA${c.idBill.toString()}',
+                  style: Theme.of(context).textTheme.headline6,
                 ),
                 // OrderSummary(),
                 const SizedBox(height: 20),
                 Text(
-                  'ORDER DETAILS',
-                  style: Theme.of(context).textTheme.headline5,
+                  'Order Detail',
+                  style: Theme.of(context).textTheme.headline6,
                 ),
                 const Divider(thickness: 2),
                 const SizedBox(height: 5),
