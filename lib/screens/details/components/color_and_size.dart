@@ -36,7 +36,7 @@ class ColorAndSize extends StatelessWidget {
         Expanded(
           child: RichText(
             text: TextSpan(
-              style: const TextStyle(color: kTextColor),
+              style: const TextStyle(color: kkTextColor),
               children: [
                 const TextSpan(text: "Size\n"),
                 TextSpan(
