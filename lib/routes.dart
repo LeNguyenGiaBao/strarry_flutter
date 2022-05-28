@@ -10,10 +10,7 @@ import 'package:strarry_flutter/screens/sign_up/sign_up_screen.dart';
 import 'package:strarry_flutter/screens/cart/cart_screen.dart';
 import 'package:strarry_flutter/screens/checkout/checkout_screen.dart';
 import 'package:strarry_flutter/screens/order_confirmation/order_confirmation_screen.dart';
-// import 'package:strarry_flutter/screens/payment/payment_screen.dart';
 
-// We use name route
-// All our routes will be available here
 final Map<String, WidgetBuilder> routes = {
   SignInScreen.routeName: (context) => const SignInScreen(),
   HomeScreen.routeName: (context) => const HomeScreen(),
@@ -26,7 +23,4 @@ final Map<String, WidgetBuilder> routes = {
   CheckoutScreen.routeName: (context) => const CheckoutScreen(),
   OrderConfirmation.routeName: (context) => const OrderConfirmation(),
   BillHistoryScreen.routeName: ((context) => BillHistoryScreen())
-  // PaymentScreen.routeName: (context) => PaymentScreen(),
-  // Body.routeName: (context) => const Body(),
-  // DetailsScreen.routeName: (context) => DetailsScreen(context),
 };

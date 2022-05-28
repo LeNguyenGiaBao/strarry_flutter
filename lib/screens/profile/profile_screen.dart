@@ -15,7 +15,7 @@ class MyProfile extends StatelessWidget {
             color: Color.fromARGB(255, 30, 31, 31),
           ),
         ),
-        backgroundColor: Color.fromARGB(255, 243, 92, 92),
+        backgroundColor: const Color.fromARGB(255, 243, 92, 92),
       ),
       body: const Body(),
     );

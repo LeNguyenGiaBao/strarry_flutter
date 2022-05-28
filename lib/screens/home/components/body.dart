@@ -28,8 +28,6 @@ class _BodyState extends State<Body> {
   List<Product> products = [];
   Future loadList() async {
     await Future.delayed(const Duration(milliseconds: 400));
-
-    // print(c.idcategory);
     products = [];
     if (c.idcategory == 0) {
       var url = Uri.parse(backend + 'products/');
@@ -58,8 +56,7 @@ class _BodyState extends State<Body> {
     } else {
       var url1 = Uri.parse(backend + 'products/get/');
       var request1 = http.MultipartRequest('POST', url1);
-      request1.fields
-          .addAll({'id_category': c.idcategory.toString()}); // NEED MODIFY
+      request1.fields.addAll({'id_category': c.idcategory.toString()});
 
       var response1 = await request1.send();
       if (response1.statusCode == 200) {
@@ -103,22 +100,6 @@ class _BodyState extends State<Body> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
-        // Padding(
-        //   padding: const EdgeInsets.symmetric(horizontal: kDefaultPaddin),
-        //   child: Text("The Cat",
-        //       style: Theme.of(context)
-        //           .textTheme
-        //           .headline5
-        //           ?.copyWith(fontWeight: FontWeight.bold)),
-        // ),
-        // IconButton(
-        //   icon: SvgPicture.asset(
-        //     "assets/icons/search.svg",
-        //     // By default our  icon color is white
-        //     color: kTextColor,
-        //   ),
-        //   onPressed: loadList,
-        // ),
         const Categories(),
         Expanded(
           child: Padding(
@@ -143,61 +124,4 @@ class _BodyState extends State<Body> {
       ],
     );
   }
-
-  // Future _getThingsOnStartup() async {
-  //   await Future.delayed(const Duration(seconds: 2));
-  // }
 }
-
-// class Body extends StatelessWidget {
-//   @override
-//   Widget build(BuildContext context) {
-//     @override
-//     void initState() {
-//       _getThingsOnStartup().then((value) {
-//         print('Async done');
-//       });
-//       super.initState();
-//     }
-
-//     return Column(
-//       crossAxisAlignment: CrossAxisAlignment.start,
-//       children: <Widget>[
-//         Padding(
-//           padding: const EdgeInsets.symmetric(horizontal: kDefaultPaddin),
-//           child: Text(
-//             "Women",
-//             style: Theme.of(context)
-//                 .textTheme
-//                 .headline5
-//                 .copyWith(fontWeight: FontWeight.bold),
-//           ),
-//         ),
-//         Categories(),
-//         Expanded(
-//           child: Padding(
-//             padding: const EdgeInsets.symmetric(horizontal: kDefaultPaddin),
-//             child: GridView.builder(
-//                 itemCount: products.length,
-//                 gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-//                   crossAxisCount: 2,
-//                   mainAxisSpacing: kDefaultPaddin,
-//                   crossAxisSpacing: kDefaultPaddin,
-//                   childAspectRatio: 0.75,
-//                 ),
-//                 itemBuilder: (context, index) => ItemCard(
-//                       product: products[index],
-//                       press: () => Navigator.push(
-//                           context,
-//                           MaterialPageRoute(
-//                             builder: (context) => DetailsScreen(
-//                               product: products[index],
-//                             ),
-//                           )),
-//                     )),
-//           ),
-//         ),
-//       ],
-//     );
-//   }
-// }

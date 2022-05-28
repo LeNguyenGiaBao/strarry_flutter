@@ -33,16 +33,13 @@ class _CartCounterState extends State<CartCounter> {
                 Provider.of<CounterProvider>(context, listen: false).counter;
             if (currentValue > 1) {
               context.read<CounterProvider>().sub();
-              // widget.onChanged(numOfItems);
             }
           },
         ),
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: kDefaultPaddin / 2),
           child: Text(
-            // if our item is less  then 10 then  it shows 01 02 like that
             context.watch<CounterProvider>().counter.toString(),
-            // "0",
             style: Theme.of(context).textTheme.headline6,
           ),
         ),

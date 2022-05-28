@@ -24,7 +24,7 @@ class Description extends StatelessWidget {
               style: const TextStyle(height: 1.5, fontSize: 20),
             ),
           ),
-          const SizedBox(height: kDefaultPaddin*2),
+          const SizedBox(height: kDefaultPaddin * 2),
           Align(
             alignment: Alignment.centerRight,
             child: Text(

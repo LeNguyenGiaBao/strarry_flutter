@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:strarry_flutter/components/default_button.dart';
 import 'package:strarry_flutter/screens/checkout/checkout_screen.dart';
-import '../../../constants.dart';
 import '../../../controller.dart';
 import '../../../size_config.dart';
 
@@ -21,7 +19,6 @@ class CheckoutCard extends StatelessWidget {
         vertical: getProportionateScreenWidth(15),
         horizontal: getProportionateScreenWidth(30),
       ),
-      // height: 174,
       decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: const BorderRadius.only(
@@ -41,28 +38,6 @@ class CheckoutCard extends StatelessWidget {
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            // Row(
-            //   children: [
-            //     Container(
-            //       padding: const EdgeInsets.all(10),
-            //       height: getProportionateScreenWidth(40),
-            //       width: getProportionateScreenWidth(40),
-            //       decoration: BoxDecoration(
-            //         color: const Color(0xFFF5F6F9),
-            //         borderRadius: BorderRadius.circular(10),
-            //       ),
-            //       child: SvgPicture.asset("assets/icons/receipt.svg"),
-            //     ),
-            //     const Spacer(),
-            //     const Text("Add voucher code"),
-            //     const SizedBox(width: 10),
-            //     const Icon(
-            //       Icons.arrow_forward_ios,
-            //       size: 12,
-            //       color: kTextColor,
-            //     )
-            //   ],
-            // ),
             SizedBox(height: getProportionateScreenHeight(20)),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -74,7 +49,10 @@ class CheckoutCard extends StatelessWidget {
                       children: [
                         TextSpan(
                           text: "\$${c.money.toString()}",
-                          style: const TextStyle(fontSize: 16, color: Colors.red, fontWeight: FontWeight.bold),
+                          style: const TextStyle(
+                              fontSize: 16,
+                              color: Colors.red,
+                              fontWeight: FontWeight.bold),
                         ),
                       ],
                     ),
@@ -85,8 +63,8 @@ class CheckoutCard extends StatelessWidget {
                   child: DefaultButton(
                     text: "Check Out",
                     press: () {
-                      if (c.money.toString() != "0"){
-                      Navigator.pushNamed(context, CheckoutScreen.routeName);
+                      if (c.money.toString() != "0") {
+                        Navigator.pushNamed(context, CheckoutScreen.routeName);
                       }
                     },
                   ),

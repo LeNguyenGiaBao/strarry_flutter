@@ -32,13 +32,11 @@ class CartScreen extends StatelessWidget {
           ),
           Text(
             "",
-            // "${5} items",
-            // "5 items",
             style: Theme.of(context).textTheme.caption,
           ),
         ],
       ),
-      backgroundColor: Color.fromARGB(255, 243, 92, 92),
+      backgroundColor: const Color.fromARGB(255, 243, 92, 92),
     );
   }
 }

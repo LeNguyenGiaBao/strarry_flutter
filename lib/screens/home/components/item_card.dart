@@ -2,8 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:strarry_flutter/models/Product.dart';
 import 'package:strarry_flutter/size_config.dart';
 
-import '../../../constants.dart';
-
 class ItemCard extends StatelessWidget {
   final Product product;
   final Function press;
@@ -34,27 +32,19 @@ class ItemCard extends StatelessWidget {
                   color: Colors.grey.withOpacity(0.3),
                   spreadRadius: 0,
                   blurRadius: 0,
-                  // offset: Offset(1,1), // changes position of shadow
                 ),
               ],
             ),
             child: IntrinsicHeight(
-              child: Row(crossAxisAlignment: CrossAxisAlignment.start,
-                  // mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              child: Row(
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: <Widget>[
                     Expanded(
                       child: Align(
                         alignment: Alignment.center,
                         child: SizedBox(
-                          // padding: const EdgeInsets.all(kDefaultPaddin),
-                          // For  demo we use fixed height  and width
-                          // Now we dont need them
                           height: 120,
                           width: 120,
-                          // decoration: BoxDecoration(
-                          //   color: Colors.pink,
-                          //   borderRadius: BorderRadius.circular(16),
-                          // ),
                           child: Hero(
                             tag: "${product.id}",
                             child:
@@ -66,12 +56,10 @@ class ItemCard extends StatelessWidget {
                     Expanded(
                       child: Column(children: [
                         Padding(
-                          padding: const EdgeInsets.only(
-                              top: 10),
+                          padding: const EdgeInsets.only(top: 10),
                           child: Align(
                             alignment: Alignment.topLeft,
                             child: Text(
-                              // products is out demo list
                               product.title,
                               style: const TextStyle(
                                   color: Colors.black,

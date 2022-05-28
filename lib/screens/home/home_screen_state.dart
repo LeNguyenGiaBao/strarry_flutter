@@ -1,12 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:strarry_flutter/models/Cart.dart';
 import 'package:strarry_flutter/screens/bill_history/bill_history_screen.dart';
 import 'package:strarry_flutter/screens/cart/cart_screen.dart';
 import 'package:strarry_flutter/screens/home/home_screen.dart';
 import 'package:strarry_flutter/screens/profile/profile_screen.dart';
 import 'package:strarry_flutter/screens/sign_in/sign_in_screen.dart';
 import 'package:strarry_flutter/size_config.dart';
-// import 'components/categorries.dart';
 import 'package:strarry_flutter/globals.dart' as globals;
 
 class HomeStateScreen extends StatefulWidget {
@@ -24,19 +22,18 @@ class MyHomePageState extends State<HomeStateScreen> {
   final Widget _cart = CartScreen();
   final Widget _signin = const SignInScreen();
   final Widget _myProfile = const MyProfile();
-  final Widget _bill_history = BillHistoryScreen();
+  final Widget _billHistory = BillHistoryScreen();
 
   @override
   Widget build(BuildContext context) {
     SizeConfig().init(context);
     return Scaffold(
-      // appBar: buildAppBar(),
       body: getBody(),
       bottomNavigationBar: BottomNavigationBar(
         type: BottomNavigationBarType.fixed,
         currentIndex: selectedIndex,
         items: [
-          BottomNavItem(),
+          bottomNavItem(),
           const BottomNavigationBarItem(
             icon: Icon(Icons.shopping_cart),
             label: "Cart",
@@ -57,7 +54,7 @@ class MyHomePageState extends State<HomeStateScreen> {
     );
   }
 
-  BottomNavigationBarItem BottomNavItem() {
+  BottomNavigationBarItem bottomNavItem() {
     return const BottomNavigationBarItem(
       icon: Icon(Icons.home),
       label: "Home",
@@ -68,29 +65,6 @@ class MyHomePageState extends State<HomeStateScreen> {
     return AppBar(
       backgroundColor: Colors.white,
       elevation: 0,
-      // leading: IconButton(
-      //   icon: SvgPicture.asset("assets/icons/back.svg"),
-      //   onPressed: () {},
-      // ),
-      // actions: <Widget>[
-      //   IconButton(
-      //     icon: SvgPicture.asset(
-      //       "assets/icons/search.svg",
-      //       // By default our  icon color is white
-      //       color: kTextColor,
-      //     ),
-      //     onPressed: () {},
-      //   ),
-      //   IconButton(
-      //     icon: SvgPicture.asset(
-      //       "assets/icons/cart.svg",
-      //       // By default our  icon color is white
-      //       color: kTextColor,
-      //     ),
-      //     onPressed: () {},
-      //   ),
-      //   SizedBox(width: kDefaultPaddin / 2)
-      // ],
     );
   }
 
@@ -106,7 +80,7 @@ class MyHomePageState extends State<HomeStateScreen> {
       if (!globals.isSignIn) {
         return _signin;
       }
-      return _bill_history;
+      return _billHistory;
     } else {
       return _myProfile;
     }

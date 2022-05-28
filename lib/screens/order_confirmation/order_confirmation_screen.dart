@@ -1,7 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
-// import '/models/models.dart';
-// import '/widgets/widgets.dart';
 import 'components/back_to_home.dart';
 import 'components/body.dart';
 
@@ -23,7 +20,7 @@ class OrderConfirmation extends StatelessWidget {
       appBar: buildAppBar(context),
       bottomNavigationBar: BackToHome(),
       extendBodyBehindAppBar: true,
-      body: Body(),
+      body: const Body(),
     );
   }
 
@@ -37,13 +34,11 @@ class OrderConfirmation extends StatelessWidget {
           ),
           Text(
             "",
-            // "${5} items",
-            // "5 items",
             style: Theme.of(context).textTheme.caption,
           ),
         ],
       ),
-      backgroundColor: Color.fromARGB(255, 243, 92, 92),
+      backgroundColor: const Color.fromARGB(255, 243, 92, 92),
     );
   }
 }
