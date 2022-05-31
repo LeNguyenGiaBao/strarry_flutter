@@ -15,12 +15,10 @@ class DetailsScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      // each product have a color
       backgroundColor: Colors.white,
       appBar: buildAppBar(context),
       body: Body(product: product),
       bottomNavigationBar: AddToCart(product: product),
-
     );
   }
 
@@ -42,14 +40,15 @@ class DetailsScreen extends StatelessWidget {
           onPressed: () {},
         ),
         IconButton(
-            icon:
-                SvgPicture.asset("assets/icons/cart.svg", color: Colors.black),
-            onPressed: !globals.isSignIn
-                    ? () {
-                        Navigator.pushNamed(context, SignInScreen.routeName);
-                      }:
-                      () {Navigator.pushNamed(context, CartScreen.routeName);},
-            ),
+          icon: SvgPicture.asset("assets/icons/cart.svg", color: Colors.black),
+          onPressed: !globals.isSignIn
+              ? () {
+                  Navigator.pushNamed(context, SignInScreen.routeName);
+                }
+              : () {
+                  Navigator.pushNamed(context, CartScreen.routeName);
+                },
+        ),
         const SizedBox(width: kDefaultPaddin / 2)
       ],
     );

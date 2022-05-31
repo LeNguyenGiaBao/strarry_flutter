@@ -8,7 +8,6 @@ import 'dart:convert';
 import 'package:strarry_flutter/helper/keyboard.dart';
 
 import '../../../constants.dart';
-// import '../../../size_config.dart';
 import 'package:strarry_flutter/size_config.dart';
 
 class SignUpForm extends StatefulWidget {
@@ -23,7 +22,6 @@ class _SignUpFormState extends State<SignUpForm> {
   String? email;
   String? password;
   String? abc;
-  // String? confirm_password;
   bool remember = false;
   final List<String?> errors = [];
 
@@ -66,9 +64,6 @@ class _SignUpFormState extends State<SignUpForm> {
               if (isSuccessSignUp == true) {
                 Navigator.pushNamed(context, SignInScreen.routeName);
               }
-              // Navigator.pushNamed(context, SignInScreen.routeName);
-              // if all are valid then go to success screen
-
             }
           },
         ),
@@ -81,10 +76,8 @@ class _SignUpFormState extends State<SignUpForm> {
       'accept': 'application/json',
       'Content-Type': 'application/json',
     };
-    // var request = http.Request('POST', Uri.parse(backend + 'signup/'));
     var request = http.MultipartRequest('POST', Uri.parse(backend + 'signup/'));
     request.fields.addAll({'email': email, 'password': password});
-    // request.body = json.encode({"email": email, "password": password});
     request.headers.addAll(headers);
 
     http.StreamedResponse response = await request.send();
@@ -94,11 +87,9 @@ class _SignUpFormState extends State<SignUpForm> {
       var responseJson = jsonDecode(responseAwait);
       var signupSuccess = responseJson["success"];
       if (signupSuccess == 'true') {
-        // int idAccount = responseJson["id"];
         return true;
       }
     } else {
-      print(response.reasonPhrase);
       return false;
     }
 
@@ -130,8 +121,6 @@ class _SignUpFormState extends State<SignUpForm> {
       decoration: const InputDecoration(
         labelText: "Confirm Password",
         hintText: "Re-enter your password",
-        // If  you are using latest version of flutter then lable text and hint text shown like this
-        // if you r using flutter less then 1.20.* then maybe this is not working properly
         floatingLabelBehavior: FloatingLabelBehavior.always,
         suffixIcon: CustomSurffixIcon(svgIcon: "assets/icons/Lock.svg"),
       ),
@@ -163,8 +152,6 @@ class _SignUpFormState extends State<SignUpForm> {
       decoration: const InputDecoration(
         labelText: "Password",
         hintText: "Enter your password",
-        // If  you are using latest version of flutter then lable text and hint text shown like this
-        // if you r using flutter less then 1.20.* then maybe this is not working properly
         floatingLabelBehavior: FloatingLabelBehavior.always,
         suffixIcon: CustomSurffixIcon(svgIcon: "assets/icons/Lock.svg"),
       ),
@@ -196,8 +183,6 @@ class _SignUpFormState extends State<SignUpForm> {
       decoration: const InputDecoration(
         labelText: "Email",
         hintText: "Enter your email",
-        // If  you are using latest version of flutter then lable text and hint text shown like this
-        // if you r using flutter less then 1.20.* then maybe this is not working properly
         floatingLabelBehavior: FloatingLabelBehavior.always,
         suffixIcon: CustomSurffixIcon(svgIcon: "assets/icons/Mail.svg"),
       ),

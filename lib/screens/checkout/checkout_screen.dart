@@ -1,10 +1,6 @@
 import 'package:flutter/material.dart';
-// import 'package:flutter_bloc/flutter_bloc.dart';
 import 'components/order_now.dart';
 import 'components/body.dart';
-
-// import '/blocs/blocs.dart';
-// import '/widgets/widgets.dart';
 
 class CheckoutScreen extends StatelessWidget {
   static const String routeName = '/checkout';
@@ -36,13 +32,12 @@ class CheckoutScreen extends StatelessWidget {
             style: TextStyle(color: Colors.black),
           ),
           Text(
-            "${5} items",
-            // "5 items",
+            "",
             style: Theme.of(context).textTheme.caption,
           ),
         ],
       ),
-      backgroundColor: Color.fromARGB(255, 243, 92, 92),
+      backgroundColor: const Color.fromARGB(255, 243, 92, 92),
     );
   }
 }

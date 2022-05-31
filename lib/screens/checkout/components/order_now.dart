@@ -54,7 +54,10 @@ class OrderNow extends StatelessWidget {
                       children: [
                         TextSpan(
                           text: "\$${c.money.toString()}",
-                          style: const TextStyle(fontSize: 16, color: Colors.red, fontWeight: FontWeight.bold),
+                          style: const TextStyle(
+                              fontSize: 16,
+                              color: Colors.red,
+                              fontWeight: FontWeight.bold),
                         ),
                       ],
                     ),
@@ -92,7 +95,6 @@ class OrderNow extends StatelessWidget {
       'Content-Type': 'application/json',
     };
 
-    // var request = http.Request('POST', Uri.parse(backend + 'signup/'));
     var request =
         http.MultipartRequest('POST', Uri.parse(backend + 'bill/insert/'));
     request.fields.addAll({
@@ -102,7 +104,6 @@ class OrderNow extends StatelessWidget {
       'phone': phone,
       'address': address
     });
-    // // request.body = json.encode({"email": email, "password": password});
     request.headers.addAll(headers);
 
     http.StreamedResponse response = await request.send();
@@ -117,7 +118,6 @@ class OrderNow extends StatelessWidget {
         return true;
       }
     } else {
-      print(response.reasonPhrase);
       return false;
     }
     return false;

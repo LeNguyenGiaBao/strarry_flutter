@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:strarry_flutter/size_config.dart';
 
-// const backend = 'http://192.168.1.10:8000/';
+// const backend = 'http://192.168.1.10:8000/';   // backend for mobile app, server on local
 const backend = 'http://10.0.2.2:8000/';
 const kTextColor = Color.fromARGB(255, 14, 13, 13);
 const kkTextColor = Color.fromARGB(255, 14, 13, 13);

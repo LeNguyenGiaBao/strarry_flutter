@@ -4,21 +4,19 @@ import 'package:strarry_flutter/controller.dart';
 import 'package:strarry_flutter/size_config.dart';
 import 'components/body.dart';
 
-
 import '../../../size_config.dart';
 
 class BillHistoryScreen extends StatelessWidget {
   static String routeName = "/bill_history";
   final Controller c = Get.put(Controller());
-  
+
   BillHistoryScreen({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     SizeConfig().init(context);
     return Scaffold(
       appBar: buildAppBar(context),
-      body: Body(),
-      // bottomNavigationBar: CheckoutCard(),
+      body: const Body(),
     );
   }
 
@@ -32,12 +30,11 @@ class BillHistoryScreen extends StatelessWidget {
           ),
           Text(
             "",
-            // "5 items",
             style: Theme.of(context).textTheme.caption,
           ),
         ],
       ),
-      backgroundColor: Color.fromARGB(255, 243, 92, 92),
+      backgroundColor: const Color.fromARGB(255, 243, 92, 92),
     );
   }
 }

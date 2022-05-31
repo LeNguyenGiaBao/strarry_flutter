@@ -33,8 +33,7 @@ class _BodyState extends State<Body> {
     carts = [];
     var url = Uri.parse(backend + 'cart/');
     var request = http.MultipartRequest('POST', url);
-    request.fields
-        .addAll({'id_account': globals.idAccount.toString()}); // NEED MODIFY
+    request.fields.addAll({'id_account': globals.idAccount.toString()});
 
     var response = await request.send();
     if (response.statusCode == 200) {
@@ -43,9 +42,6 @@ class _BodyState extends State<Body> {
       var cartListJson = responseJson['cart'];
 
       for (var i in cartListJson) {
-        // int idCart = i[0];
-        // int idAccount = i[1];
-        // int idProductCart = i[2];
         int amountProduct = i[3];
         int idProduct = i[4];
         String name = i[5];
@@ -65,15 +61,12 @@ class _BodyState extends State<Body> {
         Cart cart = Cart(product: product, numOfItem: amountProduct);
         carts.add(cart);
       }
-      print(money);
       c.setMoney(money);
 
       setState(() {
         carts;
       });
-    } else {
-      print(response.reasonPhrase);
-    }
+    } else {}
   }
 
   @override

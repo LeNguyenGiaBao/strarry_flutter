@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:strarry_flutter/models/Cart.dart';
 
-import '../../../constants.dart';
 import '../../../size_config.dart';
 
 class CartCard extends StatelessWidget {
@@ -47,7 +46,6 @@ class CartCard extends StatelessWidget {
               Align(
                 alignment: Alignment.topLeft,
                 child: Text(
-                  // products is out demo list
                   cart.product.title,
                   style: const TextStyle(
                       color: Colors.black,

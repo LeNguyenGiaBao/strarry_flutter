@@ -1,9 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:strarry_flutter/components/custom_surfix_icon.dart';
-// import 'package:strarry_flutter/components/form_error.dart';
 import 'package:strarry_flutter/helper/keyboard.dart';
-// import 'package:strarry_flutter/screens/forgot_password/forgot_password_screen.dart';
-// import 'package:strarry_flutter/screens/login_success/login_success_screen.dart';
 
 import 'package:http/http.dart' as http;
 import 'package:strarry_flutter/screens/home/home_screen_state.dart';
@@ -69,8 +66,7 @@ class _SignFormState extends State<SignForm> {
               const Text("Remember me"),
               const Spacer(),
               GestureDetector(
-                onTap: () {}, //Navigator.pushNamed(
-                //context, ForgotPasswordScreen.routeName),
+                onTap: () {},
                 child: const Text(
                   "Forgot Password",
                   style: TextStyle(decoration: TextDecoration.underline),
@@ -78,14 +74,12 @@ class _SignFormState extends State<SignForm> {
               )
             ],
           ),
-          // FormError(errors: errors),
           SizedBox(height: getProportionateScreenHeight(20)),
           DefaultButton(
             text: "Sign In",
             press: () async {
               if (_formKey.currentState!.validate()) {
                 _formKey.currentState!.save();
-                // if all are valid then go to success screen
                 KeyboardUtil.hideKeyboard(context);
                 bool isSuccessLogin = await isLogin(email, password);
                 if (isSuccessLogin == true) {
@@ -93,7 +87,6 @@ class _SignFormState extends State<SignForm> {
                   _showToast(context, isSuccessLogin);
                   Navigator.pushNamedAndRemoveUntil(
                       context, HomeStateScreen.routeName, (r) => false);
-                  // Navigator.pop(context);
                 } else {
                   _showToast(context, isSuccessLogin);
                 }
@@ -104,19 +97,12 @@ class _SignFormState extends State<SignForm> {
           GestureDetector(
             onTap: () {
               Navigator.pushNamed(context, SignUpScreen.routeName);
-            }, //Navigator.pushNamed(
-            //context, ForgotPasswordScreen.routeName),
+            },
             child: const Text(
               "Don't have an account yet? Sign Up",
               style: TextStyle(decoration: TextDecoration.underline),
             ),
           )
-          // DefaultButton(
-          //   text: "Sign Up",
-          //   press: () async {
-          //     Navigator.pushNamed(context, SignUpScreen.routeName);
-          //   },
-          // ),
         ],
       ),
     );
@@ -141,12 +127,9 @@ class _SignFormState extends State<SignForm> {
         int idAccount = responseJson["id"];
         globals.isSignIn = true;
         globals.idAccount = idAccount.toString();
-        print(globals.idAccount);
-        print(globals.isSignIn);
         return true;
       }
     } else {
-      // print(response.reasonPhrase);
       return false;
     }
 
@@ -178,8 +161,6 @@ class _SignFormState extends State<SignForm> {
       decoration: const InputDecoration(
         labelText: "Password",
         hintText: "Enter your password",
-        // If  you are using latest version of flutter then lable text and hint text shown like this
-        // if you r using flutter less then 1.20.* then maybe this is not working properly
         floatingLabelBehavior: FloatingLabelBehavior.always,
         suffixIcon: CustomSurffixIcon(svgIcon: "assets/icons/Lock.svg"),
       ),
@@ -211,8 +192,6 @@ class _SignFormState extends State<SignForm> {
       decoration: const InputDecoration(
         labelText: "Email",
         hintText: "Enter your email",
-        // If  you are using latest version of flutter then lable text and hint text shown like this
-        // if you r using flutter less then 1.20.* then maybe this is not working properly
         floatingLabelBehavior: FloatingLabelBehavior.always,
         suffixIcon: CustomSurffixIcon(svgIcon: "assets/icons/Mail.svg"),
       ),

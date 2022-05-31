@@ -27,27 +27,14 @@ class HomeScreen extends StatelessWidget {
       title: const Text(
         "Strarry",
         style: TextStyle(
-          // fontSize: getProportionateScreenWidth(20),
           fontWeight: FontWeight.bold,
           color: Colors.black,
         ),
       ),
-      // leading: Padding(
-      //   padding: const EdgeInsets.all(8.0),
-      //   child: Text(
-      //     "Strarry",
-      //     style: TextStyle(
-      //       fontSize: getProportionateScreenWidth(20),
-      //       fontWeight: FontWeight.bold,
-      //       color: Colors.black,
-      //     ),
-      //   ),
-      // ),
       actions: <Widget>[
         IconButton(
           icon: SvgPicture.asset(
             "assets/icons/search.svg",
-            // By default our  icon color is white
             color: kTextColor,
           ),
           onPressed: () {},
@@ -55,7 +42,6 @@ class HomeScreen extends StatelessWidget {
         IconButton(
           icon: SvgPicture.asset(
             "assets/icons/cart.svg",
-            // By default our  icon color is white
             color: kTextColor,
           ),
           onPressed: !globals.isSignIn
